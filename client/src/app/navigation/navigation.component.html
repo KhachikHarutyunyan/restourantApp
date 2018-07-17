@@ -1,14 +1,26 @@
 <div class="navbar-fixed">
-  <nav class="teal">
+  <nav class="transparent">
     <div class="container">
-      <div class="nav-wrapper">
-        <a routerLink="/" class="brand-logo">Logo</a>
+      <div class="nav-wrapper ">
+        <a routerLink="/" class="brand-logo">Milano</a>
         <ul class="right hide-on-med-and-down">
-          <li [routerLinkActive]="'active'" routerLinkActivOptions="{ extended: true }">
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a routerLink="/">Home</a>
           </li>
-          <li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a routerLink="/">Menu</a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a routerLink="/">About</a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a routerLink="/">Contact</a>
+          </li>
+          <li routerLinkActive="active">
             <a routerLink="/login">Login</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/login">Register</a>
           </li>
         </ul>
       </div>
