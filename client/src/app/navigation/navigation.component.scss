@@ -1,6 +1,16 @@
 .nav-wrapper {
+  right: 30px;
   ul li a {
     color: #f97878;
     font-weight: bold;
   }
+  i {
+    color: #f97878;
+  }
+}
+.open {
+  transform: translateX(0%);
+}
+.close {
+  transform: translateX(-105%);
 }

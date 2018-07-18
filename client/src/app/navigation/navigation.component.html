@@ -1,8 +1,11 @@
-<div class="navbar-fixed">
+<!-- <div class="navbar-fixed">
   <nav class="transparent">
     <div class="container">
       <div class="nav-wrapper ">
-        <a routerLink="/" class="brand-logo">Milano</a>
+        <a routerLink="/" class="brand-logo blue-text">Milano</a>
+        <a href="#!" class="button-collapse" data-activates="mobile-nav" #toggleMenu>
+          <i class="material-icons">menu</i>
+        </a>
         <ul class="right hide-on-med-and-down">
           <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a routerLink="/">Home</a>
@@ -19,13 +22,99 @@
           <li routerLinkActive="active">
             <a routerLink="/login">Login</a>
           </li>
-          <li routerLinkActive="active">
+          <li routerLinkActive="active" (click)="click()">
             <a routerLink="/login">Register</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+</div> -->
+
+<div class="navbar-fixed">
+  <nav class="transparent">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a routerLink="/" class="brand-logo  blue-text">Milano</a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"
+          (click)="menuClick()" >
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a routerLink="/">Home</a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a routerLink="/">Menu</a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a routerLink="/">About</a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a routerLink="/">Contact</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/login">Login</a>
+          </li>
+           <li routerLinkActive="active">
+            <a routerLink="/login">Register</a>
+          </li>
+          <!--
+          <li routerLinkActive="active">
+            <a href="#!" >Logout</a>
+          </li> -->
+        </ul>
+      </div>
+
+
+    </div>
+
+  </nav>
+  <div class="right" style="position: fixed; display: inline-block; margin: 0 50px; padding-top: 20px" >
+    <div >
+      <a href="#!" class="blue-text">user555</a>
+      <a href="#!" class="blue-text right valign-wrapper">
+        <i class="material-icons">shopping_cart</i> | $ 32
+      </a>
+    </div>
+  </div>
 </div>
+
+<!-- mobile nav -->
+
+<ul id="slide-out" class="sidenav" #toggleMenu >
+  <li>
+    <div class="user-view">
+    <!-- <div class="background">
+      <img src="../../assets/img/place.jpeg" alt="">
+    </div> -->
+      <a href="#name"><span class="white-text name">John Doe</span></a>
+      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div>
+  </li>
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a routerLink="/">Home</a>
+  </li>
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a routerLink="/">Menu</a>
+  </li>
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a routerLink="/">About</a>
+  </li>
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a routerLink="/">Contact</a>
+  </li>
+  <li routerLinkActive="active">
+    <a routerLink="/login">Login</a>
+  </li>
+  <li routerLinkActive="active">
+    <a routerLink="/login">Register</a>
+  </li>
+  <li routerLinkActive="active">
+    <a href="#!" >Logout</a>
+  </li>
+</ul>
+
+
 
 
