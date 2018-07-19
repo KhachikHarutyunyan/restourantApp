@@ -19,8 +19,18 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.sliderInit = MaterialService.slider(this.sliderRef);
+    this.autoplay();
   }
 
-  ngOnDestroy() {}
+  autoplay() {
+    setTimeout(() => {
+      this.sliderInit.next();
+      this.autoplay();
+    }, 5500);
+  }
+
+  ngOnDestroy() {
+    this.sliderInit.destroy();
+  }
 
 }

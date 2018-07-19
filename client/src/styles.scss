@@ -1,2 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~materialize-css/dist/css/materialize.min.css';
+
+@import './assets/scss-tools/vars';
+
+body {
+  background-color: rgb(168, 168, 168);
+}
+
+.btn, .btn-large, .btn-small {
+  background-color: $accent;
+}
+.btn:hover, .btn-large:hover, .btn-small:hover {
+  background-color: $primary;
+  color: $accent;
+}

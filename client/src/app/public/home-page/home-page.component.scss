@@ -1,5 +1,152 @@
+@import '../../../assets/scss-tools/vars';
+
+.overlay {
+  background: rgba(112, 87, 176, 0.9);
+  width: 100%;
+  height: 100%;
+}
+
+.section-slider {
+  position: relative;
+  top: 0;
+  left: 0;
+  font-family: $standart;
+  height: 100%;
+  h2 {
+    color: $accent;
+  }
+  .slide-title {
+    display: block;
+    font-size: 22px;
+    margin-top: 130px;
+    padding-right: 40px;
+    // padding-left: 40px;
+    // width: 40%;
+    font-family: $standart;
+    .btn {
+      font-family: $standart;
+    }
+  }
+}
+
 .slide-bg-1 {
   background-image: url(../../../assets/img/large-burger1.jpeg);
   background-position: center;
   background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+.slide-bg-2 {
+  background-image: url(../../../assets/img/large-pizza.jpeg);
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+.slide-bg-3 {
+  background-image: url(../../../assets/img/large-sushi1.jpeg);
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+.section-cards {
+  background: #120f0f;
+  font-family: $standart;
+  h3 {
+    color: $accent;
+    font-family: $cursive;
+    margin-bottom: 40px;
+    border-bottom: 1px solid $accent;
+  }
+  .card {
+    background: transparent;
+    box-shadow: none;
+    color: #fff;
+    h4 {
+      font-size: 22px;
+    }
+    i {
+      color: $accent;
+      margin-top: 50px;
+      margin-right: 20px;
+    }
+  }
+}
+
+.section-info {
+  background-image: url(../../../assets/img/large-sushi.jpeg);
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  padding-top: 50px;
+  .info-block {
+    background: rgba(136, 136, 136, 0.4);
+    padding: 10px 20px 10px;
+    border-radius: 5px;
+    font-family: $standart;
+    color: #fff;
+    .collection .collection-item {
+      background: rgba(136, 136, 136, 0.3)!important;
+      i {
+        color: $accent;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.section-work {
+  background-color: #e6e6e6;
+  font-family: $standart;
+  background-image: url(../../../assets/img/place.jpeg);
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  padding: 80px 0;
+  .card {
+    background: rgba(0, 0, 0, 0.8)!important;
+  }
+  .card-content {
+
+    span {
+      color: $grey!important;
+    }
+  }
+  .card-reveal {
+    background: rgba(27, 27, 27, 0.8);
+    color: $grey!important;
+    span {
+      color: $accent!important;
+      font-family: $cursive;
+    }
+    .collection-item {
+      background: rgba(27, 27, 27, 0.8);
+    }
+  }
+}
+
+.section-popular {
+  background-color: #f2f1f1;
+  padding: 70px 0;
+  .card .card-content {
+    padding: 4px;
+  }
+}
+
+
+@media(max-width: 712px) {
+  .section-cards {
+    .card {
+      h4 {
+        font-size: 18px;
+      }
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
 }

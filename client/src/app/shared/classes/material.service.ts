@@ -2,11 +2,13 @@ import { MaterialInstance } from './material.service';
 import { ElementRef } from '@angular/core';
 
 declare var M;
+declare var autoplay;
 
 export interface MaterialInstance {
   open?(): void;
   close?(): void;
   destroy?(): void;
+  next?(): void;
 }
 
 
@@ -24,13 +26,21 @@ export class MaterialService {
     return M.Carousel.init(ref.nativeElement, {
       fullWidth: true,
       indicators: true,
-      // height: 1500,
-      // transition: 500,
-      dist: 100,
-      dragged: true,
-      duration: 200
+      // height: 600,
+      dist: -100,
+      padding: 0,
+      duration: 300
     });
   }
 
+  // static autoPlay() {
+  //   setTimeout(() => { return autoplay; }, 1000);
+  // }
+
 }
 
+// autoplay();
+// function autoplay() {
+//     $('.carousel').carousel('next');
+//     setTimeout(autoplay, 4500);
+// }
