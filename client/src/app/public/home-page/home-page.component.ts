@@ -9,8 +9,10 @@ import { MaterialService, MaterialInstance } from '../../shared/classes/material
 export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('slider') sliderRef: ElementRef;
+  @ViewChild('parallax') parallaxRef: ElementRef;
 
   sliderInit: MaterialInstance;
+  parallaxInit: MaterialInstance;
 
   constructor() { }
 
@@ -20,6 +22,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.sliderInit = MaterialService.slider(this.sliderRef);
     this.autoplay();
+    this.parallaxInit = MaterialService.parallax(this.parallaxRef);
   }
 
   autoplay() {
@@ -31,6 +34,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.sliderInit.destroy();
+    this.parallaxInit.destroy();
   }
 
 }

@@ -20,8 +20,6 @@
     font-size: 22px;
     margin-top: 130px;
     padding-right: 40px;
-    // padding-left: 40px;
-    // width: 40%;
     font-family: $standart;
     .btn {
       font-family: $standart;
@@ -52,7 +50,7 @@
 }
 
 .section-cards {
-  background: #120f0f;
+  background: #282b2e ;
   font-family: $standart;
   h3 {
     color: $accent;
@@ -97,6 +95,26 @@
         color: $accent;
         margin-right: 8px;
       }
+    }
+  }
+}
+
+.section-order {
+  background: #fff;
+  font-family: $standart;
+  .card {
+    background: transparent;
+    box-shadow: none;
+    h4 {
+      font-size: 22px;
+    }
+    p {
+      color: $grey;
+    }
+    i {
+      color: $accent;
+      margin-top: 30px;
+      margin-right: 20px;
     }
   }
 }
@@ -181,6 +199,36 @@
   }
 }
 
+.section-parallax {
+  position: relative;
+  .parallax-container {
+    height: 100vh;
+  }
+  .overlay-px {
+    background-color: rgba(0, 67, 95, 0.6);
+    height: 100%;
+    width: 100%;
+  }
+  .parallax-block {
+    padding-top: 20%;
+    text-align: center;
+    height: 100%;
+    font-family: $standart;
+    h3 {
+      font-family: $cursive;
+      color: #fff;
+    }
+    p {
+      color: $grey;
+      font-size: 18px;
+    }
+    a {
+      margin-right: 10px;
+    }
+  }
+}
+
+// media
 
 @media(max-width: 712px) {
   .section-cards {
@@ -194,6 +242,9 @@
     }
   }
 }
+
+
+
 
 @media(max-width: 500px) {
   .section-popular {

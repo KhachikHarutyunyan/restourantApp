@@ -4,12 +4,17 @@
 @import './assets/scss-tools/vars';
 
 body {
-  background-color: rgb(168, 168, 168);
+  background-color: rgb(235, 235, 235);
 }
 
 .btn, .btn-large, .btn-small {
   background-color: $accent;
 }
+
+.btn:focus, .btn-large:focus, .btn-small:focus, .btn-floating:focus {
+  background-color: $accent;
+}
+
 .btn:hover, .btn-large:hover, .btn-small:hover {
   background-color: $primary;
   color: $accent;

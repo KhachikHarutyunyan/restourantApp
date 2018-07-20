@@ -8,13 +8,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomePageComponent } from './public/home-page/home-page.component';
 import { LoginPageComponent } from './public/login-page/login-page.component';
+import { FooterComponent } from './public/footer/footer.component';
+import { MenuPageComponent } from './public/menu-page/menu-page.component';
+import { MenuListComponent } from './public/menu-page/menu-list/menu-list.component';
+import { AboutComponent } from './public/about/about.component';
+import { ContactComponent } from './public/contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HomePageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    FooterComponent,
+    MenuPageComponent,
+    MenuListComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

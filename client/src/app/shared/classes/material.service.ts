@@ -33,14 +33,14 @@ export class MaterialService {
     });
   }
 
-  // static autoPlay() {
-  //   setTimeout(() => { return autoplay; }, 1000);
-  // }
+  static parallax(ref: ElementRef) {
+    return M.Parallax.init(ref.nativeElement);
+  }
+
+  static colaps(ref: ElementRef) {
+    return M.Collapsible.init(ref.nativeElement, {
+      accordion: false
+    });
+  }
 
 }
-
-// autoplay();
-// function autoplay() {
-//     $('.carousel').carousel('next');
-//     setTimeout(autoplay, 4500);
-// }

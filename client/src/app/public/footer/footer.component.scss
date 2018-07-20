@@ -1,0 +1,23 @@
+@import '../../../assets/scss-tools/vars';
+
+.footer-block {
+  background-color: #282b2e;
+  font-family: $standart;
+  h5 {
+    color: $accent;
+  }
+  .contact-list {
+    p {
+      margin-bottom: 5px;
+    }
+    span {
+      color: $grey;
+      font-size: 12px;
+    }
+  }
+
+  .footer-copyright {
+    background-color: #1d2023;
+    font-family: $cursive;
+  }
+}

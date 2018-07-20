@@ -2,7 +2,7 @@
   <div class="carousel carousel-slider center" #slider style="height: 100vh">
     <div class="carousel-item slide-bg-1">
       <div class="slide-title right-align">
-        <h2>We do The Best Burgers in London</h2>
+        <h2>We do The Best Burgers in New York</h2>
         <h5 class="light grey-text text-lighten-3 hide-on-small-only">
           Taste it now with our online order
         </h5>
@@ -15,7 +15,7 @@
       <h5 class="light grey-text text-lighten-3 hide-on-small-only">
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
       </h5>
-      <a href="#" class="btn btn-large">Menu</a>
+      <a routerLink="/menu" class="btn btn-large">Menu</a>
       </div>
     </div>
     <div class="carousel-item slide-bg-3">
@@ -102,20 +102,47 @@
   </div>
 </section>
 
+<section class="section section-order">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card horizontal" >
+          <i class="material-icons large">access_time</i>
+          <div>
+            <h4>Delivery in one hour</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, dignissimos?</p>
+          </div>
+
+        </div>
+      </div>
+      <div class="col s12 m6">
+        <div class="card horizontal" >
+          <i class="material-icons large">local_library</i>
+          <div>
+            <h4>Orgonizat parties</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, dignissimos?</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section-work">
   <div class="container">
     <div class="row">
       <div class="col s12 m6">
         <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="../../../assets/img/open.jpeg">
+            <img class="activator" src="../../../assets/img/open1.jpeg">
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">
               Our Work times
               <i class="material-icons right">more_vert</i>
             </span>
-            <p><a href="#" class="btn  btn-block">More Information</a></p>
+            <p><a routerLink="/about" class="btn  btn-block">More Information</a></p>
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">We work hard for you
@@ -153,7 +180,7 @@
               About our menu and citchen
               <i class="material-icons right">more_vert</i>
             </span>
-            <p><a href="#" class="btn btn-block">Our Menu</a></p>
+            <p><a routerLink="/menu" class="btn btn-block">Our Menu</a></p>
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">We make tasty food
@@ -173,7 +200,7 @@
   </div>
 </section>
 
-<section class="section section-order"></section>
+
 
 <section class="section section-popular">
   <div class="container">
@@ -234,3 +261,30 @@
   </div>
 </section>
 
+<section class="section-parallax">
+  <div class="overlay-px">
+    <div class="parallax-container">
+      <div class="parallax" #parallax>
+      <img src="../../../assets/img/party.jpeg"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m8 offset-m2">
+            <div class="parallax-block">
+              <div>
+                <h3>Would you like to visit Us?</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Voluptas atque ab laborum quibusdam.</p>
+                <a href="#!" class="btn">Order</a>
+                <a href="#!" class="btn">Reserv</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<app-footer></app-footer>
