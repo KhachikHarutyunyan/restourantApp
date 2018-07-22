@@ -1,0 +1,67 @@
+<section class="section section-login">
+  <div class="overlay">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6 offset-m3 form-center">
+          <form class="form" [formGroup]="form" (submit)="onSubmit()">
+            <div class="input-field">
+              <input type="text" formControlName="name" name="name"
+               [ngClass]="{'invalid': (form.controls.name.errors && form.controls.name.dirty)}">
+              <label>Name</label>
+              <ul>
+                <li *ngIf="form.controls['name'].errors?.required && form.controls['name'].dirty">
+                  This field is required</li>
+                <li *ngIf="(form.controls['name'].errors?.minlength && form.controls['name'].dirty) ||
+                    (form.controls['name'].errors?.maxlength && form.controls['name'].dirty)">
+                  Minimum characters: 6, Maximum characters: 30</li>
+                <li *ngIf="form.controls['name'].errors?.emailValidator && form.controls['name'].dirty">
+                  This must be a valid e-mail</li>
+              </ul>
+            </div>
+            <div class="input-field">
+              <input type="email" formControlName="email" name="email"
+              [ngClass]="{'invalid': (form.controls.email.errors && form.controls.email.dirty)}">
+              <label>Email</label>
+              <ul>
+                <li *ngIf="form.controls['email'].errors?.required && form.controls['email'].dirty">
+                  This field is required</li>
+                <li *ngIf="(form.controls['email'].errors?.minlength && form.controls['email'].dirty) ||
+                                  (form.controls['email'].errors?.maxlength && form.controls['email'].dirty)">
+                  Minimum characters: 6, Maximum characters: 30</li>
+                <li *ngIf="form.controls['email'].errors?.emailValidator && form.controls['email'].dirty">
+                  This must be a valid e-mail</li>
+              </ul>
+            </div>
+            <div class="input-field">
+              <input type="password" formControlName="password" name="password"
+               [ngClass]="{'invalid': (form.controls.password.errors && form.controls.password.dirty)}">
+              <label>Password</label>
+              <ul>
+                <li *ngIf="form.controls['password'].errors?.required && form.controls['password'].dirty">
+                  This field is required</li>
+                <li *ngIf="(form.controls['password'].errors?.minlength && form.controls['password'].dirty) ||
+                    (form.controls['password'].errors?.maxlength && form.controls['password'].dirty)">
+                  Minimum characters: 6, Maximum characters: 30</li>
+                <li *ngIf="form.controls['password'].errors?.emailValidator && form.controls['password'].dirty">
+                  This must be a valid e-mail</li>
+              </ul>
+            </div>
+            <div class="input-field">
+              <input type="password" formControlName="confirm" name="confirm"
+               [ngClass]="{'invalid': (form.controls.confirm.errors && form.controls.confirm.dirty)}">
+              <label>Confirm</label>
+              <ul>
+                <li *ngIf="form.controls['confirm'].errors?.required && form.controls['confirm'].dirty">
+                  This field is required</li>
+                <li *ngIf="form.controls['confirm'].errors?.emailValidator && form.controls['confirm'].dirty">
+                  This must be a valid e-mail</li>
+              </ul>
+            </div>
+
+            <input type="submit" value="Registration" [disabled]="!form.valid" class="btn blue-grey">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

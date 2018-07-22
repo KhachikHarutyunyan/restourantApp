@@ -9,6 +9,9 @@ body {
 
 .btn, .btn-large, .btn-small {
   background-color: $accent;
+  &:disabled {
+    background-color: #435a65 !important;
+  }
 }
 
 .btn:focus, .btn-large:focus, .btn-small:focus, .btn-floating:focus {

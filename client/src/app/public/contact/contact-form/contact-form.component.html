@@ -1,0 +1,71 @@
+<div class="col s12 m6 offset-m6 ">
+  <a class="show-btn" (click)="showBtn = !showBtn">
+    Contact us
+    <i class="material-icons" *ngIf="showBtn">expand_less</i>
+    <i class="material-icons" *ngIf="!showBtn">expand_more</i>
+  </a>
+  <div class="card-panel z-depth-5" [ngClass]="{ 'form-display': !showBtn }">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h4>Contact Us</h4>
+      <div class="input-field">
+        <input type="text"  name="name"
+           [ngClass]="{'invalid': (form.controls.name.errors && form.controls.name.dirty)}"
+         formControlName="name">
+        <label for="name">Name</label>
+        <ul>
+          <li *ngIf="form.controls['name'].errors?.required && form.controls['name'].dirty">
+            This field is required</li>
+          <li *ngIf="(form.controls['name'].errors?.minlength && form.controls['name'].dirty) ||
+            (form.controls['name'].errors?.maxlength && form.controls['name'].dirty)">
+             Minimum characters: 5, Maximum characters: 30</li>
+          <li *ngIf="form.controls['name'].errors?.nameValidator && form.controls['name'].dirty">
+             Username must not have any special characters or numbers</li>
+        </ul>
+      </div>
+      <div class="input-field">
+        <input type="email" name="email" formControlName="email"
+           [ngClass]="{'invalid': (form.controls.email.errors && form.controls.email.dirty)}">
+        <label for="email">Email</label>
+        <ul>
+          <li *ngIf="form.controls['email'].errors?.required && form.controls['email'].dirty">
+            This field is required</li>
+          <li *ngIf="(form.controls['email'].errors?.minlength && form.controls['email'].dirty) ||
+                    (form.controls['email'].errors?.maxlength && form.controls['email'].dirty)">
+            Minimum characters: 6, Maximum characters: 30</li>
+          <li *ngIf="form.controls['email'].errors?.emailValidator && form.controls['email'].dirty">
+             This must be a valid e-mail</li>
+        </ul>
+      </div>
+      <div class="input-field">
+        <input type="text" name="phone"
+         [ngClass]="{'invalid': (form.controls.phone.errors && form.controls.phone.dirty)}"
+          formControlName="phone">
+        <label for="phone">Phone</label>
+        <ul>
+          <li *ngIf="form.controls['phone'].errors?.required && form.controls['phone'].dirty">
+            This field is required</li>
+          <li *ngIf="(form.controls['phone'].errors?.minlength && form.controls['phone'].dirty) ||
+                            (form.controls['phone'].errors?.maxlength && form.controls['phone'].dirty)">
+            Minimum characters: 8, Maximum characters: 20</li>
+          <li *ngIf="form.controls['phone'].errors?.phoneValidator && form.controls['phone'].dirty">
+            Writ a correct phone number</li>
+        </ul>
+      </div>
+      <div class="input-field">
+        <textarea class="materialize-textarea" id="message" formControlName="message"
+         [ngClass]="{'invalid': (form.controls.message.errors && form.controls.message.dirty)}"
+         ></textarea>
+        <label for="message">Message</label>
+        <ul>
+          <li *ngIf="form.controls['message'].errors?.required && form.controls['message'].dirty">
+            This field is required</li>
+          <li *ngIf="(form.controls['message'].errors?.minlength && form.controls['message'].dirty) ||
+                            (form.controls['message'].errors?.maxlength && form.controls['message'].dirty)">
+            Minimum characters: 6, Maximum characters: 300</li>
+        </ul>
+      </div>
+      <input type="submit" value="Submit" [disabled]="!form.valid" class="btn blue-grey">
+    </form>
+
+  </div>
+</div>

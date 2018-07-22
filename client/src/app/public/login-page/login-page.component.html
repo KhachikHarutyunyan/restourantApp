@@ -1,3 +1,38 @@
-<p>
-  login-page works!
-</p>
+
+<section class="section section-login">
+  <div class="overlay">
+  <div class="container">
+    <div class="row" >
+      <div class="col s12 m6 offset-m3 form-center">
+        <form class="form" [formGroup]="form" (submit)="onSubmit()" >
+          <div class="social">
+            <span>Log in with </span>
+            <i class="fab fa-facebook-square"></i>
+            <i class="fab fa-google-plus-square"></i>
+          </div>
+          <div class="input-field">
+            <input type="email" formControlName="email" name="email"
+               [ngClass]="{'invalid': (form.controls.email.errors && form.controls.email.dirty)}">
+            <label >Email</label>
+            <ul>
+              <li *ngIf="form.controls['email'].errors?.required && form.controls['email'].dirty">
+                This field is required</li>
+            </ul>
+          </div>
+          <div class="input-field">
+            <input type="password" formControlName="password" name="password"
+             [ngClass]="{'invalid': (form.controls.password.errors && form.controls.password.dirty)}">
+            <label>Password</label>
+            <ul>
+              <li *ngIf="form.controls['password'].errors?.required && form.controls['password'].dirty">
+                This field is required</li>
+            </ul>
+          </div>
+
+          <input type="submit" value="Login" [disabled]="!form.valid"  class="btn blue-grey">
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

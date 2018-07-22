@@ -1,0 +1,48 @@
+@import '../../../../assets/scss-tools/vars';
+
+.card-panel {
+  position: relative;
+  z-index: 1;
+  .input-field {
+    ul {
+      margin-top: 5px;
+      li {
+        color: $accent;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.show-btn {
+  opacity: 0;
+  z-index: 1232;
+  position: relative;
+  background-color: #fff;
+  color: $accent;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 10px;
+  vertical-align: middle;
+  border-radius: 3px;
+  i {
+    position: relative;
+    top: 7px;
+    border-left: 1px solid $grey;
+    padding-left: 10px;
+    font-size: 26px;
+    margin-left: 5px;
+  }
+}
+
+
+//media
+@media (max-width: 600px) {
+  .form-display {
+    opacity: 0;
+  }
+  .show-btn {
+    opacity: 1;
+  }
+
+}

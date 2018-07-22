@@ -1,4 +1,4 @@
-
+@import '../../../assets/scss-tools/vars';
 
 .section-contact-header {
   width: 100%;
@@ -6,4 +6,35 @@
   background-image: url(../../../assets/img/visit.jpeg);
   background-position: 0 0;
   background-size: cover;
+}
+
+
+.section-map {
+  position: relative;
+  // height: 100%;
+
+  .g-map {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+
+}
+
+
+// media
+
+@media (max-width: 600px) {
+  .section-map {
+    .form-display {
+      opacity: 0;
+    }
+    .show-btn {
+      opacity: 1;
+    }
+  }
 }

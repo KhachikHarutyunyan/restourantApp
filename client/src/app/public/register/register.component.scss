@@ -33,18 +33,6 @@
       text-align: center;
       width: 100%;
       background-color: rgba(0, 0, 0, .4);
-      .social {
-        text-align: right;
-        span {
-          color: $accent;
-          font-size: 20px;
-        }
-        i {
-          color: $accent;
-          font-size: 30px;
-          margin-left: 10px;
-        }
-      }
       .input-field {
         input {
           color: #fff;
@@ -56,7 +44,6 @@
             font-size: 14px;
           }
         }
-
       }
 
     }

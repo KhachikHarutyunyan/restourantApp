@@ -13,6 +13,8 @@ import { MenuPageComponent } from './public/menu-page/menu-page.component';
 import { MenuListComponent } from './public/menu-page/menu-list/menu-list.component';
 import { AboutComponent } from './public/about/about.component';
 import { ContactComponent } from './public/contact/contact.component';
+import { ContactFormComponent } from './public/contact/contact-form/contact-form.component';
+import { RegisterComponent } from './public/register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ContactComponent } from './public/contact/contact.component';
     MenuPageComponent,
     MenuListComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    ContactFormComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
