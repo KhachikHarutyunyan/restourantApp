@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const keys = require('./config/keys');
 
+const authPath = require('./routes/auth');
+
 const port = process.env.PORT || 3000;
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
@@ -17,8 +19,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+
+app.use('/auth/google', authPath);
+
 app.get('/', (req, res) => {
-  res.send('/index.html');
+  res.send('<a href="/auth/google">Google</a>');
 });
 
 

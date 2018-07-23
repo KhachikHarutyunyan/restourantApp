@@ -13,9 +13,9 @@
                   This field is required</li>
                 <li *ngIf="(form.controls['name'].errors?.minlength && form.controls['name'].dirty) ||
                     (form.controls['name'].errors?.maxlength && form.controls['name'].dirty)">
-                  Minimum characters: 6, Maximum characters: 30</li>
-                <li *ngIf="form.controls['name'].errors?.emailValidator && form.controls['name'].dirty">
-                  This must be a valid e-mail</li>
+                  Minimum characters: 2, Maximum characters: 30!</li>
+                <li *ngIf="form.controls['name'].errors?.nameValidator && form.controls['name'].dirty">
+                  Username must not have any special characters or numbers!</li>
               </ul>
             </div>
             <div class="input-field">
@@ -27,9 +27,9 @@
                   This field is required</li>
                 <li *ngIf="(form.controls['email'].errors?.minlength && form.controls['email'].dirty) ||
                                   (form.controls['email'].errors?.maxlength && form.controls['email'].dirty)">
-                  Minimum characters: 6, Maximum characters: 30</li>
+                  Minimum characters: 6, Maximum characters: 30!</li>
                 <li *ngIf="form.controls['email'].errors?.emailValidator && form.controls['email'].dirty">
-                  This must be a valid e-mail</li>
+                  This must be a valid e-mail!</li>
               </ul>
             </div>
             <div class="input-field">
@@ -41,9 +41,9 @@
                   This field is required</li>
                 <li *ngIf="(form.controls['password'].errors?.minlength && form.controls['password'].dirty) ||
                     (form.controls['password'].errors?.maxlength && form.controls['password'].dirty)">
-                  Minimum characters: 6, Maximum characters: 30</li>
-                <li *ngIf="form.controls['password'].errors?.emailValidator && form.controls['password'].dirty">
-                  This must be a valid e-mail</li>
+                  Minimum characters: 8, Maximum characters: 30!</li>
+                <li *ngIf="form.controls['password'].errors?.passwordValidator && form.controls['password'].dirty">
+                  Password must have numbers,spacial characters, capital & small letters!</li>
               </ul>
             </div>
             <div class="input-field">
@@ -52,9 +52,9 @@
               <label>Confirm</label>
               <ul>
                 <li *ngIf="form.controls['confirm'].errors?.required && form.controls['confirm'].dirty">
-                  This field is required</li>
-                <li *ngIf="form.controls['confirm'].errors?.emailValidator && form.controls['confirm'].dirty">
-                  This must be a valid e-mail</li>
+                  This field is required!</li>
+                <li *ngIf="form.errors?.matching && form.controls['confirm'].dirty">
+                  Password do not match</li>
               </ul>
             </div>
 

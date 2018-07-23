@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '../../../../node_modules/@angular/forms';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -11,7 +12,8 @@ export class LoginPageComponent implements OnInit {
   form: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private auth: AuthService
   ) {
     this.createForm();
   }
@@ -27,6 +29,12 @@ export class LoginPageComponent implements OnInit {
       password: ['', Validators.compose([
         Validators.required
       ])]
+    });
+  }
+
+  ggAuth() {
+    this.auth.ggAuth().subscribe(data => {
+      console.log(data);
     });
   }
 
