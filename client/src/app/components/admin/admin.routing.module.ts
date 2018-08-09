@@ -5,8 +5,7 @@ import { AdminLayoutComponent } from '../../shared/layouts/admin-layout/admin-la
 
 const routes: Routes = [
   { path: '', component: AdminLayoutComponent, children: [
-    { path: '', component: CategoriesComponent },
-    { path: '**', redirectTo: '/admin' },
+    { path: '', component: CategoriesComponent }
   ] }
 ];
 

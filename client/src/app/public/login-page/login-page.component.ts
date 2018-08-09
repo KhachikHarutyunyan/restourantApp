@@ -9,27 +9,18 @@ import { User } from '../../shared/interfaces';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-
   form: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private auth: AuthService
-  ) {
+  constructor(private formBuilder: FormBuilder, private auth: AuthService) {
     this.createForm();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   createForm() {
     this.form = this.formBuilder.group({
-      email: ['', Validators.compose([
-        Validators.required
-      ])],
-      password: ['', Validators.compose([
-        Validators.required
-      ])]
+      email: ['', Validators.compose([Validators.required])],
+      password: ['', Validators.compose([Validators.required])]
     });
   }
 
@@ -43,5 +34,4 @@ export class LoginPageComponent implements OnInit {
       console.log('data ', data);
     });
   }
-
 }

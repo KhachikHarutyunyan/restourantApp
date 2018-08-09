@@ -15,7 +15,7 @@ module.exports.login = async function(req, res) {
         userId: candidate._id
       }, keys.jwt, { expiresIn: 60 * 300 });
 
-      res.status(200).json({ token: `Bearer ${token}` });
+      res.status(200).json({ token: `Bearer ${token}`, user: candidate });
     } else {
       res.status(401).json({ message: 'Passwords not mutch, try again' });
     }

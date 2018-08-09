@@ -41,7 +41,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    AdminModule
+    AdminModule,
   ],
   providers: [
     // {
@@ -52,4 +52,4 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
