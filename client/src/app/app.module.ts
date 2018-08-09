@@ -15,6 +15,9 @@ import { AboutComponent } from './public/about/about.component';
 import { ContactComponent } from './public/contact/contact.component';
 import { ContactFormComponent } from './public/contact/contact-form/contact-form.component';
 import { RegisterComponent } from './public/register/register.component';
+import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.component';
+import { AdminModule } from './components/admin/admin.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +31,17 @@ import { RegisterComponent } from './public/register/register.component';
     AboutComponent,
     ContactComponent,
     ContactFormComponent,
-    RegisterComponent
+    RegisterComponent,
+    SiteLayoutComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AdminModule
   ],
   providers: [
     // {

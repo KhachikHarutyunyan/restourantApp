@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '../../../../node_modules/@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
+import { User } from '../../shared/interfaces';
 
 @Component({
   selector: 'app-login-page',
@@ -32,14 +33,15 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  ggAuth() {
-    this.auth.ggAuth().subscribe(data => {
-      console.log(data);
-    });
-  }
-
   onSubmit() {
-    console.log(this.form);
+    const user: User = {
+      email: this.form.value.email,
+      password: this.form.value.password
+    };
+    console.log(user);
+    this.auth.login(user).subscribe(data => {
+      console.log('data ', data);
+    });
   }
 
 }
