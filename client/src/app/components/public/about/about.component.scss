@@ -1,4 +1,4 @@
-@import '../../../assets/scss-tools/vars';
+@import '../../../../assets/scss-tools/vars';
 
 .section-about {
   .parallax-container {
@@ -21,7 +21,7 @@
 }
 
 .section-about-rest {
-  background-image: url(../../../assets/img/cheef.jpeg);
+  background-image: url(../../../../assets/img/cheef.jpeg);
   background-position: 0 0 0 120px;
   background-size: cover;
   width: 100%;

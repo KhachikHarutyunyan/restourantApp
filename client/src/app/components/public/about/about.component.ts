@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { MaterialInstance, MaterialService } from '../../shared/classes/material.service';
+import { MaterialInstance, MaterialService } from '../../../shared/classes/material.service';
 
 @Component({
   selector: 'app-about',

@@ -21,16 +21,16 @@
           <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a routerLink="/contact">Contact</a>
           </li>
-          <li routerLinkActive="active">
+          <li routerLinkActive="active" *ngIf="!auth.tokenState">
             <a routerLink="/login">Login</a>
           </li>
-           <li routerLinkActive="active">
+           <li routerLinkActive="active" *ngIf="!auth.tokenState">
             <a routerLink="/register">Register</a>
           </li>
-          <!--
-          <li routerLinkActive="active">
-            <a href="#!" >Logout</a>
-          </li> -->
+
+          <li routerLinkActive="active" *ngIf="auth.tokenState" (click)="auth.logout()">
+            <a >Logout</a>
+          </li>
         </ul>
       </div>
 

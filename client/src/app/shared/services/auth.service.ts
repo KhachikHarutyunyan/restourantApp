@@ -13,25 +13,23 @@ export class AuthService {
 
   domain = 'http://localhost:3000/api/';
 
-  private token: string = null;
-  private user;
+  private token = null;
 
-  constructor(
-    private http: HttpClient
-  ) {}
+  constructor(private http: HttpClient) {}
 
   register(user: User): Observable<User> {
-    return this.http.post<User>(this.domain + 'auth/register/', user);
+    return this.http.post<User>('/api/auth/register/', user);
   }
 
   login(user: User): Observable<{token: string}> {
-    return this.http.post<{ token: string }>(this.domain + 'auth/login', user)
+    return this.http.post<{token: string}>(this.domain + 'auth/login', user)
         .pipe(
-          tap(({ token }) => {
-            console.log(token);
-            localStorage.setItem('auth-token', token);
-            this.setToken(token);
-        })
+          tap(
+            ({ token }) => {
+              localStorage.setItem('auth-token', token);
+              this.setToken(token);
+            }
+          )
         );
   }
 

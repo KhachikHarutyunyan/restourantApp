@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { MaterialInstance, MaterialService } from '../shared/classes/material.service';
+import { MaterialInstance, MaterialService } from '../../../shared/classes/material.service';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -14,7 +15,9 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
   menuState = false;
   showMenuStyle = '';
 
-  constructor() { }
+  constructor(
+    public auth: AuthService
+  ) { }
 
   ngOnInit() {
   }
