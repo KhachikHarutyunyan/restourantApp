@@ -8,6 +8,9 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileGuard } from '../../shared/services/profile.guard';
+import { UserOrderComponent } from './profile/user-order/user-order.component';
 
 const routes: Routes = [
   { path: '', component: SiteLayoutComponent,
@@ -17,7 +20,10 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'login', component: LoginPageComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'profile', component: ProfileComponent, canActivateChild: [ProfileGuard], children: [
+        { path: '', component: UserOrderComponent }
+      ] }
     ]
   }
 ];

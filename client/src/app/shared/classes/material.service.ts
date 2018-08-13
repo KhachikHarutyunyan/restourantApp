@@ -43,4 +43,10 @@ export class MaterialService {
     });
   }
 
+  static asideCart(ref: ElementRef): MaterialInstance {
+    return M.Sidenav.init(ref.nativeElement, {
+      edge: 'right'
+    });
+  }
+
 }

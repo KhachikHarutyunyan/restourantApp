@@ -1,3 +1,4 @@
+import { ProfileComponent } from './profile/profile.component';
 import { NgModule } from '../../../../node_modules/@angular/core';
 import { CommonModule } from '../../../../node_modules/@angular/common';
 
@@ -14,8 +15,8 @@ import { MenuListComponent } from './menu-page/menu-list/menu-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
 import { ReactiveFormsModule } from '../../../../node_modules/@angular/forms';
-
-
+import { ProfileGuard } from '../../shared/services/profile.guard';
+import { UserOrderComponent } from './profile/user-order/user-order.component';
 
 
 @NgModule({
@@ -35,8 +36,11 @@ import { ReactiveFormsModule } from '../../../../node_modules/@angular/forms';
     MenuPageComponent,
     NavigationComponent,
     RegisterComponent,
-    MenuListComponent
-  ]
+    MenuListComponent,
+    ProfileComponent,
+    UserOrderComponent
+  ],
+  providers: [ProfileGuard]
 })
 
 export class PublicModule {}

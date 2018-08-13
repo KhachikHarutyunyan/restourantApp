@@ -1,4 +1,6 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '../../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-admin-layout',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) { }
+
+  links = [
+    { url: '/admin', name: 'Overview' },
+    { url: '/admin/history', name: 'History' },
+    { url: '/admin/analytics', name: 'Analytics' },
+    { url: '/admin/order', name: 'Order' },
+    { url: '/admin/categories', name: 'Categories' }
+  ];
 
   ngOnInit() {
+  }
+
+  logout(event: Event) {
+    event.preventDefault();
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 
 }

@@ -1,3 +1,4 @@
+import { ProfileGuard } from './shared/services/profile.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +11,8 @@ import { AdminModule } from './components/admin/admin.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PublicModule } from './components/public/public.module';
 import { TokenInterceptor } from './shared/classes/token.interceptor';
+import { JwtModule } from '../../node_modules/@auth0/angular-jwt';
+import { AdminGuard } from './shared/services/admin.guard';
 
 @NgModule({
   declarations: [
@@ -22,14 +25,23 @@ import { TokenInterceptor } from './shared/classes/token.interceptor';
     FormsModule,
     AppRoutingModule,
     AdminModule,
-    PublicModule
+    PublicModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('auth-token');
+        }
+      }
+    })
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: TokenInterceptor
-    }
+    },
+    AdminGuard,
+    ProfileGuard
   ],
   bootstrap: [AppComponent]
 })

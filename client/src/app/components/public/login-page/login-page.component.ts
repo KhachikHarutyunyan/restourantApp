@@ -43,10 +43,11 @@ export class LoginPageComponent implements OnInit {
     };
     this.auth.login(user).subscribe(data => {
       if (data) {
+        this.auth.storeUserData(data['token'], data['user']);
         if (data['user']['admin']) {
           this.router.navigate(['/admin']);
         } else {
-          this.router.navigate(['/menu']);
+          this.router.navigate(['/profile']);
         }
       }
     });

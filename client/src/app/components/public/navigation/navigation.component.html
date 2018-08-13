@@ -5,7 +5,7 @@
       <div class="nav-wrapper">
         <a routerLink="/" class="brand-logo  blue-text">Milano</a>
         <a href="#" data-target="slide-out" class="sidenav-trigger"
-          (click)="menuClick()" >
+           >
           <i class="material-icons">menu</i>
         </a>
         <ul class="right hide-on-med-and-down">
@@ -21,15 +21,15 @@
           <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a routerLink="/contact">Contact</a>
           </li>
-          <li routerLinkActive="active" *ngIf="!auth.tokenState">
+          <li routerLinkActive="active" *ngIf="!auth.isLoggedIn()">
             <a routerLink="/login">Login</a>
           </li>
-           <li routerLinkActive="active" *ngIf="!auth.tokenState">
+           <li routerLinkActive="active" *ngIf="!auth.isLoggedIn()">
             <a routerLink="/register">Register</a>
           </li>
 
-          <li routerLinkActive="active" *ngIf="auth.tokenState" (click)="auth.logout()">
-            <a >Logout</a>
+          <li routerLinkActive="active" *ngIf="auth.isLoggedIn()" >
+            <a (click)="logout($event)">Logout</a>
           </li>
         </ul>
       </div>
@@ -38,10 +38,11 @@
     </div>
 
   </nav>
-  <div class="user-card">
+  <div class="user-card" *ngIf="auth.isLoggedIn()">
     <div>
-      <a href="#!">user555</a>
-      <a href="#!" class="right valign-wrapper">
+      <a routerLink="/profile">{{ auth.userToken.email }}</a>
+      <a class="right valign-wrapper sidenav-trigger"
+       data-target="slide-cart" (click)="cartClick()">
         <i class="material-icons">shopping_cart</i> | $ 32
       </a>
     </div>
@@ -52,12 +53,11 @@
 
 <ul id="slide-out" class="sidenav" #toggleMenu >
   <li>
-    <div class="user-view">
+    <div class="user-view" *ngIf="auth.isLoggedIn()">
     <!-- <div class="background">
       <img src="../../assets/img/place.jpeg" alt="">
     </div> -->
-      <a href="#name"><span class="white-text name">John Doe</span></a>
-      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      <a href="#email"><span class="white-text email">{{ auth.userToken.email }}</span></a>
     </div>
   </li>
   <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
@@ -78,11 +78,77 @@
   <li routerLinkActive="active">
     <a routerLink="/login">Register</a>
   </li>
-  <li routerLinkActive="active">
-    <a href="#!" >Logout</a>
+  <li routerLinkActive="active" *ngIf="auth.isLoggedIn()">
+    <a (click)="logout($event)">Logout</a>
   </li>
 </ul>
 
+<!-- Aside Cart -->
+<div class="cart">
+  <ul class="sidenav" id="slide-cart" #cart>
+    <li class="cart-header">
+      <div >
+        <p> Your Cart</p>
+      </div>
+      <div>
+        <i class="material-icons">close</i>
+      </div>
+    </li>
 
+    <div class="card-content">
+      <ul class="order-list">
+        <li>
+          <div class="order-name">
+            <p>Burger X <br> <span>Beef, chees, potato, onion, fries</span></p>
+          </div>
+          <div class="order-cart">
+            <span>$8</span>
+          </div>
+          <div class="order-cart">
+            <i class="material-icons">close</i>
+          </div>
+        </li>
+        <li>
+          <div class="order-name">
+            <p>Burger X <br> <span>Beef, chees, potato, onion, fries</span></p>
+          </div>
+          <div class="order-cart">
+            <span>$8</span>
+          </div>
+          <div class="order-cart">
+            <i class="material-icons">close</i>
+          </div>
+        </li>
+        <li>
+          <div class="order-name">
+            <p>Burger X <br> <span>Beef, chees, potato, onion, fries</span></p>
+          </div>
+          <div class="order-cart">
+            <span>$8</span>
+          </div>
+          <div class="order-cart">
+            <i class="material-icons">close</i>
+          </div>
+        </li>
+        <li>
+          <div class="order-name">
+            <p>Burger X <br> <span>Beef, chees, potato, onion, fries</span></p>
+          </div>
+          <div class="order-cart">
+            <span>$8</span>
+          </div>
+          <div class="order-cart">
+            <i class="material-icons">close</i>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="cart-bottom">
+      <a class="cart-btn">Go to Checkout</a>
+    </div>
+  </ul>
+
+
+</div>
 
 
