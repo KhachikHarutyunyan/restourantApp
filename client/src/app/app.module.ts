@@ -13,6 +13,7 @@ import { PublicModule } from './components/public/public.module';
 import { TokenInterceptor } from './shared/classes/token.interceptor';
 import { JwtModule } from '../../node_modules/@auth0/angular-jwt';
 import { AdminGuard } from './shared/services/admin.guard';
+import { OrderService } from './shared/services/order.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AdminGuard } from './shared/services/admin.guard';
       useClass: TokenInterceptor
     },
     AdminGuard,
-    ProfileGuard
+    ProfileGuard,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

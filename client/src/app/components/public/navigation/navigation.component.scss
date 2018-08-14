@@ -39,6 +39,7 @@
       color: #fff!important;
       margin-right: 10px;
       transition: .4s;
+      cursor: pointer;
       &:hover {
         color: #f97878!important;
       }
@@ -50,19 +51,16 @@
   }
 
 }
-
 .cart {
   .sidenav {
     width: 350px;
+
   }
   .cart-flex {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 300px;
-    height: 100%;
+    min-height: 600px;
+    height: 93.5vh;
     li {
-      border-bottom: 1px solid #f3f4f4;
+      border-bottom: 1px solid #e0e0e0;
       padding-bottom: 10px;
       font-family: $standart;
 
@@ -77,18 +75,23 @@
           vertical-align: middle;
           font-size: 18px;
           margin-top: 10px;
+          padding: 0 25px;
           color: #282b2e;
         }
         i {
           vertical-align: middle;
           font-size: 16px;
-          margin-top: 6px;
+          margin-top: 14px;
+          color: $accent;
+          padding-right: 20px;
+          cursor: pointer;
         }
       }
       a {
-        line-height: 0.6;
+        line-height: 1.6;
         margin-top: 16px;
         color: #282b2e;
+        padding: 0 15px;
         &:hover {
           background-color: transparent;
         }
@@ -100,12 +103,70 @@
           vertical-align: middle;
           span {
             color: #282b2e;
+            margin-top: 10px;
+          }
+          i {
+            color: #b1b3b3;
+            font-size: 16px;
+            margin-top: 11px;
+            cursor: pointer;
+            &:hover {
+              color: $accent;
+            }
           }
         }
         span {
           color: #b1b3b3;
+          font-size: 12px;
         }
       }
+    }
+    .total {
+      display: block;
+      text-align: center;
+      width: 100%;
+      font-family: $standart;
+      padding: 0 20px;
+      p {
+        font-size: 14px;
+        color: #b1b3b3;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e0e0e0;
+        span {
+          margin-left: 10px;
+          color: #282b2e;
+        }
+      }
+      h5 {
+        font-size: 18px;
+        color: #b1b3b3;
+        span {
+          margin-left: 10px;
+          color: #282b2e;
+        }
+      }
+    }
+
+  }
+  .cart-btn {
+    padding: 0px 0 20px;
+    background-color: #282b2e;
+    transition: all .5s;
+    cursor: pointer;
+    &:hover {
+      background-color: $accent;
+    }
+    a {
+      width: 100%;
+      background-color: transparent;
+      position: relative;
+      text-transform: uppercase;
+      padding: 15px 0;
+      bottom: 0;
+      text-align: center;
+      cursor: pointer;
+      color: #fff;
+      font-family: $standart;
     }
   }
 }
@@ -117,5 +178,13 @@
     }
   }
 
-
 }
+
+@media (max-width: 600px) {
+  .cart {
+    .sidenav {
+      width: 300px;
+    }
+  }
+}
+

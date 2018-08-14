@@ -4,16 +4,16 @@
   <h4>Milano Admin</h4>
   <!-- <li class="bold" *ngFor="let link of links" routerLinkActive="active">
     <a [routerLink]="[link.url]" class="waves-effect waves-orange">{{ link.name }}</a> -->
-  <li class="bold" *ngFor="let link of links" routerLinkActive="active">
-    <a [routerLink]="[link.url]" class="waves-effect waves-orange">{{ link.name }}</a>
+  <li class="bold" *ngFor="let link of links" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a [routerLink]="[link.url]" class="waves-effect waves-red lighten-1">{{ link.name }}</a>
   </li>
   <li class="bold last">
-    <a class="waves-effect waves-orange" (click)="logout($event)">Logout</a>
+    <a class="waves-effect waves-red lighten-1" (click)="logout($event)">Logout</a>
   </li>
 </ul>
 
 
-<main class="content" style="margin-left: 250px;">
+<main class="content" >
   <nav>
     <div class="nav-wrapper">
       <ul class="right ">

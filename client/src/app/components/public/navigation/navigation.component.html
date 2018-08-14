@@ -42,7 +42,7 @@
     <div>
       <a routerLink="/profile">{{ auth.userToken.email }}</a>
       <a class="right valign-wrapper sidenav-trigger"
-       data-target="slide-cart" (click)="cartClick()">
+       data-target="slide-cart">
         <i class="material-icons">shopping_cart</i> | $ 32
       </a>
     </div>
@@ -83,6 +83,7 @@
   </li>
 </ul>
 
+
 <!-- Aside Cart -->
 <div class="cart">
   <ul class="sidenav" id="slide-cart" #cart>
@@ -91,7 +92,7 @@
       <div>
         <li>
           <a>Your Cart</a>
-          <i class="material-icons">close</i>
+          <i class="material-icons" (click)="close()">close</i>
         </li>
         <li>
           <a>
@@ -120,12 +121,34 @@
             <span>26”, deep-pan, thin-crust</span>
           </a>
         </li>
+        <li>
+          <a>
+            <p>
+              Pizza Chicked BBQ <span> $ 8</span>
+              <i class="material-icons">close</i>
+            </p>
+            <span>26”, deep-pan, thin-crust</span>
+          </a>
+        </li>
+        <div class="total">
+          <p>
+            Order total: <span>$21.02</span><br>
+            Delivery: <span>$2.2</span>
+          </p>
+        </div>
+        <div class="total">
+          <h5>
+            Total: <span>$23.2</span>
+          </h5>
+        </div>
+
 
       </div>
-      <div style="width: 100%;">
-        <button style="width: 100%; background-color: red;">456</button>
-      </div>
+
     </div>
+    <li class="cart-btn">
+      <a >Go to Checkout </a>
+    </li>
   </ul>
 
 </div>

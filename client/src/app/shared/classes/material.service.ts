@@ -26,7 +26,6 @@ export class MaterialService {
     return M.Carousel.init(ref.nativeElement, {
       fullWidth: true,
       indicators: true,
-      // height: 600,
       dist: -100,
       padding: 0,
       duration: 300

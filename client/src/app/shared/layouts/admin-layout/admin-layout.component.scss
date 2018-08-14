@@ -1,1 +1,40 @@
-.a-sidenav{transform:translateX(0)!important;width:250px!important}.a-sidenav h4{padding:0 30px;opacity:.8;font-size:2rem}.a-sidenav .bold.last{position:absolute;bottom:62px;width:100%}
+@import '../../../../assets/scss-tools/vars';
+
+.a-sidenav{
+  transform: translateX(0)!important;
+  width: 230px!important;
+  background-color: #282b2e;
+  color: #a1a1b7;
+  font-family: $standart;
+  h4{
+    padding:0 30px;
+    opacity:.8;
+    font-size: 20px;
+  }
+  .bold {
+    a {
+      color: #858598;
+      transition: all .6s;
+      &:hover {
+        color: $accent;
+      }
+    }
+
+  }
+  .last{
+    position:absolute;
+    bottom:62px;
+    width:100%;
+  }
+}
+
+.sidenav li.active {
+  background-color: rgba(0,0,0,0.16);
+}
+
+.content {
+  margin-left: 230px;
+  nav {
+    background-color: #464c54;
+  }
+}

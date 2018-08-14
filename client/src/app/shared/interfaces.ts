@@ -4,3 +4,10 @@ export interface User {
   password: string;
   name?: string;
 }
+
+export interface Order {
+  name: string;
+  description: string;
+  count: number;
+  price: number;
+}
