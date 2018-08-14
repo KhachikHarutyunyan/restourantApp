@@ -1,3 +1,4 @@
+import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { AdminGuard } from './../../shared/services/admin.guard';
 import { NgModule } from '../../../../node_modules/@angular/core';
 import { CommonModule } from '../../../../node_modules/@angular/common';
@@ -16,7 +17,8 @@ import { OverviewComponent } from './overview/overview.component';
   declarations: [
     CategoriesComponent,
     AdminLayoutComponent,
-    OverviewComponent
+    OverviewComponent,
+    CategoriesFormComponent
   ],
   providers: [AdminGuard]
 })

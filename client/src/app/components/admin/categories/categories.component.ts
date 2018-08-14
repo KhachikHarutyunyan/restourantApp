@@ -8,11 +8,11 @@ import { MaterialInstance, MaterialService } from '../../../shared/classes/mater
 })
 export class CategoriesComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChild('collaps') collapsRef: ElementRef;
-  @ViewChild('collapsDrink') drinkcollapsRef: ElementRef;
+  // @ViewChild('collaps') collapsRef: ElementRef;
+  // @ViewChild('collapsDrink') drinkcollapsRef: ElementRef;
 
-  collapsInit: MaterialInstance;
-  drinkcollapsInit: MaterialInstance;
+  // collapsInit: MaterialInstance;
+  // drinkcollapsInit: MaterialInstance;
 
   constructor() { }
 
@@ -20,12 +20,12 @@ export class CategoriesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.collapsInit = MaterialService.colaps(this.collapsRef);
-    this.drinkcollapsInit = MaterialService.colaps(this.drinkcollapsRef);
+    // this.collapsInit = MaterialService.colaps(this.collapsRef);
+    // this.drinkcollapsInit = MaterialService.colaps(this.drinkcollapsRef);
   }
 
   ngOnDestroy(): void {
-    this.collapsInit.destroy();
+    // this.collapsInit.destroy();
   }
 
 }

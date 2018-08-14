@@ -5,11 +5,55 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  font-family: $standart;
+  h3 {
+    color: #464c54;
+  }
   button {
     padding: 10px 20px;
     border: none;
     color: $accent;
     background: #464c54;
+    &:hover {
+      color: #858598;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.category-table {
+  height: 100%;
+  font-family: $standart;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+   0 3px 1px -2px rgba(0,0,0,0.12),
+   0 1px 5px 0 rgba(0,0,0,0.2);
+  .table-header {
+    color: #464c54;
+    background-color: $accent;
+    width: 100%;
+    padding: 14px 0;
+    text-align: center;
+    h4 {
+      margin: 0;
+      font-size: 20px;
+    }
+  }
+  .table-body {
+    padding: 0 30px;
+    i {
+      cursor: pointer;
+      transition: all .3s;
+      padding-bottom: 3px;
+      border-bottom: 1px solid transparent;
+      &:hover {
+        color: $accent;
+        border-bottom: 1px solid $accent;
+      }
+    }
   }
 }
