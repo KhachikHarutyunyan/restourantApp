@@ -18,7 +18,7 @@ import { OrderService } from './shared/services/order.service';
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

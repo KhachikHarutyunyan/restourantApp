@@ -52,4 +52,12 @@ export class MaterialService {
     M.updateTextFields();
   }
 
+  static modal(ref: ElementRef): MaterialInstance {
+    return M.Modal.init(ref.nativeElement, {
+      endingTop: '30%',
+      inDuration: 500,
+      outDuration: 500,
+    });
+  }
+
 }

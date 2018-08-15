@@ -4,13 +4,13 @@
      Add Category
   </h3>
   <span>
-    <button>delete</button>
+    <button data-target="modal" class="modal-trigger">Delete</button>
   </span>
 
 </div>
 
 <div class="row">
-  <form class="col s12 l8 offset-l2 cat-form" [formGroup]="form" (submit)="createCategory()">
+  <form class="col s12 l8 cat-form" [formGroup]="form" (submit)="createCategory()">
     <div class="input-field">
       <input type="text" formControlName="title" name="title"
         [ngClass]="{ 'invalid': (form.controls['title'].errors && form.controls['title'].dirty)}">
@@ -46,10 +46,30 @@
     </div>
 
     <div class="right">
-      <button type="submit" class="waves-effect waves-light category-btn" [disabled]="">
+      <button type="submit" class="waves-effect waves-light category-btn" [disabled]="!form.valid">
         Save changes</button>
     </div>
 
   </form>
+
+  <div class="col s12 l4 center">
+    <img class="responsive-img h200" [src]="imagePreview" *ngIf="imagePreview">
+  </div>
+
+</div>
+
+<app-positions-form *ngIf="category?._id" [categoryId]="category._id"></app-positions-form>
+
+
+<!-- Modal Structure -->
+<div id="modal" class="modal" #modal>
+  <div class="modal-content">
+    <h4>Are you sure to delete category CATEGORYNAME  ?</h4>
+    <p>Category information will be lost!</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-green btn-flat" (click)="deleteCategory()">Yes</a>
+    <a class="modal-close waves-effect waves-green btn-flat" >No</a>
+  </div>
 </div>
 

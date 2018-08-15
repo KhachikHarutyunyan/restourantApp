@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { MaterialInstance } from './../../../../shared/classes/material.service';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '../../../../../../node_modules/@angular/forms';
 import { Category } from '../../../../shared/interfaces';
 import { Router, ActivatedRoute, Params } from '../../../../../../node_modules/@angular/router';
@@ -12,10 +13,13 @@ import { of } from '../../../../../../node_modules/rxjs';
   templateUrl: './categories-form.component.html',
   styleUrls: ['./categories-form.component.scss']
 })
-export class CategoriesFormComponent implements OnInit {
+export class CategoriesFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('input') inputRef: ElementRef;
+  @ViewChild('modal') modalRef: ElementRef;
+
   form: FormGroup;
+  modalInit: MaterialInstance;
 
   isNew = true;
   category: Category;
@@ -59,6 +63,10 @@ export class CategoriesFormComponent implements OnInit {
         MaterialService.toast(err.error.message);
       }
     );
+  }
+
+  ngAfterViewInit() {
+    this.modalInit = MaterialService.modal(this.modalRef);
   }
 
   createForm() {
@@ -114,6 +122,23 @@ export class CategoriesFormComponent implements OnInit {
     );
   }
 
+  deleteCategory() {
+    this.categoryService.delete(this.category._id).subscribe(
+      response => {
+        MaterialService.toast(response.message);
+      },
+      err => {
+        MaterialService.toast(err.error.message);
+      },
+      () => {
+        // this.modalInit.close();
+        this.router.navigate(['/admin/categories']);
+      }
+    );
+  }
 
+  ngOnDestroy() {
+    this.modalInit.destroy();
+  }
 
 }

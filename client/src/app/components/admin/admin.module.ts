@@ -9,6 +9,7 @@ import { AdminLayoutComponent } from '../../shared/layouts/admin-layout/admin-la
 import { OverviewComponent } from './overview/overview.component';
 import { ReactiveFormsModule } from '../../../../node_modules/@angular/forms';
 import { CategoryService } from '../../shared/services/category.service';
+import { PositionsFormComponent } from './categories/categories-form/positions-form/positions-form.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CategoryService } from '../../shared/services/category.service';
     CategoriesComponent,
     AdminLayoutComponent,
     OverviewComponent,
-    CategoriesFormComponent
+    CategoriesFormComponent,
+    PositionsFormComponent
   ],
   providers: [AdminGuard, CategoryService]
 })
