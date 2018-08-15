@@ -43,7 +43,7 @@ import { OrderService } from './shared/services/order.service';
     },
     AdminGuard,
     ProfileGuard,
-    OrderService
+    OrderService,
   ],
   bootstrap: [AppComponent]
 })

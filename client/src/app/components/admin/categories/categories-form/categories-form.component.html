@@ -10,22 +10,44 @@
 </div>
 
 <div class="row">
-  <form class="col s12 l6">
+  <form class="col s12 l8 offset-l2 cat-form" [formGroup]="form" (submit)="createCategory()">
     <div class="input-field">
-      <input type="text">
+      <input type="text" formControlName="title" name="title"
+        [ngClass]="{ 'invalid': (form.controls['title'].errors && form.controls['title'].dirty)}">
       <label>Name</label>
+        <span *ngIf="form.controls['title'].errors?.required && form.controls['title'].dirty">
+          Field is Recuired
+        </span>
+        <span *ngIf="(form.controls['title'].errors?.minlength && form.controls['title'].dirty) ||
+        (form.controls['title'].errors?.maxlength && form.controls['title'].dirty)">
+          Minimum character 3, Maximum Character 50!
+        </span>
+    </div>
+    <div class="input-field">
+      <textarea formControlName="body" name="body" class="materialize-textarea"
+      [ngClass]="{ 'invalid': (form.controls['body'].errors && form.controls['body'].dirty)}"></textarea>
+      <label >Ingridients</label>
+      <span *ngIf="form.controls['body'].errors?.required && form.controls['body'].dirty">
+        Field is Recuired
+      </span>
+      <span *ngIf="(form.controls['body'].errors?.minlength && form.controls['body'].dirty) ||
+      (form.controls['body'].errors?.maxlength && form.controls['body'].dirty)">
+        Minimum character 3, Maximum Character 150!
+      </span>
     </div>
 
-    <div>
-      <input type="file" class="dn">
-      <button class="btn waves-effect waves-light" type="button">
-        <i class="material-icons">backup</i>
-        Foto
+    <div class="left">
+      <input type="file" class="dn" (change)="onFileUpload($event)" #input
+      accept="image/png, image/jpeg">
+      <button class="btn waves-effect waves-light mb2" type="button" (click)="triggerClick()">
+        <i class="material-icons left">backup</i>
+        Upload Foto
       </button>
     </div>
 
-    <div>
-      <button type="submit" class="waves-effect waves-light btn">Save changes</button>
+    <div class="right">
+      <button type="submit" class="waves-effect waves-light category-btn" [disabled]="">
+        Save changes</button>
     </div>
 
   </form>

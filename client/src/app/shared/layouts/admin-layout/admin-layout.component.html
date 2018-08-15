@@ -2,13 +2,17 @@
 
 <ul class="sidenav sidenav-fixed a-sidenav">
   <h4>Milano Admin</h4>
-  <!-- <li class="bold" *ngFor="let link of links" routerLinkActive="active">
-    <a [routerLink]="[link.url]" class="waves-effect waves-orange">{{ link.name }}</a> -->
   <li class="bold" *ngFor="let link of links" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-    <a [routerLink]="[link.url]" class="waves-effect waves-red lighten-1">{{ link.name }}</a>
+    <a [routerLink]="[link.url]" class="waves-effect waves-red lighten-1">
+      <i class="material-icons">{{ link.icon }}</i>
+      {{ link.name }}
+    </a>
   </li>
   <li class="bold last">
-    <a class="waves-effect waves-red lighten-1" (click)="logout($event)">Logout</a>
+    <a class="waves-effect waves-red lighten-1" (click)="logout($event)">
+      <i class="material-icons">power_settings_new</i>
+      Logout
+    </a>
   </li>
 </ul>
 

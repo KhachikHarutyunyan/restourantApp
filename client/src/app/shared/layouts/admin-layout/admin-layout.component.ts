@@ -15,11 +15,11 @@ export class AdminLayoutComponent implements OnInit {
   ) { }
 
   links = [
-    { url: '/admin', name: 'Overview' },
-    { url: '/admin/history', name: 'History' },
-    { url: '/admin/analytics', name: 'Analytics' },
-    { url: '/admin/order', name: 'Order' },
-    { url: '/admin/categories', name: 'Categories' }
+    { url: '/admin', name: 'Overview', icon: 'visibility' },
+    { url: '/admin/history', name: 'History', icon: 'history' },
+    { url: '/admin/analytics', name: 'Analytics', icon: 'show_chart' },
+    { url: '/admin/order', name: 'Order', icon: 'payment' },
+    { url: '/admin/categories', name: 'Categories', icon: 'subject' }
   ];
 
   ngOnInit() {

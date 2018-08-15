@@ -2,16 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const categorySchema = new Schema({
-  imagePath: { type: String, required: true },
-  name: { type: String, required: true },
-  list: [
-    {
-      price: { type: Number, required: true },
-      name: { type: String, required: true },
-      description: { type: String, required: true }
-    }
-  ]
+  title: { type: String },
+  body: { type: String },
+  imageSrc: { type: String },
+  user: {
+    ref: 'Users',
+    type: Schema.Types.ObjectId
+  }
 });
 
-module.exports = mongoose.model('categories', categorySchema);
+module.exports = mongoose.model('Categories', categorySchema);
 

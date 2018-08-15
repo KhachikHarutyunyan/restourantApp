@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 const cors = require('cors');
 const keys = require('./api/config/keys');
 
@@ -11,6 +12,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 const authRoutes = require('./api/routes/auth');
+const categoryRoutes = require('./api/routes/categories');
 
 const port = process.env.PORT || 3000;
 
@@ -21,13 +23,16 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
 app.use(passport.initialize());
 require('./api/middleware/passport')(passport);
 
+app.use(morgan('dev'));
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/uploads', express.static('uploads'));
+
 app.use(cors());
 
 
 app.use('/api/auth', authRoutes);
+app.use('/api/category', categoryRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/dist/client'));

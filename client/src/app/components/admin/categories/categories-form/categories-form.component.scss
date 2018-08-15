@@ -1,0 +1,52 @@
+@import '../../../../../assets/scss-tools/vars';
+
+
+.page-title {
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $standart;
+  h3 {
+    color: #464c54;
+  }
+  button {
+    padding: 10px 20px;
+    border: none;
+    color: $accent;
+    background: #464c54;
+    &:hover {
+      color: #858598;
+    }
+  }
+}
+
+
+.dn {
+  display: none;
+}
+.h200 {
+  height: 200px;
+}
+
+.cat-form {
+  span {
+    color: $accent;
+  }
+  .btn {
+    &:hover {
+      background-color: #464c54!important;
+    }
+  }
+  .category-btn {
+    background-color: #464c54;
+    color: #189a18;
+    text-transform: uppercase;
+    border: none;
+    padding: 10px 15px;
+    transition: all .5s;
+    &:hover {
+      color: $accent;
+    }
+  }
+}

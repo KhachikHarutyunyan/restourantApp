@@ -11,3 +11,16 @@ export interface Order {
   count: number;
   price: number;
 }
+
+export interface Category {
+  title: string;
+  body: string;
+  imageSrc: string;
+  user?: string;
+  _id?: string;
+}
+
+export interface Message {
+  message: string;
+}
+

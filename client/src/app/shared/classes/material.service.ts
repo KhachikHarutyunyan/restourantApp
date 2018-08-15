@@ -48,4 +48,8 @@ export class MaterialService {
     });
   }
 
+  static updateTextInput() {
+    M.updateTextFields();
+  }
+
 }
