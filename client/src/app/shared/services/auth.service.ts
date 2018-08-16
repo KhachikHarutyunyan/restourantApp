@@ -16,7 +16,7 @@ export class AuthService {
 
   // private token = null;
   private token: string;
-  private authToken;
+  public authToken;
   public userToken;
   public user;
   private options;

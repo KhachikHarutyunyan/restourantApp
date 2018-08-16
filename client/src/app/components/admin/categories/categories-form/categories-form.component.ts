@@ -1,6 +1,6 @@
 import { MaterialInstance } from './../../../../shared/classes/material.service';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '../../../../../../node_modules/@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '../../../../../../node_modules/@angular/forms';
 import { Category } from '../../../../shared/interfaces';
 import { Router, ActivatedRoute, Params } from '../../../../../../node_modules/@angular/router';
 import { switchMap } from '../../../../../../node_modules/rxjs/operators';
@@ -13,75 +13,70 @@ import { of } from '../../../../../../node_modules/rxjs';
   templateUrl: './categories-form.component.html',
   styleUrls: ['./categories-form.component.scss']
 })
-export class CategoriesFormComponent implements OnInit, AfterViewInit, OnDestroy {
-
-  @ViewChild('input') inputRef: ElementRef;
-  @ViewChild('modal') modalRef: ElementRef;
+export class CategoriesFormComponent implements OnInit {
 
   form: FormGroup;
-  modalInit: MaterialInstance;
-
+  @ViewChild('input') inputRef: ElementRef;
   isNew = true;
-  category: Category;
-
   image: File;
   imagePreview = '';
+  category: Category;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
     private route: ActivatedRoute,
-    private categoryService: CategoryService
+    private router: Router,
+    private categoryServices: CategoryService,
+    private formBuilder: FormBuilder
   ) {
     this.createForm();
   }
 
   ngOnInit() {
+
     this.form.disable();
+
+    // this.categoryServices.fetch
 
     this.route.params.pipe(switchMap((params: Params) => {
       if (params['id']) {
         this.isNew = false;
-        return this.categoryService.getById(params['id']);
+        return this.categoryServices.getById(params['id']);
       }
+
       return of(null);
-    })
-    ).subscribe(
+    })).subscribe(
       (category: Category) => {
         if (category) {
           this.category = category;
           this.form.patchValue({
-            title: category.title,
-            body: category.body
+            name: category.name
           });
-          this.imagePreview = category.imageSrc;
+          this.imagePreview = category.category['imageSrc'];
           MaterialService.updateTextInput();
         }
         this.form.enable();
       },
-      err => {
-        MaterialService.toast(err.error.message);
-      }
+      err => MaterialService.toast(err.error.message)
     );
-  }
-
-  ngAfterViewInit() {
-    this.modalInit = MaterialService.modal(this.modalRef);
   }
 
   createForm() {
     this.form = this.formBuilder.group({
-      title: ['', Validators.compose([
+      category: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+      ])],
+      name: ['', Validators.compose([
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(50)
-      ])],
-      body: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(150)
       ])]
     });
+  }
+
+  triggerClick() {
+    this.inputRef.nativeElement.click();
   }
 
   onFileUpload(event: any) {
@@ -89,6 +84,7 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit, OnDestroy
     this.image = file;
 
     const reader = new FileReader();
+
     reader.onload = () => {
       this.imagePreview = reader.result;
     };
@@ -96,23 +92,36 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit, OnDestroy
     reader.readAsDataURL(file);
   }
 
-  triggerClick() {
-    this.inputRef.nativeElement.click();
+  deleteCategory() {
+    const decision = window.confirm(`Вы уверенны, чтр хотите удалить категорию "${this.category.name}"`);
+    if (decision) {
+      this.categoryServices.delete(this.category['_id']).subscribe(
+        response => {
+          MaterialService.toast(response.message);
+        },
+        err => {
+          MaterialService.toast(err.error.message);
+        },
+        () => {
+          this.router.navigate(['/categories']);
+        }
+      );
+    }
   }
 
   createCategory() {
     let obs$;
     this.form.disable();
     if (this.isNew) {
-      obs$ = this.categoryService.create(this.form.value, this.image);
+      obs$ = this.categoryServices.create(this.form.value.name, this.image);
     } else {
-      obs$ = this.categoryService.update(this.category._id, this.form.value, this.image);
+      obs$ = this.categoryServices.update(this.category['_id'], this.form.value.name, this.image);
     }
 
     obs$.subscribe(
       category => {
         this.category = category;
-        MaterialService.toast('Changes saved');
+        MaterialService.toast('Изменения сохранены');
         this.form.enable();
       },
       err => {
@@ -120,25 +129,7 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit, OnDestroy
         this.form.enable();
       }
     );
-  }
 
-  deleteCategory() {
-    this.categoryService.delete(this.category._id).subscribe(
-      response => {
-        MaterialService.toast(response.message);
-      },
-      err => {
-        MaterialService.toast(err.error.message);
-      },
-      () => {
-        // this.modalInit.close();
-        this.router.navigate(['/admin/categories']);
-      }
-    );
-  }
-
-  ngOnDestroy() {
-    this.modalInit.destroy();
   }
 
 }

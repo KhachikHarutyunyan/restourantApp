@@ -9,6 +9,9 @@
   font-family: $standart;
   h3 {
     color: #464c54;
+    span {
+      cursor: pointer;
+    }
   }
   button {
     padding: 10px 20px;
@@ -38,15 +41,34 @@
       background-color: #464c54!important;
     }
   }
-  .category-btn {
-    background-color: #464c54;
-    color: #189a18;
-    text-transform: uppercase;
-    border: none;
-    padding: 10px 15px;
-    transition: all .5s;
-    &:hover {
-      color: $accent;
+  .right {
+    .btn {
+      background-color: #464c54;
+      color: #189a18;
+      text-transform: uppercase;
+      border: none;
+      transition: all .5s;
+      &:hover {
+        color: $accent;
+      }
     }
   }
+
 }
+
+.image-block {
+  background-color: rgb(197, 195, 195);
+  width: 250px;
+  height: 200px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin-left: 50px;
+  i {
+    font-size: 52px;
+    color: rgb(143, 142, 142);
+  }
+}
+

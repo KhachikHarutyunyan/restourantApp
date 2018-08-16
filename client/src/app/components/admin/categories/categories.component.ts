@@ -1,27 +1,30 @@
-import { Component, OnInit, ElementRef, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
-import { MaterialInstance, MaterialService } from '../../../shared/classes/material.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable } from '../../../../../node_modules/rxjs';
+import { Category } from '../../../shared/interfaces';
+import { CategoryService } from '../../../shared/services/category.service';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent implements OnInit, AfterViewInit, OnDestroy {
+export class CategoriesComponent implements OnInit, OnDestroy {
 
-  // @ViewChild('collaps') collapsRef: ElementRef;
-  // @ViewChild('collapsDrink') drinkcollapsRef: ElementRef;
+  categories: Category[] = [];
 
-  // collapsInit: MaterialInstance;
-  // drinkcollapsInit: MaterialInstance;
-
-  constructor() { }
+  constructor(
+    private categoryService: CategoryService
+  ) { }
 
   ngOnInit() {
-  }
+    this.categoryService.fetch().subscribe(
+      (infos: Category[]) => {
+        this.categories = infos;
+        console.log(this.categories );
+      },
+      error => console.log(error)
+    );
 
-  ngAfterViewInit() {
-    // this.collapsInit = MaterialService.colaps(this.collapsRef);
-    // this.drinkcollapsInit = MaterialService.colaps(this.drinkcollapsRef);
   }
 
   ngOnDestroy(): void {

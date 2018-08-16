@@ -10,22 +10,27 @@ import { OverviewComponent } from './overview/overview.component';
 import { ReactiveFormsModule } from '../../../../node_modules/@angular/forms';
 import { CategoryService } from '../../shared/services/category.service';
 import { PositionsFormComponent } from './categories/categories-form/positions-form/positions-form.component';
+import { HttpClientModule } from '../../../../node_modules/@angular/common/http';
+import { LoaderComponent } from '../loader/loader.component';
+import { PositionService } from '../../shared/services/position.service';
 
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   declarations: [
     CategoriesComponent,
     AdminLayoutComponent,
     OverviewComponent,
     CategoriesFormComponent,
-    PositionsFormComponent
+    PositionsFormComponent,
+    LoaderComponent
   ],
-  providers: [AdminGuard, CategoryService]
+  providers: [AdminGuard, CategoryService, PositionService]
 })
 
 export class AdminModule {}

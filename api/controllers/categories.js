@@ -5,17 +5,12 @@ const errorHandler = require('../utils/errHandler');
 
 module.exports.getAll = async function(req, res) {
 
-  if (req.user.admin) {
-    try {
-      const categories = await Category.find({ user: req.user.id });
-      res.status(200).json(categories);
-    } catch (error) {
-      errorHandler(res, error);
-    }
-  } else {
-    res.json({ message: 'Only Admin can do this operation!' });
+  try {
+    const categories = await Category.find({});
+    res.status(200).json(categories);
+  } catch (error) {
+    errorHandler(res, error);
   }
-  
 }
 
 module.exports.getById = async function(req, res) {
@@ -53,10 +48,14 @@ module.exports.create = async function(req, res) {
 
   if (req.user.admin) {
     const category = new Category({
-      title: req.body.title,
-      body: req.body.body,
-      imageSrc: req.file.path,
-      user: req.user.id
+      name: req.body.name,
+      category: [
+        {
+          title: req.body.title,
+          imageSrc: req.file.path,
+          user: req.user.id
+        }
+      ]
     });
   
     try {
@@ -77,26 +76,40 @@ module.exports.update = async function(req, res) {
   
   if (req.user.admin) {
     const update = {
-      title: req.body.title,
-      body: req.body.body
+      name: req.body.name,
+      category: [
+        {
+          title: req.body.title
+        }
+      ]
+      
     };
   
     if (req.file) {
-      update.imageSrc = req.file.path;
+      update.category = [
+        {
+          title: req.body.title,
+          imageSrc: req.file.path,
+          user: req.user.id
+        }
+      ];
+
+      try {
+        const category = await Category.findOneAndUpdate(
+          { _id: req.params.id},
+          { $set: update },
+          { new: true }
+        );
+        res.status(200).json(category);
+      } catch (error) {
+        errorHandler(res, error);
+      }
+
     } else {
       res.json({ message: 'Choos Image!' });
     }
   
-    try {
-      const category = await Category.findOneAndUpdate(
-        { _id: req.params.id},
-        { $set: update },
-        { new: true }
-      );
-      res.status(200).json(category);
-    } catch (error) {
-      errorHandler(res, error);
-    }
+    
   } else {
     res.json({ message: 'Only Admin can do this operation!' });
   }

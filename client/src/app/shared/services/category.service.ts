@@ -2,6 +2,7 @@ import { Injectable } from '../../../../node_modules/@angular/core';
 import { HttpClient } from '../../../../node_modules/@angular/common/http';
 import { Observable } from '../../../../node_modules/rxjs';
 import { Category, Message } from '../interfaces';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -10,16 +11,31 @@ import { Category, Message } from '../interfaces';
 
 export class CategoryService {
 
+  domain = 'http://localhost:3000/api/';
+  private options;
+
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private auth: AuthService
   ) {}
 
+  createHeader() {
+    this.auth.loadToken();
+    this.options = {
+      headers: new Headers({
+        'Content-Type': 'aplication/json',
+        'authorization': this.auth.authToken
+      })
+    };
+  }
+
   fetch(): Observable<Category[]> {
-    return this.http.get<Category[]>('/api/category');
+    return this.http.get<Category[]>('http://localhost:3000/api/category');
   }
 
   getById(id: string): Observable<Category> {
-    return this.http.get<Category>(`/api/category/${id}`);
+    return this.http.get<Category>(`http://localhost:3000/api/category/${id}`);
   }
 
   create(category: object, image: File): Observable<Category> {

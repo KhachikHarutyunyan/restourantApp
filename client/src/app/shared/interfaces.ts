@@ -13,14 +13,28 @@ export interface Order {
 }
 
 export interface Category {
-  title: string;
-  body: string;
-  imageSrc: string;
-  user?: string;
-  _id?: string;
+  name: string;
+  category: [
+    {
+      title: string,
+      imageSrc: string;
+      user?: string;
+      _id?: string;
+    }
+  ];
 }
 
 export interface Message {
   message: string;
+}
+
+export interface Positions {
+  name: string;
+  description: string;
+  cost: number;
+  category: string;
+  user?: string;
+  _id?: string;
+  quantity?: number;
 }
 

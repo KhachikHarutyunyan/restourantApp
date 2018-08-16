@@ -6,11 +6,11 @@
   </button>
 </div>
 
-<div class="row flex">
-  <div class="col s6">
-    <div class="category-table">
+<div class="row flex" *ngIf="categories; else  loader" >
+  <div class="col s6"  *ngFor="let category of categories">
+    <div class="category-table"  style="margin-bottom: 50px;" *ngIf="categories.length !== 0; else empty">
       <div class="table-header">
-        <h4>Food Categories</h4>
+        <h4>{{ category.name }} Categories</h4>
       </div>
       <div class="table-body">
         <table class="responsive-table">
@@ -22,71 +22,30 @@
             </tr>
           </thead>
 
-          <tbody>
+          <tbody *ngFor="let loadcategory of category.category">
             <tr>
-              <td>Burgers</td>
+              <td>{{ loadcategory.title }}</td>
               <td>5</td>
               <td>
-                <i class="material-icons">edit</i>
+                <i class="material-icons" [routerLink]="['/admin/categories', loadcategory._id]">edit</i>
               </td>
             </tr>
-            <tr>
-              <td>Pizza</td>
-              <td>16</td>
-              <td>
-                <i class="material-icons">edit</i>
-              </td>
-            </tr>
-            <tr>
-              <td>Sushi</td>
-              <td>10</td>
-              <td>
-                <i class="material-icons">edit</i>
-              </td>
-            </tr>
+
           </tbody>
         </table>
       </div>
 
     </div>
   </div>
-  <div class="col s6">
-    <div class="category-table">
-      <div class="table-header">
-        <h4>Drink Categories</h4>
-      </div>
-      <div class="table-body">
-        <table class="responsive-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Types count</th>
-              <th>Do changes</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            <tr>
-              <td>Juice</td>
-              <td>12</td>
-              <td>
-                <i class="material-icons">edit</i>
-              </td>
-            </tr>
-            <tr>
-              <td>Hot drinks</td>
-              <td>16</td>
-              <td>
-                <i class="material-icons">edit</i>
-              </td>
-            </tr>
-          </tbody>
-        </table>
 
-    </div>
 
-    </div>
-
-  </div>
 </div>
 
+<ng-template #empty>
+  <div class="center">No categories!</div>
+</ng-template>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

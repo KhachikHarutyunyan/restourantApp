@@ -1,3 +1,64 @@
-<p>
-  positions-form works!
-</p>
+<div class="row">
+  <div class="col s12">
+    <div class="page-subtitle">
+      <h4>Positions</h4>
+      <button class="waves-effect waves-light">Add Position</button>
+    </div>
+
+    <div *ngIf="!loading; else loader">
+      <div class="collection" *ngIf="positions.length !==0; else empty">
+        <a class="collection-item collection-item-icon">
+          <span>position name
+            <strong> position cost </strong>
+          </span>
+          <span><i class="material-icons">delete</i></span>
+        </a>
+      </div>
+      <ng-template #empty>
+        <div class="center">Category is empty!</div>
+      </ng-template>
+    </div>
+
+    <ng-template #loader>
+      <app-loader></app-loader>
+    </ng-template>
+
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div #modal class="modal">
+    <div class="modal-content">
+      <h4>Add Position</h4>
+      <div class="input-field">
+        <input type="text" formControlName="name">
+        <label>Name</label>
+      </div>
+
+      <div class="input-field">
+          <textarea formControlName="body" name="body" class="materialize-textarea"
+          [ngClass]="{ 'invalid': (form.controls['body'].errors && form.controls['body'].dirty)}"></textarea>
+          <label >Ingridients</label>
+          <span *ngIf="form.controls['body'].errors?.required && form.controls['body'].dirty">
+            Field is Recuired
+          </span>
+          <span *ngIf="(form.controls['body'].errors?.minlength && form.controls['body'].dirty) ||
+          (form.controls['body'].errors?.maxlength && form.controls['body'].dirty)">
+            Minimum character 3, Maximum Character 150!
+          </span>
+        </div>
+
+        <div class="input-field">
+          <input type="number" name="cost" min="1" FotmControlName="cost">
+          <label>Cost</label>
+        </div>
+
+        <div class="modal-footer">
+          <button class="waves-effect modal-action" type="button">Cancel</button>
+          <button class="waves-effect modal-action" type="button">Save</button>
+        </div>
+
+    </div>
+  </div>
+</form>
+

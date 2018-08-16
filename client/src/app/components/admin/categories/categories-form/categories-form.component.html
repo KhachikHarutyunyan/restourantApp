@@ -1,5 +1,6 @@
 <div class="page-title">
-  <h3>Category
+  <h3>
+    <span routerLink="/admin/categories">Category</span>
     <i class="material-icons">keyboard_arrow_right</i>
      Add Category
   </h3>
@@ -10,20 +11,34 @@
 </div>
 
 <div class="row">
-  <form class="col s12 l8 cat-form" [formGroup]="form" (submit)="createCategory()">
+  <form class="col s12 l8 cat-form" [formGroup]="form" (ngSubmit)="createCategory()">
     <div class="input-field">
-      <input type="text" formControlName="title" name="title"
-        [ngClass]="{ 'invalid': (form.controls['title'].errors && form.controls['title'].dirty)}">
+      <input type="text" formControlName="category" name="category"
+        [ngClass]="{ 'invalid': (form.controls['category'].errors && form.controls['category'].dirty)}">
       <label>Name</label>
-        <span *ngIf="form.controls['title'].errors?.required && form.controls['title'].dirty">
+        <span *ngIf="form.controls['category'].errors?.required && form.controls['category'].dirty">
           Field is Recuired
         </span>
-        <span *ngIf="(form.controls['title'].errors?.minlength && form.controls['title'].dirty) ||
-        (form.controls['title'].errors?.maxlength && form.controls['title'].dirty)">
+        <span *ngIf="(form.controls['category'].errors?.minlength && form.controls['category'].dirty) ||
+        (form.controls['category'].errors?.maxlength && form.controls['category'].dirty)">
           Minimum character 3, Maximum Character 50!
         </span>
     </div>
+
     <div class="input-field">
+      <input type="text" formControlName="name" name="name"
+        [ngClass]="{ 'invalid': (form.controls['name'].errors && form.controls['name'].dirty)}">
+      <label>Name</label>
+        <span *ngIf="form.controls['name'].errors?.required && form.controls['name'].dirty">
+          Field is Recuired
+        </span>
+        <span *ngIf="(form.controls['name'].errors?.minlength && form.controls['name'].dirty) ||
+        (form.controls['name'].errors?.maxlength && form.controls['name'].dirty)">
+          Minimum character 3, Maximum Character 50!
+        </span>
+    </div>
+
+    <!-- <div class="input-field">
       <textarea formControlName="body" name="body" class="materialize-textarea"
       [ngClass]="{ 'invalid': (form.controls['body'].errors && form.controls['body'].dirty)}"></textarea>
       <label >Ingridients</label>
@@ -34,7 +49,7 @@
       (form.controls['body'].errors?.maxlength && form.controls['body'].dirty)">
         Minimum character 3, Maximum Character 150!
       </span>
-    </div>
+    </div> -->
 
     <div class="left">
       <input type="file" class="dn" (change)="onFileUpload($event)" #input
@@ -46,19 +61,23 @@
     </div>
 
     <div class="right">
-      <button type="submit" class="waves-effect waves-light category-btn" [disabled]="!form.valid">
+      <button type="submit" class="waves-effect waves-light btn" [disabled]="!form.valid">
         Save changes</button>
     </div>
 
   </form>
 
   <div class="col s12 l4 center">
+    <div *ngIf="!imagePreview"
+    class="image-block center">
+      <i class="material-icons">camera_alt</i>
+    </div>
     <img class="responsive-img h200" [src]="imagePreview" *ngIf="imagePreview">
   </div>
 
 </div>
 
-<app-positions-form *ngIf="category?._id" [categoryId]="category._id"></app-positions-form>
+<app-positions-form *ngIf="category?.category['_id']" [categoryId]="category?.category['_id']"></app-positions-form>
 
 
 <!-- Modal Structure -->
