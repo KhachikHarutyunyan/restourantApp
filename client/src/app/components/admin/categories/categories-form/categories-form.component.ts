@@ -35,6 +35,13 @@ export class CategoriesFormComponent implements OnInit {
 
     this.form.disable();
 
+    // this.route.params.pipe(switchMap((params: Params) => {
+    //   if (params['id']) {
+    //     this.isNew = false;
+    //     return this.categoryServices.getById(params['id']);
+    //   }
+    // }));
+
     // this.categoryServices.fetch
 
     this.route.params.pipe(switchMap((params: Params) => {
@@ -49,14 +56,18 @@ export class CategoriesFormComponent implements OnInit {
         if (category) {
           this.category = category;
           this.form.patchValue({
-            name: category.name
+            category: category.name,
+            name: category.category[0].title
           });
-          this.imagePreview = category.category['imageSrc'];
+          this.imagePreview = category.category[0]['imageSrc'];
+          console.log(this.imagePreview);
           MaterialService.updateTextInput();
         }
         this.form.enable();
       },
-      err => MaterialService.toast(err.error.message)
+      err => {
+        MaterialService.toast(err.error.message);
+      }
     );
   }
 
@@ -93,29 +104,34 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   deleteCategory() {
-    const decision = window.confirm(`Вы уверенны, чтр хотите удалить категорию "${this.category.name}"`);
-    if (decision) {
-      this.categoryServices.delete(this.category['_id']).subscribe(
-        response => {
-          MaterialService.toast(response.message);
-        },
-        err => {
-          MaterialService.toast(err.error.message);
-        },
-        () => {
-          this.router.navigate(['/categories']);
-        }
-      );
-    }
+    // const decision = window.confirm(`Вы уверенны, чтр хотите удалить категорию "${this.category.name}"`);
+    // if (decision) {
+    //   this.categoryServices.delete(this.category['_id']).subscribe(
+    //     response => {
+    //       MaterialService.toast(response.message);
+    //     },
+    //     err => {
+    //       MaterialService.toast(err.error.message);
+    //     },
+    //     () => {
+    //       this.router.navigate(['/categories']);
+    //     }
+    //   );
+    // }
   }
 
-  createCategory() {
+  onSubmit() {
     let obs$;
     this.form.disable();
     if (this.isNew) {
       obs$ = this.categoryServices.create(this.form.value.name, this.image);
     } else {
-      obs$ = this.categoryServices.update(this.category['_id'], this.form.value.name, this.image);
+      const category = {
+        name: this.form.value.category,
+        title: this.form.value.name
+      };
+      // console.log(this.category.category[0]['_id']);
+      obs$ = this.categoryServices.update(this.category.category[0]['_id'], category, this.image);
     }
 
     obs$.subscribe(

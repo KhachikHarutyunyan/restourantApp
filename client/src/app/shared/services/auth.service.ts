@@ -12,7 +12,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 export class AuthService {
 
-  domain = 'http://localhost:3000/api/';
+  public domain = 'http://localhost:3000/api/';
 
   // private token = null;
   private token: string;
@@ -130,6 +130,10 @@ export class AuthService {
 
   getToken(): string {
     return this.token;
+  }
+
+  setToken(token: string) {
+    this.token = token;
   }
 
 }

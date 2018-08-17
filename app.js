@@ -13,6 +13,7 @@ const io = require('socket.io')(server);
 
 const authRoutes = require('./api/routes/auth');
 const categoryRoutes = require('./api/routes/categories');
+const positionRoutes = require('./api/routes/positions');
 
 const port = process.env.PORT || 3000;
 
@@ -33,6 +34,7 @@ app.use(cors());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
+app.use('/api/positions', positionRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/dist/client'));

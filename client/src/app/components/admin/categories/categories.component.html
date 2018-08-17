@@ -6,7 +6,7 @@
   </button>
 </div>
 
-<div class="row flex" *ngIf="categories; else  loader" >
+<div class="row flex" *ngIf="categories" >
   <div class="col s6"  *ngFor="let category of categories">
     <div class="category-table"  style="margin-bottom: 50px;" *ngIf="categories.length !== 0; else empty">
       <div class="table-header">
@@ -27,7 +27,7 @@
               <td>{{ loadcategory.title }}</td>
               <td>5</td>
               <td>
-                <i class="material-icons" [routerLink]="['/admin/categories', loadcategory._id]">edit</i>
+                <i class="material-icons" [routerLink]="['/admin/categories', category.category['_id']]">edit</i>
               </td>
             </tr>
 
@@ -46,6 +46,11 @@
   <div class="center">No categories!</div>
 </ng-template>
 
-<ng-template #loader>
-  <app-loader></app-loader>
-</ng-template>
+<!-- <ng-template #loader >
+
+</ng-template> -->
+
+
+<app-loader *ngIf="loader"></app-loader>
+
+

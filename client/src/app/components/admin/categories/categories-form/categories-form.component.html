@@ -11,11 +11,11 @@
 </div>
 
 <div class="row">
-  <form class="col s12 l8 cat-form" [formGroup]="form" (ngSubmit)="createCategory()">
+  <form class="col s12 l8 cat-form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="input-field">
       <input type="text" formControlName="category" name="category"
         [ngClass]="{ 'invalid': (form.controls['category'].errors && form.controls['category'].dirty)}">
-      <label>Name</label>
+      <label>Category</label>
         <span *ngIf="form.controls['category'].errors?.required && form.controls['category'].dirty">
           Field is Recuired
         </span>
@@ -37,19 +37,6 @@
           Minimum character 3, Maximum Character 50!
         </span>
     </div>
-
-    <!-- <div class="input-field">
-      <textarea formControlName="body" name="body" class="materialize-textarea"
-      [ngClass]="{ 'invalid': (form.controls['body'].errors && form.controls['body'].dirty)}"></textarea>
-      <label >Ingridients</label>
-      <span *ngIf="form.controls['body'].errors?.required && form.controls['body'].dirty">
-        Field is Recuired
-      </span>
-      <span *ngIf="(form.controls['body'].errors?.minlength && form.controls['body'].dirty) ||
-      (form.controls['body'].errors?.maxlength && form.controls['body'].dirty)">
-        Minimum character 3, Maximum Character 150!
-      </span>
-    </div> -->
 
     <div class="left">
       <input type="file" class="dn" (change)="onFileUpload($event)" #input
@@ -77,7 +64,7 @@
 
 </div>
 
-<app-positions-form *ngIf="category?.category['_id']" [categoryId]="category?.category['_id']"></app-positions-form>
+<app-positions-form *ngIf="false" [categoryId]="category?.category['_id']"></app-positions-form>
 
 
 <!-- Modal Structure -->

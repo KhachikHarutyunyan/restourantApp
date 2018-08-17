@@ -12,15 +12,19 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   categories: Category[] = [];
 
+  loader = true;
+
   constructor(
     private categoryService: CategoryService
   ) { }
 
   ngOnInit() {
+    // this.loader = true;
     this.categoryService.fetch().subscribe(
       (infos: Category[]) => {
         this.categories = infos;
-        console.log(this.categories );
+        console.log(this.categories);
+        this.loader = false;
       },
       error => console.log(error)
     );

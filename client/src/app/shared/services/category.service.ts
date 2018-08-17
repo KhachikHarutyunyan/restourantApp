@@ -1,5 +1,5 @@
 import { Injectable } from '../../../../node_modules/@angular/core';
-import { HttpClient } from '../../../../node_modules/@angular/common/http';
+import { HttpClient, HttpHeaders } from '../../../../node_modules/@angular/common/http';
 import { Observable } from '../../../../node_modules/rxjs';
 import { Category, Message } from '../interfaces';
 import { AuthService } from './auth.service';
@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 
 export class CategoryService {
 
-  domain = 'http://localhost:3000/api/';
+  domain = this.auth.domain;
   private options;
 
 
@@ -22,20 +22,23 @@ export class CategoryService {
 
   createHeader() {
     this.auth.loadToken();
-    this.options = {
-      headers: new Headers({
-        'Content-Type': 'aplication/json',
-        'authorization': this.auth.authToken
-      })
-    };
+    this.options = new HttpHeaders({
+      'authorization': this.auth.authToken, 'Content-Type': 'application/json'
+    });
   }
 
+  // private newHeader = new HttpHeaders({
+  //   'Authorization': this.auth.authToken, 'Content-Type': 'application/json'
+  // });
+
   fetch(): Observable<Category[]> {
-    return this.http.get<Category[]>('http://localhost:3000/api/category');
+    this.createHeader();
+    return this.http.get<Category[]>(this.domain + 'category', { headers: this.options });
   }
 
   getById(id: string): Observable<Category> {
-    return this.http.get<Category>(`http://localhost:3000/api/category/${id}`);
+    this.createHeader();
+    return this.http.get<Category>(this.domain + `category/${id}`, { headers: this.options });
   }
 
   create(category: object, image: File): Observable<Category> {
@@ -48,24 +51,27 @@ export class CategoryService {
     fd.append('title', category['title']);
     fd.append('body', category['body']);
 
-    return this.http.post<Category>('/api/category', fd);
+    return this.http.post<Category>(this.domain + 'category', fd, { headers: this.options });
   }
 
   update(id: string, category: object, image: File): Observable<Category> {
     const fd = new FormData();
+
+    this.createHeader();
 
     if (image) {
       fd.append('image', image, image.name);
     }
 
     fd.append('title', category['title']);
-    fd.append('body', category['body']);
+    // fd.append('body', category['body']);
+    console.log(fd);
 
-    return this.http.patch<Category>(`/api/category/${id}`, fd);
+    return this.http.patch<Category>(this.domain + `category/${id}`, fd, { headers: this.options });
   }
 
   delete(id: string): Observable<Message> {
-    return this.http.delete<Message>(`/api/category/${id}`);
+    return this.http.delete<Message>(this.domain + `category/${id}`);
   }
 
 }
