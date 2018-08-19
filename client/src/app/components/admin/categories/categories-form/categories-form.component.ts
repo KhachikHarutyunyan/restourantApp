@@ -1,5 +1,5 @@
 import { MaterialInstance } from './../../../../shared/classes/material.service';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '../../../../../../node_modules/@angular/forms';
 import { Category } from '../../../../shared/interfaces';
 import { Router, ActivatedRoute, Params } from '../../../../../../node_modules/@angular/router';
@@ -13,14 +13,19 @@ import { of } from '../../../../../../node_modules/rxjs';
   templateUrl: './categories-form.component.html',
   styleUrls: ['./categories-form.component.scss']
 })
-export class CategoriesFormComponent implements OnInit {
+export class CategoriesFormComponent implements OnInit, AfterViewInit {
 
   form: FormGroup;
   @ViewChild('input') inputRef: ElementRef;
+  @ViewChild('modal') modalRef: ElementRef;
+
+  modalInit: MaterialInstance;
   isNew = true;
   image: File;
   imagePreview = '';
   category: Category;
+
+  isFileLoaded;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,21 +40,14 @@ export class CategoriesFormComponent implements OnInit {
 
     this.form.disable();
 
-    // this.route.params.pipe(switchMap((params: Params) => {
-    //   if (params['id']) {
-    //     this.isNew = false;
-    //     return this.categoryServices.getById(params['id']);
-    //   }
-    // }));
-
-    // this.categoryServices.fetch
 
     this.route.params.pipe(switchMap((params: Params) => {
       if (params['id']) {
         this.isNew = false;
+        this.isFileLoaded = true;
         return this.categoryServices.getById(params['id']);
       }
-
+      this.isFileLoaded = false;
       return of(null);
     })).subscribe(
       (category: Category) => {
@@ -60,7 +58,6 @@ export class CategoriesFormComponent implements OnInit {
             name: category.category[0].title
           });
           this.imagePreview = category.category[0]['imageSrc'];
-          console.log(this.imagePreview);
           MaterialService.updateTextInput();
         }
         this.form.enable();
@@ -69,6 +66,10 @@ export class CategoriesFormComponent implements OnInit {
         MaterialService.toast(err.error.message);
       }
     );
+  }
+
+  ngAfterViewInit() {
+    this.modalInit = MaterialService.modal(this.modalRef);
   }
 
   createForm() {
@@ -93,6 +94,9 @@ export class CategoriesFormComponent implements OnInit {
   onFileUpload(event: any) {
     const file = event.target.files[0];
     this.image = file;
+    if (this.image !== undefined) {
+      this.isFileLoaded = true;
+    }
 
     const reader = new FileReader();
 
@@ -104,34 +108,27 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   deleteCategory() {
-    // const decision = window.confirm(`Вы уверенны, чтр хотите удалить категорию "${this.category.name}"`);
-    // if (decision) {
-    //   this.categoryServices.delete(this.category['_id']).subscribe(
-    //     response => {
-    //       MaterialService.toast(response.message);
-    //     },
-    //     err => {
-    //       MaterialService.toast(err.error.message);
-    //     },
-    //     () => {
-    //       this.router.navigate(['/categories']);
-    //     }
-    //   );
-    // }
+      this.categoryServices.delete(this.category['_id']).subscribe(
+        response => {
+          MaterialService.toast(response.message);
+        },
+        err => {
+          MaterialService.toast(err.error.message);
+        },
+        () => {
+          this.router.navigate(['/admin/categories']);
+        }
+      );
   }
 
   onSubmit() {
     let obs$;
+    const formData = { name: this.form.value.category, title: this.form.value.name };
     this.form.disable();
     if (this.isNew) {
-      obs$ = this.categoryServices.create(this.form.value.name, this.image);
+      obs$ = this.categoryServices.create(formData, this.image);
     } else {
-      const category = {
-        name: this.form.value.category,
-        title: this.form.value.name
-      };
-      // console.log(this.category.category[0]['_id']);
-      obs$ = this.categoryServices.update(this.category.category[0]['_id'], category, this.image);
+      obs$ = this.categoryServices.update(this.category._id, formData, this.image);
     }
 
     obs$.subscribe(

@@ -20,10 +20,18 @@
   }
 }
 
+.row {
+  .col.m6 {
+    margin-left: 0px!important;
+    margin-bottom: 50px;
+  }
+}
+
 .flex {
   display: flex;
   // justify-content: flex-start;
   flex-wrap: wrap;
+
 }
 .category-table {
   height: 100%;
@@ -55,6 +63,25 @@
         color: $accent;
         border-bottom: 1px solid $accent;
       }
+    }
+  }
+}
+
+@media (max-width: 780px) {
+  .page-title {
+    padding: 0 50px;
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+    h3 {
+      color: #464c54;
+      font-size: 32px;
+    }
+  }
+
+  .category-table {
+    .table-body {
+      padding: 0px;
     }
   }
 }

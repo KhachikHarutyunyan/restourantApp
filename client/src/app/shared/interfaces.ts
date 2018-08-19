@@ -14,9 +14,10 @@ export interface Order {
 
 export interface Category {
   name: string;
+  _id?: string;
   category: [
     {
-      title: string,
+      title: string;
       imageSrc: string;
       user?: string;
       _id?: string;
@@ -30,7 +31,7 @@ export interface Message {
 
 export interface Positions {
   name: string;
-  description: string;
+  body: string;
   cost: number;
   category: string;
   user?: string;

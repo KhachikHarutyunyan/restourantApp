@@ -1,0 +1,38 @@
+@import '../../../../../../assets/scss-tools/vars';
+
+hr {
+  width: 80%;
+  margin-bottom: 30px;
+}
+
+.page-subtitle {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  align-items: center;
+  font-family: $standart;
+  color: #464c54;
+  h4 {
+    margin-top: 0;
+  }
+}
+.positions-col {
+  font-family: $standart;
+  a {
+    span {
+      strong {
+        margin-left: 180px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 780px) {
+  .page-subtitle {
+    width: 100%;
+    h4 {
+      margin-top: 0;
+    }
+  }
+}

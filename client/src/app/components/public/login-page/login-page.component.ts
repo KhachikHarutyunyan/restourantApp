@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '../../../../../node_modules/@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
 import { User } from '../../../shared/interfaces';
 import { Router, ActivatedRoute, Params } from '../../../../../node_modules/@angular/router';
+import { Subscription, ObjectUnsubscribedError } from '../../../../../node_modules/rxjs';
+import { MaterialService } from '../../../shared/classes/material.service';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
   form: FormGroup;
+  asab: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,7 +27,11 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-        // messages
+        MaterialService.toast('Now you can sign in!');
+      } else if (params['accessDenied']) {
+        MaterialService.toast('You need to authorization!');
+      } else if (params['sessionFailed']) {
+        MaterialService.toast('Please sign in again');
       }
     });
   }
@@ -37,19 +44,40 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit() {
+    this.form.disable();
     const user: User = {
       email: this.form.value.email,
       password: this.form.value.password
     };
-    this.auth.login(user).subscribe(data => {
-      if (data) {
-        this.auth.storeUserData(data['token'], data['user']);
+    // this.asab = this.auth.login(user).subscribe(data => {
+    //   if (data) {
+    //     this.auth.storeUserData(data['token'], data['user']);
+    //     if (data['user']['admin']) {
+    //       this.router.navigate(['/admin']);
+    //     } else {
+    //       this.router.navigate(['/profile']);
+    //     }
+    //   }
+    // });
+
+    this.asab = this.auth.login(user).subscribe(
+      (data) => {
         if (data['user']['admin']) {
           this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/profile']);
         }
+      },
+      err => {
+        MaterialService.toast(err.error.message);
+        this.form.enable();
       }
-    });
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.asab) {
+      this.asab.unsubscribe();
+    }
   }
 }

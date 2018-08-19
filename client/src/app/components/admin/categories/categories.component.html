@@ -7,8 +7,8 @@
 </div>
 
 <div class="row flex" *ngIf="categories" >
-  <div class="col s6"  *ngFor="let category of categories">
-    <div class="category-table"  style="margin-bottom: 50px;" *ngIf="categories.length !== 0; else empty">
+  <div class="col s12 m6" *ngFor="let category of categories">
+    <div class="category-table" *ngIf="categories.length !== 0; else empty">
       <div class="table-header">
         <h4>{{ category.name }} Categories</h4>
       </div>
@@ -27,7 +27,7 @@
               <td>{{ loadcategory.title }}</td>
               <td>5</td>
               <td>
-                <i class="material-icons" [routerLink]="['/admin/categories', category.category['_id']]">edit</i>
+                <i class="material-icons" [routerLink]="['/admin/categories', category['_id']]">edit</i>
               </td>
             </tr>
 

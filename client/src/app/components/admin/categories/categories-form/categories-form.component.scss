@@ -33,6 +33,7 @@
 }
 
 .cat-form {
+  margin-bottom: 20px;
   span {
     color: $accent;
   }
@@ -72,3 +73,10 @@
   }
 }
 
+@media (max-width: 780px) {
+  .page-title {
+    h3 {
+      font-size: 28px;
+    }
+  }
+}

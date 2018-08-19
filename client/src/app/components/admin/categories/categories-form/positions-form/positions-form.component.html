@@ -1,21 +1,24 @@
 <div class="row">
-  <div class="col s12">
+  <hr>
+  <div class="col s10 offset-s1">
     <div class="page-subtitle">
       <h4>Positions</h4>
-      <button class="waves-effect waves-light">Add Position</button>
+      <button class="btn grey darken-2 btn-small waves-effect waves-light"
+       (click)="onAddPosition()">Add Position</button>
     </div>
 
     <div *ngIf="!loading; else loader">
-      <div class="collection" *ngIf="positions.length !==0; else empty">
-        <a class="collection-item collection-item-icon">
-          <span>position name
-            <strong> position cost </strong>
+      <div class="collection positions-col" *ngIf="positions.length !==0; else empty">
+        <a class="collection-item collection-item-icon"
+         *ngFor="let position of positions" (click)="onSelectPosition(position)">
+          <span> {{ position['name'] }}
+            <strong> {{ position['cost'] }} </strong>
           </span>
-          <span><i class="material-icons">delete</i></span>
+          <span class="secondary-content"><i class="material-icons" (click)="onDeleteModal($event, position)">delete</i></span>
         </a>
       </div>
       <ng-template #empty>
-        <div class="center">Category is empty!</div>
+        <div class="center">No positions!</div>
       </ng-template>
     </div>
 
@@ -29,10 +32,18 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div #modal class="modal">
     <div class="modal-content">
-      <h4>Add Position</h4>
+      <h4>{{ positionState? 'Add': 'Change' }} Position</h4>
       <div class="input-field">
         <input type="text" formControlName="name">
         <label>Name</label>
+
+        <span *ngIf="form.controls['name'].errors?.required && form.controls['name'].dirty">
+          Field is Recuired
+        </span>
+        <span *ngIf="(form.controls['name'].errors?.minlength && form.controls['name'].dirty) ||
+                  (form.controls['name'].errors?.maxlength && form.controls['name'].dirty)">
+          Minimum character 3, Maximum Character 150!
+        </span>
       </div>
 
       <div class="input-field">
@@ -49,16 +60,31 @@
         </div>
 
         <div class="input-field">
-          <input type="number" name="cost" min="1" FotmControlName="cost">
+          <input type="number" name="cost" min="1" formControlName="cost">
           <label>Cost</label>
         </div>
 
         <div class="modal-footer">
-          <button class="waves-effect modal-action" type="button">Cancel</button>
-          <button class="waves-effect modal-action" type="button">Save</button>
+          <button class="waves-effect modal-action" type="button" [disabled]="form.disabled"
+           (click)="onClose()">Cancel</button>
+          <button class="waves-effect modal-action" type="submit"
+          [disabled]="form.disabled">Save</button>
         </div>
 
     </div>
   </div>
 </form>
 
+
+<!-- Delete Modal Structure -->
+<div class="modal" #deletemodal>
+  <div class="modal-content">
+    <h4>Are you sure to delete category CATEGORYNAME ?</h4>
+    <p>Category information will be lost!</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-green btn-flat">No</a>
+    <a class="modal-close waves-effect waves-green btn-flat"
+     (click)="onDeletePosition()">Yes</a>
+  </div>
+</div>

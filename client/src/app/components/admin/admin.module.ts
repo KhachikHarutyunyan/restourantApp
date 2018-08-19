@@ -10,9 +10,10 @@ import { OverviewComponent } from './overview/overview.component';
 import { ReactiveFormsModule } from '../../../../node_modules/@angular/forms';
 import { CategoryService } from '../../shared/services/category.service';
 import { PositionsFormComponent } from './categories/categories-form/positions-form/positions-form.component';
-import { HttpClientModule } from '../../../../node_modules/@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '../../../../node_modules/@angular/common/http';
 import { LoaderComponent } from '../loader/loader.component';
 import { PositionService } from '../../shared/services/position.service';
+import { TokenInterceptor } from '../../shared/classes/token.interceptor';
 
 
 @NgModule({
@@ -30,7 +31,15 @@ import { PositionService } from '../../shared/services/position.service';
     PositionsFormComponent,
     LoaderComponent
   ],
-  providers: [AdminGuard, CategoryService, PositionService]
+  providers: [
+    AdminGuard,
+    CategoryService,
+    PositionService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptor
+    }
+  ]
 })
-
 export class AdminModule {}

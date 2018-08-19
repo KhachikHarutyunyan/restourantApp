@@ -2,10 +2,10 @@
   <h3>
     <span routerLink="/admin/categories">Category</span>
     <i class="material-icons">keyboard_arrow_right</i>
-     Add Category
+     {{ isNew? 'Add Category': 'Change'}}
   </h3>
   <span>
-    <button data-target="modal" class="modal-trigger">Delete</button>
+    <button data-target="modal" class="modal-trigger" *ngIf="!isNew" >Delete</button>
   </span>
 
 </div>
@@ -41,14 +41,16 @@
     <div class="left">
       <input type="file" class="dn" (change)="onFileUpload($event)" #input
       accept="image/png, image/jpeg">
-      <button class="btn waves-effect waves-light mb2" type="button" (click)="triggerClick()">
+      <button class="btn waves-effect waves-light mb2" type="button" [disabled]="form.disabled"
+      (click)="triggerClick()">
         <i class="material-icons left">backup</i>
         Upload Foto
       </button>
     </div>
 
     <div class="right">
-      <button type="submit" class="waves-effect waves-light btn" [disabled]="!form.valid">
+      <button type="submit" class="waves-effect waves-light btn"
+       [disabled]="!form.valid || form.disabled || !isFileLoaded">
         Save changes</button>
     </div>
 
@@ -64,7 +66,8 @@
 
 </div>
 
-<app-positions-form *ngIf="false" [categoryId]="category?.category['_id']"></app-positions-form>
+<app-positions-form *ngIf="category?.category[0]['_id']"
+ [categoryId]="category?.category[0]['_id']"></app-positions-form>
 
 
 <!-- Modal Structure -->

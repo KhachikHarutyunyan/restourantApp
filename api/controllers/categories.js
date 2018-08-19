@@ -1,6 +1,6 @@
 const Category = require('../models/categories');
 const Positions = require('../models/positions');
-const User = require('../models/user');
+// const User = require('../models/user');
 const errorHandler = require('../utils/errHandler');
 
 module.exports.getAll = async function(req, res) {
@@ -73,45 +73,34 @@ module.exports.create = async function(req, res) {
 
 
 module.exports.update = async function(req, res) {
+
   
   if (req.user.admin) {
+    const categoryImg = await Category.findById(req.params.id);
     const update = {
       name: req.body.name,
       category: [
         {
-          title: req.body.title
-        }
-      ]
-      
-    };
-  
-    if (req.file) {
-      update.category = [
-        {
           title: req.body.title,
-          imageSrc: req.file.path,
+          imageSrc: req.file? req.file.path: categoryImg.category[0].imageSrc,
           user: req.user.id
         }
-      ];
+      ]
+    };
 
-      try {
-        const category = await Category.findOneAndUpdate(
-          { _id: req.params.id},
-          { $set: update },
-          { new: true }
-        );
-        res.status(200).json(category);
-      } catch (error) {
-        errorHandler(res, error);
-      }
-
-    } else {
-      res.json({ message: 'Choos Image!' });
+    try {
+      const category = await Category.findOneAndUpdate(
+        { _id: req.params.id},
+        { $set: update },
+        { new: true }
+      );
+      res.status(200).json(category);
+    } catch (error) {
+      errorHandler(res, error);
     }
-  
     
   } else {
     res.json({ message: 'Only Admin can do this operation!' });
   }
   
-};
+}
