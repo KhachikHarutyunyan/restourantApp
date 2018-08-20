@@ -27,10 +27,10 @@ export class OrdersComponent implements OnInit, OnDestroy, AfterViewInit {
   ) { }
 
   ngOnInit() {
-    this.isRoot = this.router.url === '/orders';
+    this.isRoot = this.router.url === '/admin/orders';
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.isRoot = this.router.url === '/orders';
+        this.isRoot = this.router.url === '/admin/orders';
       }
     });
   }

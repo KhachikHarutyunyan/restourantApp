@@ -17,6 +17,8 @@ import { TokenInterceptor } from '../../shared/classes/token.interceptor';
 import { OrdersComponent } from './orders/orders.component';
 import { OrdersService } from '../../shared/services/orders.service';
 import { OrderService } from './orders/order.service';
+import { OrderCategoriesComponent } from './orders/order-categories/order-categories.component';
+import { OrderPositionsComponent } from './orders/order-positions/order-positions.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { OrderService } from './orders/order.service';
     CategoriesFormComponent,
     PositionsFormComponent,
     LoaderComponent,
-    OrdersComponent
+    OrdersComponent,
+    OrderCategoriesComponent,
+    OrderPositionsComponent
   ],
   providers: [
     AdminGuard,

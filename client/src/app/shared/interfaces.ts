@@ -5,12 +5,12 @@ export interface User {
   name?: string;
 }
 
-export interface Order {
-  name: string;
-  description: string;
-  count: number;
-  price: number;
-}
+// export interface Order {
+//   name: string;
+//   description: string;
+//   count: number;
+//   price: number;
+// }
 
 export interface Category {
   name: string;

@@ -1,0 +1,16 @@
+<div *ngIf="categories">
+  <div class="frow order-row">
+    <div class="card waves-effect pointer" *ngFor="let category of categories"
+     [routerLink]="['/admin/order/', category._id]">{{ category.category[0]['name'] }}
+     <div *ngFor="let sub of category.category">
+       <span>{{ sub['name'] }}6 </span>123
+     </div>
+      <div class="center">
+        <!-- <img [src]="category.category.imageSrc" class="responsive-img order-img"> -->
+      </div>
+      <div class="card-content center p10">
+        <!-- <h5 class="m0">{{ category['name'] }}</h5> -->
+      </div>
+    </div>
+  </div>
+</div>
