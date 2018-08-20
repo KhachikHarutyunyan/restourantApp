@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '../../../../../node_modules/@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
 import { User } from '../../../shared/interfaces';
-import { Router, ActivatedRoute, Params } from '../../../../../node_modules/@angular/router';
-import { Subscription, ObjectUnsubscribedError } from '../../../../../node_modules/rxjs';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Subscription, ObjectUnsubscribedError } from 'rxjs';
 import { MaterialService } from '../../../shared/classes/material.service';
 
 @Component({

@@ -3,7 +3,7 @@
   <div class="col s10 offset-s1">
     <div class="page-subtitle">
       <h4>Positions</h4>
-      <button class="btn grey darken-2 btn-small waves-effect waves-light"
+      <button class="btn waves-effect waves-light"
        (click)="onAddPosition()">Add Position</button>
     </div>
 
@@ -12,7 +12,7 @@
         <a class="collection-item collection-item-icon"
          *ngFor="let position of positions" (click)="onSelectPosition(position)">
           <span> {{ position['name'] }}
-            <strong> {{ position['cost'] }} </strong>
+            <strong> {{ position['cost'] }} $</strong>
           </span>
           <span class="secondary-content"><i class="material-icons" (click)="onDeleteModal($event, position)">delete</i></span>
         </a>
@@ -65,9 +65,9 @@
         </div>
 
         <div class="modal-footer">
-          <button class="waves-effect modal-action" type="button" [disabled]="form.disabled"
+          <button class="modal-action" type="button" [disabled]="form.disabled"
            (click)="onClose()">Cancel</button>
-          <button class="waves-effect modal-action" type="submit"
+          <button class="modal-action" type="submit"
           [disabled]="form.disabled">Save</button>
         </div>
 
@@ -78,8 +78,8 @@
 
 <!-- Delete Modal Structure -->
 <div class="modal" #deletemodal>
-  <div class="modal-content">
-    <h4>Are you sure to delete category CATEGORYNAME ?</h4>
+  <div class="modal-content worning-modal">
+    <h4>Are you sure to delete category {{ delPositionName }} ?</h4>
     <p>Category information will be lost!</p>
   </div>
   <div class="modal-footer">

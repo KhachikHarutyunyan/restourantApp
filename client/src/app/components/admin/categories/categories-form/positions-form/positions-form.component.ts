@@ -1,8 +1,8 @@
-import { MaterialInstance, MaterialService } from './../../../../../shared/classes/material.service';
+import { MaterialInstance, MaterialService } from '../../../../../shared/classes/material.service';
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '../../../../../../../node_modules/@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PositionService } from '../../../../../shared/services/position.service';
-import { Positions } from 'src/app/shared/interfaces';
+import { Positions } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-positions-form',
@@ -23,6 +23,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
   positionId = null;
   positions: Positions[] = [];
   positionState = false;
+  delPositionName: string;
 
   modalPosition;
 
@@ -97,6 +98,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
     event.stopPropagation();
     this.deleteModalInit.open();
     this.modalPosition = position;
+    this.delPositionName = position['name'];
   }
 
   onDeletePosition() {

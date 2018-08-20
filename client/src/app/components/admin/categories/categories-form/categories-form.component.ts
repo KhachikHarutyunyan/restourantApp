@@ -1,12 +1,12 @@
-import { MaterialInstance } from './../../../../shared/classes/material.service';
+import { MaterialInstance } from '../../../../shared/classes/material.service';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '../../../../../../node_modules/@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Category } from '../../../../shared/interfaces';
-import { Router, ActivatedRoute, Params } from '../../../../../../node_modules/@angular/router';
-import { switchMap } from '../../../../../../node_modules/rxjs/operators';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { CategoryService } from '../../../../shared/services/category.service';
 import { MaterialService } from '../../../../shared/classes/material.service';
-import { of } from '../../../../../../node_modules/rxjs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-categories-form',

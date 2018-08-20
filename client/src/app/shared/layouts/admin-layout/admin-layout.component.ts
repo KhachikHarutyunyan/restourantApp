@@ -1,6 +1,6 @@
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '../../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-layout',
@@ -18,7 +18,7 @@ export class AdminLayoutComponent implements OnInit {
     { url: '/admin', name: 'Overview', icon: 'visibility' },
     { url: '/admin/history', name: 'History', icon: 'history' },
     { url: '/admin/analytics', name: 'Analytics', icon: 'show_chart' },
-    { url: '/admin/order', name: 'Order', icon: 'payment' },
+    { url: '/admin/orders', name: 'Order', icon: 'payment' },
     { url: '/admin/categories', name: 'Categories', icon: 'subject' }
   ];
 

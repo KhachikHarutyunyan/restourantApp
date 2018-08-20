@@ -8,12 +8,22 @@ hr {
 .page-subtitle {
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 100%;
   align-items: center;
   font-family: $standart;
   color: #464c54;
+  text-align: center;
+  padding: 0 60px;
   h4 {
     margin-top: 0;
+  }
+  button {
+    background-color: #464c54;
+    color: #189a18;
+    transition: all .5s;
+    &:hover {
+      color: $accent;
+    }
   }
 }
 .positions-col {
@@ -27,10 +37,54 @@ hr {
   }
 }
 
+.modal {
+  font-family: $standart;
+  width: 45%;
+  .modal-content {
+    background-color: #3e3e41;
+    padding: 10px 24px 5px;
+    h4 {
+      color: #26a69a;
+      text-align: center;
+    }
+    .input-field {
+      input, textarea {
+        color: $accent;
+      }
+      span {
+        color: $accent;
+      }
+    }
+  }
+  .modal-footer {
+    background-color: #3e3e41;
+    height: auto;
+    button {
+      background-color: transparent;
+      color: #26a69a;
+      font-family: $standart;
+      border: 1px solid transparent;
+      margin-left: 15px;
+      padding-bottom: 10px;
+      &:hover {
+        border-bottom: 1px solid $accent;
+        color: $accent;
+      }
+    }
+  }
+  .worning-modal {
+    h4 {
+      font-size: 20px;
+    }
+  }
+
+}
+
 
 @media (max-width: 780px) {
   .page-subtitle {
     width: 100%;
+    padding: 0;
     h4 {
       margin-top: 0;
     }

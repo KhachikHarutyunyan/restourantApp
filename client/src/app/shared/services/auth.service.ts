@@ -1,8 +1,8 @@
-import { Injectable } from '../../../../node_modules/@angular/core';
-import { HttpClient } from '../../../../node_modules/@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces';
-import { Observable } from '../../../../node_modules/rxjs';
-import { tap } from '../../../../node_modules/rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 

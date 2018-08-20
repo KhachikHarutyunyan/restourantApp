@@ -1,6 +1,6 @@
 import { ProfileComponent } from './profile/profile.component';
-import { NgModule } from '../../../../node_modules/@angular/core';
-import { CommonModule } from '../../../../node_modules/@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { SiteLayoutComponent } from '../../shared/layouts/site-layout/site-layout.component';
 import { AboutComponent } from './about/about.component';
@@ -14,7 +14,7 @@ import { PublicRoutingModule } from './public.routing.module';
 import { MenuListComponent } from './menu-page/menu-list/menu-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
-import { ReactiveFormsModule } from '../../../../node_modules/@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileGuard } from '../../shared/services/profile.guard';
 import { UserOrderComponent } from './profile/user-order/user-order.component';
 

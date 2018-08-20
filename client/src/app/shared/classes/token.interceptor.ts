@@ -1,10 +1,10 @@
-import { Injectable } from '../../../../node_modules/@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest,
-   HttpEvent, HttpHandler, HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
+   HttpEvent, HttpHandler, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
-import { Router } from '../../../../node_modules/@angular/router';
-import { Observable, throwError } from '../../../../node_modules/rxjs';
-import { catchError } from '../../../../node_modules/rxjs/operators';
+import { Router } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable()

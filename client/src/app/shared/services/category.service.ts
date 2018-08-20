@@ -1,6 +1,6 @@
-import { Injectable } from '../../../../node_modules/@angular/core';
-import { HttpClient, HttpHeaders } from '../../../../node_modules/@angular/common/http';
-import { Observable } from '../../../../node_modules/rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Category, Message } from '../interfaces';
 import { AuthService } from './auth.service';
 

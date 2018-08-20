@@ -17,7 +17,6 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Types count</th>
               <th>Do changes</th>
             </tr>
           </thead>
@@ -25,7 +24,6 @@
           <tbody *ngFor="let loadcategory of category.category">
             <tr>
               <td>{{ loadcategory.title }}</td>
-              <td>5</td>
               <td>
                 <i class="material-icons" [routerLink]="['/admin/categories', category['_id']]">edit</i>
               </td>

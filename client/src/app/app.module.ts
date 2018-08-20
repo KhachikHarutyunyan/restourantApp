@@ -11,9 +11,8 @@ import { AdminModule } from './components/admin/admin.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PublicModule } from './components/public/public.module';
 import { TokenInterceptor } from './shared/classes/token.interceptor';
-import { JwtModule } from '../../node_modules/@auth0/angular-jwt';
+import { JwtModule } from '@auth0/angular-jwt';
 import { AdminGuard } from './shared/services/admin.guard';
-import { OrderService } from './shared/services/order.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,6 @@ import { OrderService } from './shared/services/order.service';
     },
     AdminGuard,
     ProfileGuard,
-    OrderService,
   ],
   bootstrap: [AppComponent]
 })
