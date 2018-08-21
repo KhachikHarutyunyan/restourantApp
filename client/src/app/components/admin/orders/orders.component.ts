@@ -44,7 +44,7 @@ export class OrdersComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   cancel() {
-    this.modalInit.open();
+    this.modalInit.close();
   }
 
   submit() {
@@ -74,6 +74,9 @@ export class OrdersComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     this.modalInit.destroy();
+    if (this.osub) {
+      this.osub.unsubscribe();
+    }
   }
 
 }
