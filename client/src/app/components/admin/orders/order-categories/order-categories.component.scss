@@ -1,0 +1,15 @@
+@import '../../../../../assets/scss-tools/vars';
+
+
+.card.medium {
+  height: 292px!important;
+  .card-image {
+    max-height: 100%!important;
+    span {
+      color: $accent;
+    }
+  }
+  .card-action a {
+    color: #a1a1b7!important;
+  }
+}

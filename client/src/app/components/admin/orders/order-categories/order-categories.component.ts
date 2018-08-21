@@ -19,7 +19,6 @@ export class OrderCategoriesComponent implements OnInit {
   ngOnInit() {
     this.categoryService.fetch().subscribe(data => {
       this.categories = data;
-      console.log(this.categories);
     });
   }
 

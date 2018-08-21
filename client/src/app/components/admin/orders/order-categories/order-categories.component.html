@@ -1,16 +1,104 @@
-<div *ngIf="categories">
-  <div class="frow order-row">
-    <div class="card waves-effect pointer" *ngFor="let category of categories"
-     [routerLink]="['/admin/order/', category._id]">{{ category.category[0]['name'] }}
-     <div *ngFor="let sub of category.category">
-       <span>{{ sub['name'] }}6 </span>123
-     </div>
-      <div class="center">
-        <!-- <img [src]="category.category.imageSrc" class="responsive-img order-img"> -->
-      </div>
-      <div class="card-content center p10">
-        <!-- <h5 class="m0">{{ category['name'] }}</h5> -->
-      </div>
+
+<!-- <div *ngIf="categories || loader" >
+  <div class="frow order-row" *ngFor="let category of categories">
+    <div class="card waves-effect pointer"
+      [routerLink]="['/admin/order/', category._id]" *ngIf="categories.length !== 0; else empty">
+        <div *ngFor="let loadcategory of category.category">
+          <span>{{ loadcategory.title }}</span>
+          <div class="center">
+            <img [src]="loadcategory.imageSrc" class="responsive-img order-img">
+          </div>
+          <div class="card-content center p10">
+            <h5 class="m0" style="margin: 0;">{{ loadcategory['name'] }}</h5>
+          </div>
+        </div>
     </div>
   </div>
+  <ng-template #empty>
+    <div class="center">No category!</div>
+  </ng-template>
+</div> -->
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<div  *ngIf="categories.length !== 0; else loader">
+  <div class="row" *ngIf="categories.length !== 0; else empty">
+    <div class="col s12 m8 l4 offset-m2"
+      *ngFor="let category of categories">
+      <div class="card medium" *ngFor="let subcategory of category.category">
+        <div class="card-image">
+          <img [src]="subcategory.imageSrc">
+          <span class="card-title">Category {{ subcategory['title'] }}</span>
+        </div>
+        <div class="card-action" >
+          <a [routerLink]="['/admin/orders/', subcategory._id]">Add orders of {{ subcategory['title'] }}</a>
+        </div>
+      </div>
+
+    </div>
+    <!-- <div class="clearfix"></div> -->
+  </div>
+
 </div>
+
+<ng-template #empty>
+  <div class="center">No category!</div>
+</ng-template>
+
+
+<div class="row">
+    <!-- <div class="col s12 m6 l3 red">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+    </div>
+    <div class="col s12 m6 l3 red">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+    </div>
+    <div class="col s12 m6 l3 red">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+    </div>
+    <div class="col s12 m6 l3 red">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+    </div> -->
+  </div>

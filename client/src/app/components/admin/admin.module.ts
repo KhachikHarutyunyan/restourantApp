@@ -7,7 +7,7 @@ import { AdminRoutingModule } from './admin.routing.module';
 import { CategoriesComponent } from './categories/categories.component';
 import { AdminLayoutComponent } from '../../shared/layouts/admin-layout/admin-layout.component';
 import { OverviewComponent } from './overview/overview.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CategoryService } from '../../shared/services/category.service';
 import { PositionsFormComponent } from './categories/categories-form/positions-form/positions-form.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -26,6 +26,7 @@ import { OrderPositionsComponent } from './orders/order-positions/order-position
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   declarations: [
