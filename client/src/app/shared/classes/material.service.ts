@@ -60,4 +60,8 @@ export class MaterialService {
     });
   }
 
+  static tooltip(ref: ElementRef): MaterialInstance {
+    return M.Tooltip.init(ref.nativeElement);
+  }
+
 }

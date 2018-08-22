@@ -8,6 +8,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderPositionsComponent } from './orders/order-positions/order-positions.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   { path: '', component: AdminLayoutComponent, canActivateChild: [AdminGuard], children: [
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: '', component: OrderCategoriesComponent },
       { path: ':id', component: OrderPositionsComponent },
     ] },
+    { path: 'history', component: HistoryComponent }
   ] }
 ];
 

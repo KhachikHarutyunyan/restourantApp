@@ -19,6 +19,9 @@ import { OrdersService } from '../../shared/services/orders.service';
 import { OrderService } from './orders/order.service';
 import { OrderCategoriesComponent } from './orders/order-categories/order-categories.component';
 import { OrderPositionsComponent } from './orders/order-positions/order-positions.component';
+import { HistoryComponent } from './history/history.component';
+import { HistoryFilterComponent } from './history/history-filter/history-filter.component';
+import { HistoryListComponent } from './history/history-list/history-list.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { OrderPositionsComponent } from './orders/order-positions/order-position
     LoaderComponent,
     OrdersComponent,
     OrderCategoriesComponent,
-    OrderPositionsComponent
+    OrderPositionsComponent,
+    HistoryComponent,
+    HistoryFilterComponent,
+    HistoryListComponent
   ],
   providers: [
     AdminGuard,

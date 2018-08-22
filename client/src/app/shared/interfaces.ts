@@ -54,3 +54,9 @@ export interface OrderPosition {
   _id?: string;
 }
 
+export interface Filter {
+  start?: Date;
+  end?: Date;
+  order?: number;
+}
+
