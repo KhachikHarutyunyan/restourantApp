@@ -30,7 +30,7 @@ module.exports.getAll = async function (req, res) {
   try {
   // skip() ispolzuetsa dlya nastroiki opcii beskonechnogo skrola vnutri peredautsa kollichestvo elementov otobrojenia
   //localhost:5000/api/order?offset=2&limit=5
-      const orders = await Order.find(query)
+      const orders = await Orders.find(query)
               .sort({ date: -1 })
               .skip(+req.query.offset)
               .limit(+req.query.limit);

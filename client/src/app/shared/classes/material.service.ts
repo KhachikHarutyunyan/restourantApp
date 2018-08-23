@@ -11,6 +11,10 @@ export interface MaterialInstance {
   next?(): void;
 }
 
+export interface MaterialDatepicker extends MaterialInstance {
+  date?: Date;
+}
+
 
 export class MaterialService {
 
@@ -62,6 +66,14 @@ export class MaterialService {
 
   static tooltip(ref: ElementRef): MaterialInstance {
     return M.Tooltip.init(ref.nativeElement);
+  }
+
+  static initDatePicker(ref: ElementRef, onClose: () => void) {
+    return M.Datepicker.init(ref.nativeElement, {
+      format: 'dd.mm.yyyy',
+      showClearBtn: true,
+      onClose
+    });
   }
 
 }

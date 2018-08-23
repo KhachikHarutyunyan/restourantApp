@@ -15,11 +15,12 @@
         <td>{{ position.cost }} $.</td>
         <td>
           <div class="input-field inline order-position-input">
-            <input type="number" value="1" min="1" [(ngModel)]="position.quantity" (blur)="onBlur($event)">
+            <input type="number" value="1" min="1" [(ngModel)]="position.quantity" (blur)="onBlur(position)">
           </div>
         </td>
         <td>
-          <button class="btn waves-effect wavers-light btn-small" [disabled]="!position.quantity"
+          <button class="btn waves-effect wavers-light btn-small"
+           [disabled]="!position.quantity || position.quantity < 1"
             (click)="addToOrder(position)">Add</button>
         </td>
       </tr>

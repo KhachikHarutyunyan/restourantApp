@@ -1,0 +1,15 @@
+@import '../../../../../assets/scss-tools/vars';
+
+
+.highlight {
+  .btn {
+    color: #464c54;
+    transition: all .3s;
+    &:hover {
+      background-color: #464c54!important;
+      color: $accent;
+    }
+  }
+
+}
+

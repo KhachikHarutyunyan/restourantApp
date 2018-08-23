@@ -45,10 +45,10 @@ export class OrderPositionsComponent implements OnInit {
     MaterialService.toast(`Added *${position.quantity}`);
   }
 
-  onBlur(event) {
-    if (event.target.value < 1) {
+  onBlur(position) {
+    if (position.quantity < 1) {
       MaterialService.toast('Count must be more 0');
-      event.target.value = 1;
+      position.quantity = 1;
     }
   }
 
