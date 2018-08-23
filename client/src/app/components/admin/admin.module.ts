@@ -1,3 +1,5 @@
+import { AnalyticsService } from './../../shared/services/analytics.service';
+import { AnalyticsComponent } from './analytics/analytics.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { AdminGuard } from '../../shared/services/admin.guard';
 import { NgModule } from '@angular/core';
@@ -44,7 +46,8 @@ import { HistoryListComponent } from './history/history-list/history-list.compon
     OrderPositionsComponent,
     HistoryComponent,
     HistoryFilterComponent,
-    HistoryListComponent
+    HistoryListComponent,
+    AnalyticsComponent
   ],
   providers: [
     AdminGuard,
@@ -52,6 +55,7 @@ import { HistoryListComponent } from './history/history-list/history-list.compon
     PositionService,
     OrdersService,
     OrderService,
+    AnalyticsService,
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,
