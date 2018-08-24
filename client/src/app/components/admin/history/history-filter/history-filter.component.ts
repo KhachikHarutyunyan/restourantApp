@@ -62,7 +62,6 @@ export class HistoryFilterComponent implements OnInit, AfterViewInit, OnDestroy 
     if (event.target['value'] < 1) {
       this.order = 1;
       MaterialService.toast('Order Number must be more 0!');
-      // this.order = 1;
       MaterialService.updateTextInput();
     }
   }

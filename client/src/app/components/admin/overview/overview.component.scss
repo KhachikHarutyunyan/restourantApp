@@ -1,0 +1,16 @@
+@import '../../../../assets/scss-tools/vars';
+
+.page-title {
+  text-align: center;
+  font-family: $standart;
+  h3 {
+    color: #464c54;
+    font-size: 28px;
+    i {
+      color: #464c54;
+      cursor: pointer;
+    }
+  }
+}
+
+

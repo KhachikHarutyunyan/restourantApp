@@ -47,7 +47,7 @@
        (click)="cancel()">
         Cancel
       </button>
-      <button class="modal-action btn waves-effect"
+      <button class="modal-action btn waves-effect" [disabled]="order.list.length === 0 || pending"
         (click)="submit()">Confirm</button>
     </div>
   </div>

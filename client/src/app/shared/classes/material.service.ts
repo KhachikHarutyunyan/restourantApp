@@ -76,8 +76,8 @@ export class MaterialService {
     });
   }
 
-  static tapTarget(ref: ElementRef): MaterialInstance {
-    return M.tapTarget.init(ref.nativeElement);
+  static initTapTarget(ref: ElementRef): MaterialInstance {
+    return M.TapTarget.init(ref.nativeElement);
   }
 
 }
