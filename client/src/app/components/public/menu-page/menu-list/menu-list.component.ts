@@ -3,7 +3,6 @@ import { MaterialInstance, MaterialService } from '../../../../shared/classes/ma
 import { CategoryService } from '../../../../shared/services/category.service';
 import { Category, Positions } from '../../../../shared/interfaces';
 import { PositionService } from '../../../../shared/services/position.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu-list',
@@ -27,7 +26,6 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.categoryService.fetch().subscribe(data => {
       this.categories = data;
-
     });
   }
 
@@ -36,6 +34,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   menuCategory(id) {
+    console.log(id);
     this.positionService.fetch(id).subscribe(data => {
       this.position = data;
     });
