@@ -17,6 +17,7 @@ import { ContactFormComponent } from './contact/contact-form/contact-form.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileGuard } from '../../shared/services/profile.guard';
 import { UserOrderComponent } from './profile/user-order/user-order.component';
+import { LoaderComponent } from '../loader/loader.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { UserOrderComponent } from './profile/user-order/user-order.component';
     RegisterComponent,
     MenuListComponent,
     ProfileComponent,
-    UserOrderComponent
+    UserOrderComponent,
+    LoaderComponent
   ],
   providers: [ProfileGuard]
 })

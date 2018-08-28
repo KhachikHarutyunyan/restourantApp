@@ -13,7 +13,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CategoryService } from '../../shared/services/category.service';
 import { PositionsFormComponent } from './categories/categories-form/positions-form/positions-form.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoaderComponent } from '../loader/loader.component';
 import { PositionService } from '../../shared/services/position.service';
 import { TokenInterceptor } from '../../shared/classes/token.interceptor';
 import { OrdersComponent } from './orders/orders.component';
@@ -24,6 +23,7 @@ import { OrderPositionsComponent } from './orders/order-positions/order-position
 import { HistoryComponent } from './history/history.component';
 import { HistoryFilterComponent } from './history/history-filter/history-filter.component';
 import { HistoryListComponent } from './history/history-list/history-list.component';
+import { AdminLoaderComponent } from './admin-loader/admin-loader.component';
 
 
 @NgModule({
@@ -40,7 +40,7 @@ import { HistoryListComponent } from './history/history-list/history-list.compon
     OverviewComponent,
     CategoriesFormComponent,
     PositionsFormComponent,
-    LoaderComponent,
+    AdminLoaderComponent,
     OrdersComponent,
     OrderCategoriesComponent,
     OrderPositionsComponent,

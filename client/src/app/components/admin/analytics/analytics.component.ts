@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } fr
 import { Subscription } from 'rxjs';
 import { AnalyticsService } from '../../../shared/services/analytics.service';
 import { AnalyticsPage } from '../../../shared/interfaces';
-import { Chart } from 'chart.js';
+import {Chart} from 'chart.js';
 
 @Component({
   selector: 'app-analytics',
@@ -39,6 +39,7 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.aSub = this.analyticsService.getAnalytics().subscribe((data: AnalyticsPage) => {
       this.average = data.average;
+      console.log(data);
 
       gainConfig.labels = data.chart.map(item => item.label);
       gainConfig.data = data.chart.map(item => item.gain);
@@ -50,14 +51,6 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy {
       const orderCtx = this.orderRef.nativeElement.getContext('2d');
       gainCtx.canvas.height = '300px';
       orderCtx.canvas.height = '300px';
-
-      // test info for chart
-      // orderConfig.labels.push('05.07.2018');
-      // orderConfig.labels.push('08.07.2018');
-      // orderConfig.labels.push('09.07.2018');
-      // orderConfig.data.push(15);
-      // orderConfig.data.push(5);
-      // orderConfig.data.push(8);
 
       // tslint:disable-next-line:no-unused-expression
       new Chart(gainCtx, createChartConfig(gainConfig));

@@ -16,7 +16,7 @@
       <button class="btn btn-small waves-effect" *ngIf="!loading; else loader"
         (click)="loadMore()">Load more</button>
       <ng-template #loader>
-        <app-loader></app-loader>
+        <app-admin-loader></app-admin-loader>
       </ng-template>
     </div>
   </div>
@@ -28,5 +28,5 @@
 </div>
 
 <ng-template #reloadingBlock>
-  <app-loader></app-loader>
+  <app-admin-loader></app-admin-loader>
 </ng-template>

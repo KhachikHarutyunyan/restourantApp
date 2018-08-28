@@ -22,7 +22,7 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
   modalInit: MaterialInstance;
   isNew = true;
   image: File;
-  imagePreview = '';
+  imagePreview: any = '';
   category: Category;
 
   isFileLoaded;

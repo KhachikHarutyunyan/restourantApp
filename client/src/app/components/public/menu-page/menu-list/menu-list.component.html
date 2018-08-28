@@ -1,56 +1,65 @@
+
 <ul class="collapsible" #collaps>
-  <li>
-    <div class="collapsible-header collaps-bg">
-      <h5>Sushi</h5>
-    </div>
-    <div class="collapsible-body">
-      <div class="card-content">
-        <ul class="order-list">
-          <li>
-            <div class="order-name">
-              <p>Burger X</p>
-              <span>Beef, chees, potato, onion, fries</span>
+
+      <li *ngIf="categories.length !== 0; else loader" >
+        <div class="collapsible-header collaps-bg">
+          <div *ngFor="let category of categories" >
+            <div *ngFor="let subcategory of category.category" (click)="menuCategory(subcategory['_id'])">
+
+            <h5>{{ subcategory.title }}</h5>
             </div>
-            <div class="order-cart">
-              <span>$8</span>
-              <a href="#!" class="order-btn">Add to cart</a>
-            </div>
-          </li>
-          <li>
-            <div class="order-name">
-              <p>Sushi Tokio</p>
-              <span>Rice, feesh, potato, onion, fries</span>
-            </div>
-            <div class="order-cart">
-              <span>$12</span>
-              <a href="#!" class="order-btn">Add to cart</a>
-            </div>
-          </li>
-          <li>
-            <div class="order-name">
-              <p>Chicken Burger</p>
-              <span>Chicken, cheese, potato, onion, fries</span>
-            </div>
-            <div class="order-cart">
-              <span>$10</span>
-              <a href="#!" class="order-btn">Add to cart</a>
-            </div>
-          </li>
-          <li>
-            <div class="order-name">
-              <p>Creste di Galli</p>
-              <span>Pasta, cheese, potato, onion, fries</span>
-            </div>
-            <div class="order-cart">
-              <span>$7</span>
-              <a href="#!" class="order-btn">Add to cart</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </li>
-  <li>
+          </div>
+        </div>
+        <div class="collapsible-body" *ngFor="let positions of position" >
+          <div class="card-content">
+            <ul class="order-list">
+              <li>
+                <div class="order-name">
+                  <p>{{ positions.name }}</p>
+                  <span>{{ positions.body }}</span>
+                </div>
+                <div class="order-cart">
+                  <span>${{ positions.cost }}</span>
+                  <a href="#!" class="order-btn">Add to cart</a>
+                </div>
+              </li>
+              <li>
+                <div class="order-name">
+                  <p>Sushi Tokio</p>
+                  <span>Rice, feesh, potato, onion, fries</span>
+                </div>
+                <div class="order-cart">
+                  <span>$12</span>
+                  <a href="#!" class="order-btn">Add to cart</a>
+                </div>
+              </li>
+              <li>
+                <div class="order-name">
+                  <p>Chicken Burger</p>
+                  <span>Chicken, cheese, potato, onion, fries</span>
+                </div>
+                <div class="order-cart">
+                  <span>$10</span>
+                  <a href="#!" class="order-btn">Add to cart</a>
+                </div>
+              </li>
+              <li>
+                <div class="order-name">
+                  <p>Creste di Galli</p>
+                  <span>Pasta, cheese, potato, onion, fries</span>
+                </div>
+                <div class="order-cart">
+                  <span>$7</span>
+                  <a href="#!" class="order-btn">Add to cart</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+
+
+  <!-- <li>
     <div class="collapsible-header collaps-bg">
       <h5>Burger</h5>
     </div>
@@ -202,5 +211,11 @@
         </ul>
       </div>
     </div>
-  </li>
+  </li> -->
+<!-- </div> -->
 </ul>
+
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
