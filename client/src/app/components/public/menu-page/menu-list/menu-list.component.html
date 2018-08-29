@@ -1,14 +1,21 @@
 
 <ul class="collapsible expandable" #collaps>
+      <li *ngFor="let category of categories" >
 
-      <li *ngIf="categories.length !== 0; else loader" >
-        <div class="collapsible-header collaps-bg" *ngFor="let category of categories">
-          <div *ngFor="let subcategory of category.category" (click)="menuCategory(subcategory['_id'])">
-            <h5>{{ subcategory.title }}</h5>
+        <div class="collapsible-header collaps-bg"
+          [style.background-image]="onImageLoaded(subcategory.imageSrc)"
+         *ngFor="let subcategory of category.category" (click)="menuCategory(subcategory['_id'])">
+         <!-- <img src="api/uploads/18082018-135910_883-juice2.jpeg" alt="" class="image"> -->
+          <div >
+            <h5>{{ subcategory.title }}</h5>{{subcategory.imageSrc}}
           </div>
         </div>
         <div class="collapsible-body">
-          <div class="card-content">
+
+            <div class="progress" *ngIf="progress">
+                <div class="indeterminate"></div>
+            </div>
+          <div class="card-content" *ngIf="!progress">
             <ul class="order-list" *ngFor="let positions of position">
               <li >
                 <div class="order-name">
@@ -17,12 +24,14 @@
                 </div>
                 <div class="order-cart">
                   <span>${{ positions.cost }}</span>
-                  <a href="#!" class="order-btn">Add to cart</a>
+                  <a class="order-btn">Add to cart</a>
                 </div>
               </li>
             </ul>
           </div>
         </div>
+
+
       </li>
 
 
@@ -182,7 +191,4 @@
 <!-- </div> -->
 </ul>
 
-
-<ng-template #loader>
-  <app-loader></app-loader>
-</ng-template>
+<app-loader *ngIf="loader"></app-loader>

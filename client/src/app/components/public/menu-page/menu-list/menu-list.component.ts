@@ -3,6 +3,7 @@ import { MaterialInstance, MaterialService } from '../../../../shared/classes/ma
 import { CategoryService } from '../../../../shared/services/category.service';
 import { Category, Positions } from '../../../../shared/interfaces';
 import { PositionService } from '../../../../shared/services/position.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-menu-list',
@@ -13,6 +14,11 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('collaps') collapsRef: ElementRef;
 
+  loader = true;
+  progress = false;
+
+  newId;
+
   collapsInit: MaterialInstance;
 
   categories: Category[] = [];
@@ -20,12 +26,23 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private positionService: PositionService,
-    private categoryService: CategoryService
-  ) { }
+    private categoryService: CategoryService,
+    private sanitizer: DomSanitizer
+  ) {
+
+  }
 
   ngOnInit() {
+    this.loader = true;
     this.categoryService.fetch().subscribe(data => {
-      this.categories = data;
+      console.log(data);
+      if (data.length !== 0) {
+        this.categories = data;
+        this.loader = false;
+      } else {
+        MaterialService.toast('No menu data!');
+        this.loader = false;
+      }
     });
   }
 
@@ -34,11 +51,40 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   menuCategory(id) {
-    console.log(id);
-    this.positionService.fetch(id).subscribe(data => {
-      this.position = data;
-    });
+    this.progress = true;
+    if (id !== this.newId) {
+      this.positionService.fetch(id).subscribe(data => {
+        if (data.length !== 0) {
+          this.position = data;
+          this.progress = false;
+        } else {
+          MaterialService.toast('No category!');
+          this.progress = false;
+        }
 
+      });
+    } else {
+      this.progress = false;
+      return;
+    }
+    this.newId = id;
+
+  }
+
+  onImageLoaded(image: string) {
+    // RegExp.escape = function( text ) {
+    //   return ( text + '' ).replace( /[.?*+^$[\]\\(){}|-]/g, '\\$&' );
+    // };
+    const s = 'The quick apifox/ jumped \ over \ the lazy dog.';
+    const re = /[.?*+^$[\]\\(){}|-]/g;
+    // Exchange each pair of words.
+    const result = s.replace(re, '/');
+
+
+    console.log(result);
+    return this.sanitizer.bypassSecurityTrustStyle(`url(${image})`);
+    // console.log(loadedImage);
+    // return loadedImage;
   }
 
   ngOnDestroy(): void {

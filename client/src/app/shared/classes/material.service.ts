@@ -42,7 +42,7 @@ export class MaterialService {
 
   static colaps(ref: ElementRef) {
     return M.Collapsible.init(ref.nativeElement, {
-      accordion: false
+      accordion: true
     });
   }
 
