@@ -31,8 +31,9 @@
     }
   }
   .collapsible-body {
+    padding-top: 0;
     .progress {
-      top: -76px;
+      top: -38px;
       background-color: #a1c79f;
       .indeterminate {
         background-color: $accent;
@@ -72,13 +73,20 @@
             transition: .5s;
             cursor: pointer;
             &.order-btn {
-              padding: 6px;
-              border: 1px solid $accent;
-              font-size: 14px;
-            }
-            &:hover.order-btn:hover {
+              padding: 2px 6px;
+              border: 2px solid $accent;
+              // border-radius: 50%;
+              font-size: 12px;
+              vertical-align: middle;
               background-color: $accent;
               color: #fff;
+              i {
+                margin-top: 3px;
+              }
+            }
+            &:hover.order-btn:hover {
+              background-color: #fff;
+              color: $accent;
             }
           }
         }
@@ -92,6 +100,7 @@
 @media(max-width: 500px) {
   .collapsible {
     .collapsible-body {
+      text-align: center;
       .order-list {
         li {
           display: block;
@@ -101,6 +110,19 @@
           }
           .order-cart {
             margin-top: 20px;
+            display: block;
+            text-align: center;
+            vertical-align: middle;
+            a {
+
+              &.order-btn {
+                font-size: 8px;
+                padding: 20px 6px 6px;
+                i {
+                  margin-top: 0;
+                }
+              }
+            }
           }
         }
       }

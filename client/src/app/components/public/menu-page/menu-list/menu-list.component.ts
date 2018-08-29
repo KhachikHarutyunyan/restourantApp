@@ -72,19 +72,9 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onImageLoaded(image: string) {
-    // RegExp.escape = function( text ) {
-    //   return ( text + '' ).replace( /[.?*+^$[\]\\(){}|-]/g, '\\$&' );
-    // };
-    const s = 'The quick apifox/ jumped \ over \ the lazy dog.';
-    const re = /[.?*+^$[\]\\(){}|-]/g;
-    // Exchange each pair of words.
-    const result = s.replace(re, '/');
-
-
-    console.log(result);
-    return this.sanitizer.bypassSecurityTrustStyle(`url(${image})`);
-    // console.log(loadedImage);
-    // return loadedImage;
+    const re = /[\\]/g;
+    const result = image.replace(re, '/');
+    return this.sanitizer.bypassSecurityTrustStyle(`url(${result})`);
   }
 
   ngOnDestroy(): void {

@@ -5,9 +5,8 @@
         <div class="collapsible-header collaps-bg"
           [style.background-image]="onImageLoaded(subcategory.imageSrc)"
          *ngFor="let subcategory of category.category" (click)="menuCategory(subcategory['_id'])">
-         <!-- <img src="api/uploads/18082018-135910_883-juice2.jpeg" alt="" class="image"> -->
           <div >
-            <h5>{{ subcategory.title }}</h5>{{subcategory.imageSrc}}
+            <h5>{{ subcategory.title }}</h5>
           </div>
         </div>
         <div class="collapsible-body">
@@ -24,7 +23,10 @@
                 </div>
                 <div class="order-cart">
                   <span>${{ positions.cost }}</span>
-                  <a class="order-btn">Add to cart</a>
+                  <!-- <a class="order-btn">Add to cart</a> -->
+                  <a class="order-btn">
+                    <i class="material-icons">shopping_cart</i>
+                  </a>
                 </div>
               </li>
             </ul>
