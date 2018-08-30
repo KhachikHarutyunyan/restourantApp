@@ -57,28 +57,6 @@
             color: $grey;
             margin-right: 10px;
           }
-          a {
-            text-decoration: none;
-            color: $accent;
-            transition: .5s;
-            cursor: pointer;
-            &.order-btn {
-              padding: 2px 6px;
-              border: 2px solid $accent;
-              // border-radius: 50%;
-              font-size: 12px;
-              vertical-align: middle;
-              background-color: $accent;
-              color: #fff;
-              i {
-                margin-top: 3px;
-              }
-            }
-            &:hover.order-btn:hover {
-              background-color: #fff;
-              color: $accent;
-            }
-          }
         }
       }
     }
@@ -103,16 +81,6 @@
             display: block;
             text-align: center;
             vertical-align: middle;
-            a {
-
-              &.order-btn {
-                font-size: 8px;
-                padding: 20px 6px 6px;
-                i {
-                  margin-top: 0;
-                }
-              }
-            }
           }
         }
       }

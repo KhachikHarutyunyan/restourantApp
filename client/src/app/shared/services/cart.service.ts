@@ -9,6 +9,7 @@ export class CartService {
 
   public price = 0;
   public list: OrderPosition[] = [];
+  public priceToken: any = 0;
 
   constructor(
     private http: HttpClient
@@ -29,6 +30,8 @@ export class CartService {
       this.list.push(orderPosition);
     }
 
+    localStorage.setItem('orderList', JSON.stringify(this.list));
+
     this.calculatePrice();
   }
 
@@ -41,12 +44,20 @@ export class CartService {
   clear() {
     this.list = [];
     this.price = 0;
+    localStorage.removeItem('orderList');
   }
 
   private calculatePrice() {
     this.price = this.list.reduce((total, item) => {
       return total += item.quantity * item.cost;
     }, 0);
+    localStorage.setItem('price', JSON.stringify(this.price));
+    this.setPriceToken();
+  }
+
+  setPriceToken() {
+    this.priceToken = localStorage.getItem('price');
+    return this.priceToken;
   }
 
 }

@@ -21,12 +21,17 @@
                   <p>{{ positions.name }}</p>
                   <span>{{ positions.body }}</span>
                 </div>
+                <div class="input-field inline order-position-input">
+                  <input type="number" value="1" min="1"
+                   [(ngModel)]="positions.quantity"
+                   (blur)="onBlur(positions)">
+                </div>
                 <div class="order-cart">
                   <span>${{ positions.cost }}</span>
-                  <!-- <a class="order-btn">Add to cart</a> -->
-                  <a class="order-btn" (click)="addToCart(positions)">
+                  <button class=" btn" type="button" (click)="addToCart(positions)"
+                  [disabled]="!positions.quantity || positions.quantity < 1" >
                     <i class="material-icons">shopping_cart</i>
-                  </a>
+                </button>
                 </div>
               </li>
             </ul>

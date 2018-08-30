@@ -14,7 +14,7 @@ import { PublicRoutingModule } from './public.routing.module';
 import { MenuListComponent } from './menu-page/menu-list/menu-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProfileGuard } from '../../shared/services/profile.guard';
 import { UserOrderComponent } from './profile/user-order/user-order.component';
 import { LoaderComponent } from '../loader/loader.component';
@@ -26,7 +26,8 @@ import { CartService } from '../../shared/services/cart.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    PublicRoutingModule
+    PublicRoutingModule,
+    FormsModule
   ],
   declarations: [
     SiteLayoutComponent,
