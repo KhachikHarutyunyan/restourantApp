@@ -12,14 +12,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 export class AuthService {
 
-  // public domain = 'http://localhost:3000/api/';
-
   private token = null;
-  // private token: string;
-  // public authToken;
   public userToken = null;
-  // public user;
-  // private options;
 
   constructor(private http: HttpClient, private jwtHelperService: JwtHelperService) {}
 

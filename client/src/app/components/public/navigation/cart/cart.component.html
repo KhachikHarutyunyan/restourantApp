@@ -1,0 +1,63 @@
+<div class="cart">
+  <ul class="sidenav" id="slide-cart" #cart>
+    <div class="cart-flex">
+      <div>
+        <li>
+          <a>Your Cart</a>
+          <i class="material-icons" (click)="close()">close</i>
+        </li>
+        <li *ngFor="let list of cart.list">
+          <a>{{ list.name }}
+            <p>
+              Pizza Chicked BBQ <span> $ 8</span>
+              <i class="material-icons">close</i>
+            </p>
+            <span>26”, deep-pan, thin-crust</span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <p>
+              Pizza Chicked BBQ <span> $ 8</span>
+              <i class="material-icons">close</i>
+            </p>
+            <span>26”, deep-pan, thin-crust</span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <p>
+              Pizza Chicked BBQ <span> $ 8</span>
+              <i class="material-icons">close</i>
+            </p>
+            <span>26”, deep-pan, thin-crust</span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <p>
+              Pizza Chicked BBQ <span> $ 8</span>
+              <i class="material-icons">close</i>
+            </p>
+            <span>26”, deep-pan, thin-crust</span>
+          </a>
+        </li>
+        <div class="total">
+          <p>
+            Order total: <span>$21.02</span><br>
+            Delivery: <span>$2.2</span>
+          </p>
+        </div>
+        <div class="total">
+          <h5>
+            Total: <span>$23.2</span>
+          </h5>
+        </div>
+      </div>
+    </div>
+    <li class="cart-btn">
+      <a >Go to Checkout </a>
+    </li>
+  </ul>
+</div>
+

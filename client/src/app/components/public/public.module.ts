@@ -18,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileGuard } from '../../shared/services/profile.guard';
 import { UserOrderComponent } from './profile/user-order/user-order.component';
 import { LoaderComponent } from '../loader/loader.component';
+import { CartComponent } from './navigation/cart/cart.component';
+import { CartService } from '../../shared/services/cart.service';
 
 
 @NgModule({
@@ -40,9 +42,10 @@ import { LoaderComponent } from '../loader/loader.component';
     MenuListComponent,
     ProfileComponent,
     UserOrderComponent,
-    LoaderComponent
+    LoaderComponent,
+    CartComponent
   ],
-  providers: [ProfileGuard]
+  providers: [ProfileGuard, CartService]
 })
 
 export class PublicModule {}

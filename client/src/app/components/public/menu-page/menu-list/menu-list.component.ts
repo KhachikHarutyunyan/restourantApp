@@ -4,6 +4,7 @@ import { CategoryService } from '../../../../shared/services/category.service';
 import { Category, Positions } from '../../../../shared/interfaces';
 import { PositionService } from '../../../../shared/services/position.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CartService } from '../../../../shared/services/cart.service';
 
 @Component({
   selector: 'app-menu-list',
@@ -27,7 +28,8 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private positionService: PositionService,
     private categoryService: CategoryService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private cart: CartService
   ) {
 
   }
@@ -35,7 +37,6 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.loader = true;
     this.categoryService.fetch().subscribe(data => {
-      console.log(data);
       if (data.length !== 0) {
         this.categories = data;
         this.loader = false;
@@ -75,6 +76,11 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
     const re = /[\\]/g;
     const result = image.replace(re, '/');
     return this.sanitizer.bypassSecurityTrustStyle(`url(${result})`);
+  }
+
+  addToCart(position: Positions) {
+    // console.log(position);
+    this.cart.addPosition(position);
   }
 
   ngOnDestroy(): void {
