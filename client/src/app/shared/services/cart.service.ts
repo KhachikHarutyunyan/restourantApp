@@ -9,30 +9,55 @@ export class CartService {
 
   public price = 0;
   public list: OrderPosition[] = [];
-  public priceToken: any = 0;
+  public priceToken = null;
+  public listToken = null;
 
   constructor(
     private http: HttpClient
   ) { }
 
   addPosition(position: Positions) {
+    // if (!!this.listToken) {
+    //   console.log('mojno');
+    // } else {
+    //   console.log('nelzya');
+    // }
+
     const orderPosition: OrderPosition = Object.assign({}, {
       name: position['name'],
       cost: position['cost'],
       quantity: position['quantity'],
-      _id: position['_id'],
+      _id: position['_id']
     });
 
-    const potentialOrder = this.list.find(p => p._id === orderPosition._id);
-    if (potentialOrder) {
-      potentialOrder.quantity += orderPosition.quantity;
+    if (!this.listToken) {
+      const potentialOrder = this.list.find(p => p._id === orderPosition._id);
+      if (potentialOrder) {
+        potentialOrder.quantity += orderPosition.quantity;
+        console.log('potential');
+      } else {
+        this.list.push(orderPosition);
+        // this.list.push(orderPosition);
+        // localStorage.setItem('orderList', JSON.stringify(this.list));
+        console.log('list.push');
+      }
+      this.setListToken();
     } else {
-      this.list.push(orderPosition);
+      console.log('nelzya');
+      this.list = this.listToken;
+      localStorage.setItem('orderList', JSON.stringify(this.list));
     }
 
+
     localStorage.setItem('orderList', JSON.stringify(this.list));
+    console.log(this.listToken);
+    console.log(JSON.parse(this.listToken));
+    console.log(this.list);
 
     this.calculatePrice();
+    this.setPriceToken();
+    this.setListToken();
+
   }
 
   remove(orderPosition: OrderPosition) {
@@ -52,12 +77,17 @@ export class CartService {
       return total += item.quantity * item.cost;
     }, 0);
     localStorage.setItem('price', JSON.stringify(this.price));
-    this.setPriceToken();
+    // this.setPriceToken();
   }
 
   setPriceToken() {
     this.priceToken = localStorage.getItem('price');
     return this.priceToken;
+  }
+
+  setListToken() {
+    this.listToken = localStorage.getItem('orderList');
+    return this.listToken;
   }
 
 }

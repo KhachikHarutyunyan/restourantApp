@@ -43,7 +43,8 @@
       <a routerLink="/profile" *ngIf="auth.isLoggedIn()">{{ auth.userToken.email }}</a>
       <a class="right valign-wrapper sidenav-trigger"
        data-target="slide-cart">
-        <i class="material-icons">shopping_cart</i> | $ {{ cart.priceToken }}
+        <i class="material-icons">shopping_cart</i>
+         | $ {{ cart.priceToken }}
       </a>
     </div>
   </div>
