@@ -18,9 +18,13 @@ export class CartService {
 
   addPosition(position: Positions) {
     // if (!!this.listToken) {
-    //   console.log('mojno');
+    //   const parse = JSON.parse(this.listToken);
+    //   this.list = parse;
+    //   console.log('mojno', this.listToken);
+    //   this.getListToken();
     // } else {
-    //   console.log('nelzya');
+    //   this.list = [];
+    //   console.log('nelzya', this.listToken);
     // }
 
     const orderPosition: OrderPosition = Object.assign({}, {
@@ -30,33 +34,35 @@ export class CartService {
       _id: position['_id']
     });
 
-    if (!this.listToken) {
-      const potentialOrder = this.list.find(p => p._id === orderPosition._id);
-      if (potentialOrder) {
-        potentialOrder.quantity += orderPosition.quantity;
-        console.log('potential');
-      } else {
-        this.list.push(orderPosition);
-        // this.list.push(orderPosition);
-        // localStorage.setItem('orderList', JSON.stringify(this.list));
-        console.log('list.push');
-      }
-      this.setListToken();
+    const potentialOrder = this.list.find(p => p._id === orderPosition._id);
+    if (potentialOrder) {
+      potentialOrder.quantity += orderPosition.quantity;
+      console.log('potential');
     } else {
-      console.log('nelzya');
-      this.list = this.listToken;
+      this.list.push(orderPosition);
+      // this.list.push(orderPosition);
       localStorage.setItem('orderList', JSON.stringify(this.list));
+      console.log('list.push');
     }
 
+    // if (!this.listToken) {
 
-    localStorage.setItem('orderList', JSON.stringify(this.list));
+    //   this.setListToken();
+    // } else {
+    //   console.log('nelzya');
+    //   this.list = JSON.parse(this.listToken);
+    //   localStorage.setItem('orderList', JSON.stringify(this.list));
+    // }
+
+
+    // localStorage.setItem('orderList', JSON.stringify(this.list));
     console.log(this.listToken);
     console.log(JSON.parse(this.listToken));
     console.log(this.list);
 
     this.calculatePrice();
-    this.setPriceToken();
-    this.setListToken();
+    this.getPriceToken();
+    this.getListToken();
 
   }
 
@@ -70,6 +76,7 @@ export class CartService {
     this.list = [];
     this.price = 0;
     localStorage.removeItem('orderList');
+    localStorage.removeItem('price');
   }
 
   private calculatePrice() {
@@ -80,12 +87,12 @@ export class CartService {
     // this.setPriceToken();
   }
 
-  setPriceToken() {
+  getPriceToken() {
     this.priceToken = localStorage.getItem('price');
     return this.priceToken;
   }
 
-  setListToken() {
+  getListToken() {
     this.listToken = localStorage.getItem('orderList');
     return this.listToken;
   }

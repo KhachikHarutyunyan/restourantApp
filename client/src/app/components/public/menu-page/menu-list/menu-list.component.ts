@@ -19,6 +19,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
   progress = false;
 
   newId;
+  someErr = false;
 
   collapsInit: MaterialInstance;
 
@@ -34,15 +35,25 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.loader = true;
-    this.categoryService.fetch().subscribe(data => {
-      if (data.length !== 0) {
-        this.categories = data;
+    this.categoryService.fetch().subscribe(
+      data => {
+        if (data.length !== 0) {
+          this.categories = data;
+          this.loader = false;
+        } else {
+          MaterialService.toast('No menu data!');
+          this.loader = false;
+        }
+      },
+      err => {
+        console.log(err.error.message);
         this.loader = false;
-      } else {
-        MaterialService.toast('No menu data!');
-        this.loader = false;
+        this.someErr = true;
+      },
+      () => {
+        console.log('No Information');
       }
-    });
+    );
   }
 
   ngAfterViewInit() {

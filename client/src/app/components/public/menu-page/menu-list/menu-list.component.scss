@@ -63,6 +63,17 @@
   }
 }
 
+.some-err {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    color: $accent;
+  }
+}
+
 // mobile
 
 @media(max-width: 500px) {

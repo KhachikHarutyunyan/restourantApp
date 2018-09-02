@@ -44,7 +44,7 @@
       <a class="right valign-wrapper sidenav-trigger"
        data-target="slide-cart">
         <i class="material-icons">shopping_cart</i>
-         | $ {{ cart.priceToken }}
+         | $ {{ cart.priceToken? cart.priceToken: cart.price }}
       </a>
     </div>
   </div>
