@@ -49,9 +49,6 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
         console.log(err.error.message);
         this.loader = false;
         this.someErr = true;
-      },
-      () => {
-        console.log('No Information');
       }
     );
   }
@@ -70,9 +67,6 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
             position.quantity = 1;
             return position;
           });
-
-          // this.position['quantity'] = 1;
-          console.log(this.position);
           this.progress = false;
         } else {
           MaterialService.toast('No category!');
@@ -93,9 +87,7 @@ export class MenuListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   addToCart(position: Positions) {
-    // console.log(position);
     this.cart.addPosition(position);
-    console.log(this.cart.price);
   }
 
   onBlur(position) {

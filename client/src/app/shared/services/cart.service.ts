@@ -17,15 +17,6 @@ export class CartService {
   ) { }
 
   addPosition(position: Positions) {
-    // if (!!this.listToken) {
-    //   const parse = JSON.parse(this.listToken);
-    //   this.list = parse;
-    //   console.log('mojno', this.listToken);
-    //   this.getListToken();
-    // } else {
-    //   this.list = [];
-    //   console.log('nelzya', this.listToken);
-    // }
 
     const orderPosition: OrderPosition = Object.assign({}, {
       name: position['name'],
@@ -34,31 +25,23 @@ export class CartService {
       _id: position['_id']
     });
 
+    this.getPriceToken();
     const potentialOrder = this.list.find(p => p._id === orderPosition._id);
+
     if (potentialOrder) {
       potentialOrder.quantity += orderPosition.quantity;
-      console.log('potential');
-    } else {
-      this.list.push(orderPosition);
-      // this.list.push(orderPosition);
       localStorage.setItem('orderList', JSON.stringify(this.list));
-      console.log('list.push');
+    } else {
+      if (this.priceToken === null) {
+        this.list.push(orderPosition);
+        localStorage.setItem('orderList', JSON.stringify(this.list));
+      } else {
+        this.getListToken();
+        this.list = this.listToken;
+        this.list.push(orderPosition);
+        localStorage.setItem('orderList', JSON.stringify(this.list));
+      }
     }
-
-    // if (!this.listToken) {
-
-    //   this.setListToken();
-    // } else {
-    //   console.log('nelzya');
-    //   this.list = JSON.parse(this.listToken);
-    //   localStorage.setItem('orderList', JSON.stringify(this.list));
-    // }
-
-
-    // localStorage.setItem('orderList', JSON.stringify(this.list));
-    console.log(this.listToken);
-    console.log(JSON.parse(this.listToken));
-    console.log(this.list);
 
     this.calculatePrice();
     this.getPriceToken();
@@ -67,8 +50,13 @@ export class CartService {
   }
 
   remove(orderPosition: OrderPosition) {
+    this.getListToken();
+    if (this.listToken !== null) {
+      this.list = this.listToken;
+    }
     const index = this.list.findIndex(p => p._id === orderPosition._id);
     this.list.splice(index, 1);
+    localStorage.setItem('orderList', JSON.stringify(this.list));
     this.calculatePrice();
   }
 
@@ -88,12 +76,12 @@ export class CartService {
   }
 
   getPriceToken() {
-    this.priceToken = localStorage.getItem('price');
+    this.priceToken = JSON.parse(localStorage.getItem('price'));
     return this.priceToken;
   }
 
   getListToken() {
-    this.listToken = localStorage.getItem('orderList');
+    this.listToken = JSON.parse(localStorage.getItem('orderList'));
     return this.listToken;
   }
 

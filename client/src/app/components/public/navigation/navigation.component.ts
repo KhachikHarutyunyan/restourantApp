@@ -14,7 +14,8 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('toggleMenu') toggleMenuRef: ElementRef;
 
   toggleMenuInit: MaterialInstance;
-  newPrice;
+
+  orders = [];
 
   constructor(
     public auth: AuthService,
@@ -23,10 +24,7 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.newPrice = this.cart.priceToken;
-    if (this.auth.isLoggedIn()) {
-      const user = this.auth.loadUserToken();
-    }
+    this.cart.getPriceToken();
   }
 
   ngAfterViewInit() {
@@ -37,6 +35,13 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
     event.preventDefault();
     this.auth.logout();
     this.router.navigate(['/login']);
+  }
+
+  openCart() {
+    this.cart.getListToken();
+    this.cart.getPriceToken();
+    // console.log(this.cart.listToken);
+    this.orders = this.cart.listToken;
   }
 
   ngOnDestroy() {
