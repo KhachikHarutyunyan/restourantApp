@@ -43,9 +43,10 @@ export class CartService {
       }
     }
 
-    this.calculatePrice();
+
     this.getPriceToken();
     this.getListToken();
+    this.calculatePrice();
 
   }
 

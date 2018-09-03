@@ -1,4 +1,4 @@
-<div>
+
   <div class="cart">
     <ul class="sidenav" id="slide-cart" #cart>
       <div class="cart-flex">
@@ -16,9 +16,9 @@
               <span>Quantity {{ order.quantity }}</span>
             </a>
           </li>
-          <div class="no-order" *ngIf="ordersList.length === 0">
+          <!-- <div class="no-order" *ngIf="!ordersList">
             <p >No orders!</p>
-          </div>
+          </div> -->
 
           <div class="total">
             <p>
@@ -40,6 +40,6 @@
     </ul>
 
   </div>
-</div>
+
 
 

@@ -10,18 +10,19 @@ import { CartService } from '../../../shared/services/cart.service';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
-
-  @ViewChild('toggleMenu') toggleMenuRef: ElementRef;
+  @ViewChild('toggleMenu')
+  toggleMenuRef: ElementRef;
 
   toggleMenuInit: MaterialInstance;
 
   orders = [];
+  // openingCart = false;
 
   constructor(
     public auth: AuthService,
     private router: Router,
     public cart: CartService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.cart.getPriceToken();
@@ -47,5 +48,4 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.toggleMenuInit.destroy();
   }
-
 }

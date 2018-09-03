@@ -41,7 +41,7 @@
   <div class="user-card" >
     <div>
       <a routerLink="/profile" *ngIf="auth.isLoggedIn()">{{ auth.userToken.email }}</a>
-      <a class="right valign-wrapper sidenav-trigger" (click)="openCart()"
+      <a class="right valign-wrapper sidenav-trigger"
        data-target="slide-cart">
         <i class="material-icons">shopping_cart</i>
          | $ {{ cart.priceToken === null? cart.price: cart.priceToken }}
@@ -86,8 +86,10 @@
 
 
 <!-- Aside Cart -->
+<div>
 
-  <app-cart [ordersList]="orders"></app-cart>
+</div>
+<app-cart></app-cart>
 
 
 
