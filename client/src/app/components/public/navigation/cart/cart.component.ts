@@ -11,45 +11,33 @@ import { OrderPosition } from '../../../../shared/interfaces';
 export class CartComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('cart') toggleCartRef: ElementRef;
-  // @Input() ordersList: Array<any>;
+  @Input() ordersList: Array<any>;
+  @Input() price: number;
 
   toggleCartInit: MaterialInstance;
-
-  orders = [];
-  price;
+  delivery = this.cart.delivery;
 
   constructor(
     public cart: CartService
   ) { }
 
   ngOnInit() {
-    this.price = this.cart.priceToken;
-    this.cart.getListToken();
-    this.orders = this.cart.listToken;
-    console.log('cart ', this.cart.listToken);
-
-
+    this.delivery = this.cart.delivery;
   }
 
   ngAfterViewInit() {
     this.toggleCartInit = MaterialService.asideCart(this.toggleCartRef);
     this.cart.getListToken();
-    // this.orders = this.cart.listToken;
   }
 
   close() {
     this.toggleCartInit.close();
-    console.log(this.cart.listToken);
   }
 
   removeOrder(orders: OrderPosition) {
     this.cart.remove(orders);
-    this.orders = this.cart.listToken;
-
-  }
-
-  opened() {
-    console.log('opened');
+    this.ordersList = this.cart.listToken;
+    this.price = this.cart.priceToken;
   }
 
   ngOnDestroy() {

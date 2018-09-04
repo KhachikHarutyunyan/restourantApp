@@ -1,0 +1,192 @@
+<section class="section-checkout">
+  <div class="parallax-container">
+    <div class="parallax" #checkoutParallax>
+    <img src="../../../assets/img/checkout.jpeg"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m8 offset-m2">
+          <div class="parallax-block">
+            <div>
+              <h3>Checkout Page</h3>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Voluptas atque ab laborum quibusdam.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-checkout-order">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m8 checkout-info">
+          <form class="checkout-form" [formGroup]="form" (submit)="onSubmit()">
+            <div class="checkout-head">
+              <h3><i class="material-icons">person_outline</i> Basic informations</h3>
+            </div>
+            <div class="col s12">
+              <div class="input-field col s6">
+                <input  type="text" formControlName="name" [ngClass]="{'invalid': (form.controls.name.errors && form.controls.name.dirty)}">
+                <label>Name:</label>
+
+                <div *ngIf="form.controls.name.errors">
+                  <span *ngIf="form.controls['name'].errors?.required && form.controls['name'].dirty">
+                    This field is required</span>
+                  <span *ngIf="(form.controls['name'].errors?.minlength && form.controls['name'].dirty) ||
+                      (form.controls['name'].errors?.maxlength && form.controls['name'].dirty)">
+                    Minimum characters: 2, Maximum characters: 30!</span>
+                  <span *ngIf="form.controls['name'].errors?.nameValidator && form.controls['name'].dirty">
+                    Username must not have any special characters or numbers!</span>
+                </div>
+              </div>
+
+              <div class="input-field col s6">
+                <input type="text" formControlName="surname"
+                 [ngClass]="{'invalid': (form.controls.surname.errors && form.controls.surname.dirty)}">
+                <label >Surname:</label>
+
+                <div *ngIf="form.controls.surname.errors">
+                  <span *ngIf="form.controls['surname'].errors?.required && form.controls['surname'].dirty">
+                    This field is required</span>
+                  <span *ngIf="(form.controls['surname'].errors?.minlength && form.controls['surname'].dirty) ||
+                      (form.controls['surname'].errors?.maxlength && form.controls['surname'].dirty)">
+                    Minimum characters: 2, Maximum characters: 30!</span>
+                  <span *ngIf="form.controls['surname'].errors?.nameValidator && form.controls['surname'].dirty">
+                    Surname must not have any special characters or numbers!</span>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col s12">
+              <div class="input-field col s6">
+                <input  type="tel"  formControlName="telephon"
+                [ngClass]="{'invalid': (form.controls.telephon.errors && form.controls.telephon.dirty)}">
+                <label >Telephone:</label>
+
+                <div *ngIf="form.controls.telephon.errors">
+                  <span *ngIf="form.controls['telephon'].errors?.required && form.controls['telephon'].dirty">
+                    This field is required</span>
+                  <span *ngIf="(form.controls['telephon'].errors?.minlength && form.controls['telephon'].dirty) ||
+                      (form.controls['telephon'].errors?.maxlength && form.controls['telephon'].dirty)">
+                    Minimum characters: 2, Maximum characters: 30!</span>
+                  <span *ngIf="form.controls['telephon'].errors?.nameValidator && form.controls['telephon'].dirty">
+                    Surname must not have any special characters or numbers!</span>
+                </div>
+
+              </div>
+
+              <div class="input-field col s6">
+                <input type="email" formControlName="email"
+                [ngClass]="{'invalid': (form.controls.email.errors && form.controls.email.dirty)}">
+                <label>Email:</label>
+
+                <div *ngIf="form.controls.email.errors">
+                  <span *ngIf="form.controls['email'].errors?.required && form.controls['email'].dirty">
+                    This field is required</span>
+                  <span *ngIf="(form.controls['email'].errors?.minlength && form.controls['email'].dirty) ||
+                      (form.controls['email'].errors?.maxlength && form.controls['email'].dirty)">
+                    Minimum characters: 2, Maximum characters: 30!</span>
+                  <span *ngIf="form.controls['email'].errors?.nameValidator && form.controls['email'].dirty">
+                    Surname must not have any special characters or numbers!</span>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col s12">
+              <div class="col s6 city-cart">
+                <p>New York city: </p>
+              </div>
+
+              <div class="input-field col s6">
+                <input type="text"  formControlName="street"
+                [ngClass]="{'invalid': (form.controls.street.errors && form.controls.street.dirty)}">
+                <label>Street:</label>
+
+                <div *ngIf="form.controls.street.errors">
+                  <span *ngIf="form.controls['street'].errors?.required && form.controls['street'].dirty">
+                    This field is required</span>
+                  <span *ngIf="(form.controls['street'].errors?.minlength && form.controls['street'].dirty) ||
+                      (form.controls['street'].errors?.maxlength && form.controls['street'].dirty)">
+                    Minimum characters: 2, Maximum characters: 30!</span>
+                  <span *ngIf="form.controls['street'].errors?.nameValidator && form.controls['street'].dirty">
+                    Surname must not have any special characters or numbers!</span>
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="checkout-head">
+              <h3><i class="material-icons">payment</i>Payment</h3>
+            </div>
+
+            <div class="checkbox-block">
+              <p>
+                <label>
+                  <input type="radio" value="cart" class="with-gap" name="radio" formControlName="radio" />
+                  <span>Credit Cart</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="radio" value="cash" class="with-gap" name="radio" formControlName="radio" />
+                  <span>Cash</span>
+                </label>
+              </p>
+            </div>
+
+            <div class="checkout-btn">
+              <button type="submit" class="btn" [disabled]="form.invalid">Order now</button>
+            </div>
+
+
+          </form>
+        </div>
+
+
+        <div class="col s12 m4 ">
+          <div class="cart">
+            <div class="cart-flex">
+              <ul>
+                <li>
+                  <a>Your Cart</a>
+                </li>
+                <li *ngFor="let order of cart.listToken">
+                  <a>
+                    <p>
+                      {{ order.name }} <span> $ {{ order.cost }}</span>
+                      <i class="material-icons" (click)="removeOrder(order)">close</i>
+                    </p>
+                    <span>{{ order.quantity }}</span>
+                  </a>
+                </li>
+                <div class="no-order" *ngIf="cart.listToken.length === 0">
+                  <p >No orders!</p>
+                </div>
+
+                <div class="total">
+                  <p>
+                    Order total: <span>$ {{ cart.priceToken }}</span><br>
+                    Delivery: <span>$ {{ delivery }}</span>
+                  </p>
+                </div>
+                <div class="total">
+                  <h5>
+                    Total: <span>$ $ {{ cart.priceToken > 0? cart.priceToken + delivery: 0 }}</span>
+                  </h5>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

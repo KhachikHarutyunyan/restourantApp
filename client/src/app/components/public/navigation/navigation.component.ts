@@ -16,6 +16,7 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
   toggleMenuInit: MaterialInstance;
 
   orders = [];
+  price = 0;
   // openingCart = false;
 
   constructor(
@@ -41,8 +42,9 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
   openCart() {
     this.cart.getListToken();
     this.cart.getPriceToken();
-    // console.log(this.cart.listToken);
+    // this.orders.push(this.cart.listToken, this.cart.priceToken);
     this.orders = this.cart.listToken;
+    this.price = this.cart.priceToken;
   }
 
   ngOnDestroy() {

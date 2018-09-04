@@ -11,6 +11,7 @@ export class CartService {
   public list: OrderPosition[] = [];
   public priceToken = null;
   public listToken = null;
+  public delivery = 3;
 
   constructor(
     private http: HttpClient
@@ -73,7 +74,7 @@ export class CartService {
       return total += item.quantity * item.cost;
     }, 0);
     localStorage.setItem('price', JSON.stringify(this.price));
-    // this.setPriceToken();
+    this.getPriceToken();
   }
 
   getPriceToken() {

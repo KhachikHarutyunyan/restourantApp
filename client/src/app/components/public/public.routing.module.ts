@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileGuard } from '../../shared/services/profile.guard';
 import { UserOrderComponent } from './profile/user-order/user-order.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', component: SiteLayoutComponent,
@@ -23,7 +24,8 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'profile', component: ProfileComponent, canActivateChild: [ProfileGuard], children: [
         { path: '', component: UserOrderComponent }
-      ] }
+      ] },
+      { path: 'checkout', component: CheckoutComponent }
     ]
   }
 ];

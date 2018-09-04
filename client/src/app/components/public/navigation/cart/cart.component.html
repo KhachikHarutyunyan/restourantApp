@@ -7,7 +7,7 @@
             <a>Your Cart</a>
             <i class="material-icons" (click)="close()">close</i>
           </li>
-          <li *ngFor="let order of orders" >
+          <li *ngFor="let order of ordersList" >
             <a>
               <p>
                 {{ order.name }} <span> $ {{ order.cost }}</span>
@@ -16,26 +16,26 @@
               <span>Quantity {{ order.quantity }}</span>
             </a>
           </li>
-          <!-- <div class="no-order" *ngIf="!ordersList">
+          <div class="no-order" *ngIf="ordersList.length === 0">
             <p >No orders!</p>
-          </div> -->
+          </div>
 
           <div class="total">
             <p>
-              Order total: <span>$ {{ cart.priceToken }}</span><br>
-              Delivery: <span>$2.2</span>
+              Order total: <span>$ {{ price }}</span><br>
+              Delivery: <span>$ {{ delivery }}</span>
             </p>
           </div>
           <div class="total">
             <h5>
-              Total: <span>$ {{ price }}</span>
+              Total: <span>$ {{ price > 0? price + delivery: 0 }}</span>
             </h5>
           </div>
 
         </div>
       </div>
       <li class="cart-btn">
-        <a >Go to Checkout </a>
+        <a routerLink="/checkout">Go to Checkout </a>
       </li>
     </ul>
 
