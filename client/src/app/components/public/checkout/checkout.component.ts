@@ -1,3 +1,4 @@
+import { UserOrder } from './../../../shared/interfaces';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { MaterialInstance, MaterialService } from '../../../shared/classes/material.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -17,7 +18,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   parallaxInit: MaterialInstance;
 
-  delivery = 3;
+  delivery;
+  orders = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,6 +32,11 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.cart.getListToken();
     this.cart.getPriceToken();
     this.delivery = this.cart.delivery;
+    if (this.cart.listToken === null) {
+      this.orders = [];
+    } else {
+      this.orders = this.cart.listToken;
+    }
   }
 
   ngAfterViewInit() {
@@ -70,14 +77,24 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.form);
+    const userOrder: UserOrder =  {
+      name: this.form.value.name,
+      surname: this.form.value.surname,
+      telephon: this.form.value.telephon,
+      email: this.form.value.email,
+      street: this.form.value.street,
+      paiment: this.form.value.radio,
+      orders: this.orders
+    };
+    console.log(userOrder);
+
+    this.cart.clear();
+    this.orders = [];
   }
 
   removeOrder(orders: OrderPosition) {
     this.cart.remove(orders);
-    // this.cart.getPriceToken();
-    // this.ordersList = this.cart.listToken;
-    // this.price = this.cart.priceToken;
+    this.orders = this.cart.listToken;
   }
 
   ngOnDestroy() {

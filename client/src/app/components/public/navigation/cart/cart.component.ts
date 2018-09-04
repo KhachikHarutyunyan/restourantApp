@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, OnDestroy, Inp
 import { MaterialInstance, MaterialService } from 'src/app/shared/classes/material.service';
 import { CartService } from '../../../../shared/services/cart.service';
 import { OrderPosition } from '../../../../shared/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -9,17 +10,20 @@ import { OrderPosition } from '../../../../shared/interfaces';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit, AfterViewInit, OnDestroy {
-
-  @ViewChild('cart') toggleCartRef: ElementRef;
-  @Input() ordersList: Array<any>;
-  @Input() price: number;
+  @ViewChild('cart')
+  toggleCartRef: ElementRef;
+  @Input()
+  ordersList: Array<any>;
+  @Input()
+  price: number;
 
   toggleCartInit: MaterialInstance;
   delivery = this.cart.delivery;
 
   constructor(
-    public cart: CartService
-  ) { }
+    public cart: CartService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.delivery = this.cart.delivery;
@@ -40,8 +44,12 @@ export class CartComponent implements OnInit, AfterViewInit, OnDestroy {
     this.price = this.cart.priceToken;
   }
 
+  onCheckout() {
+    this.router.navigate(['/checkout']);
+    this.close();
+  }
+
   ngOnDestroy() {
     this.toggleCartInit.destroy();
   }
-
 }

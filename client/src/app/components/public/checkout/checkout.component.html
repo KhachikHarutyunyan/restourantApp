@@ -22,7 +22,7 @@
 <section class="section-checkout-order">
     <div class="container">
       <div class="row">
-        <div class="col s12 m8 checkout-info">
+        <div class="col s12 m7 checkout-info">
           <form class="checkout-form" [formGroup]="form" (submit)="onSubmit()">
             <div class="checkout-head">
               <h3><i class="material-icons">person_outline</i> Basic informations</h3>
@@ -32,7 +32,7 @@
                 <input  type="text" formControlName="name" [ngClass]="{'invalid': (form.controls.name.errors && form.controls.name.dirty)}">
                 <label>Name:</label>
 
-                <div *ngIf="form.controls.name.errors">
+                <div *ngIf="form.controls['name'].errors">
                   <span *ngIf="form.controls['name'].errors?.required && form.controls['name'].dirty">
                     This field is required</span>
                   <span *ngIf="(form.controls['name'].errors?.minlength && form.controls['name'].dirty) ||
@@ -48,7 +48,7 @@
                  [ngClass]="{'invalid': (form.controls.surname.errors && form.controls.surname.dirty)}">
                 <label >Surname:</label>
 
-                <div *ngIf="form.controls.surname.errors">
+                <div *ngIf="form.controls['surname'].errors">
                   <span *ngIf="form.controls['surname'].errors?.required && form.controls['surname'].dirty">
                     This field is required</span>
                   <span *ngIf="(form.controls['surname'].errors?.minlength && form.controls['surname'].dirty) ||
@@ -67,7 +67,7 @@
                 [ngClass]="{'invalid': (form.controls.telephon.errors && form.controls.telephon.dirty)}">
                 <label >Telephone:</label>
 
-                <div *ngIf="form.controls.telephon.errors">
+                <div *ngIf="form.controls['telephon'].errors">
                   <span *ngIf="form.controls['telephon'].errors?.required && form.controls['telephon'].dirty">
                     This field is required</span>
                   <span *ngIf="(form.controls['telephon'].errors?.minlength && form.controls['telephon'].dirty) ||
@@ -84,7 +84,7 @@
                 [ngClass]="{'invalid': (form.controls.email.errors && form.controls.email.dirty)}">
                 <label>Email:</label>
 
-                <div *ngIf="form.controls.email.errors">
+                <div *ngIf="form.controls['email'].errors">
                   <span *ngIf="form.controls['email'].errors?.required && form.controls['email'].dirty">
                     This field is required</span>
                   <span *ngIf="(form.controls['email'].errors?.minlength && form.controls['email'].dirty) ||
@@ -107,7 +107,7 @@
                 [ngClass]="{'invalid': (form.controls.street.errors && form.controls.street.dirty)}">
                 <label>Street:</label>
 
-                <div *ngIf="form.controls.street.errors">
+                <div *ngIf="form.controls['street'].errors">
                   <span *ngIf="form.controls['street'].errors?.required && form.controls['street'].dirty">
                     This field is required</span>
                   <span *ngIf="(form.controls['street'].errors?.minlength && form.controls['street'].dirty) ||
@@ -141,7 +141,7 @@
             </div>
 
             <div class="checkout-btn">
-              <button type="submit" class="btn" [disabled]="form.invalid">Order now</button>
+              <button type="submit" class="btn" [disabled]="form.invalid || orders.length === 0">Order now</button>
             </div>
 
 
@@ -149,35 +149,33 @@
         </div>
 
 
-        <div class="col s12 m4 ">
+        <div class="col s12 m5 ">
           <div class="cart">
             <div class="cart-flex">
               <ul>
                 <li>
                   <a>Your Cart</a>
                 </li>
-                <li *ngFor="let order of cart.listToken">
-                  <a>
-                    <p>
-                      {{ order.name }} <span> $ {{ order.cost }}</span>
-                      <i class="material-icons" (click)="removeOrder(order)">close</i>
-                    </p>
-                    <span>{{ order.quantity }}</span>
-                  </a>
+                <li *ngFor="let order of orders">
+                  <p>
+                    {{ order.name }} <span> $ {{ order.cost }}</span>
+                    <i class="material-icons" (click)="removeOrder(order)">close</i>
+                  </p>
+                  <span>Quantity {{ order.quantity }}</span>
                 </li>
-                <div class="no-order" *ngIf="cart.listToken.length === 0">
+                <div class="no-order" *ngIf="orders.length === 0">
                   <p >No orders!</p>
                 </div>
 
                 <div class="total">
                   <p>
-                    Order total: <span>$ {{ cart.priceToken }}</span><br>
+                    Order total: <span>$ {{ cart.priceToken > 0? cart.priceToken: 0 }}</span><br>
                     Delivery: <span>$ {{ delivery }}</span>
                   </p>
                 </div>
                 <div class="total">
                   <h5>
-                    Total: <span>$ $ {{ cart.priceToken > 0? cart.priceToken + delivery: 0 }}</span>
+                    Total: <span>$ {{ cart.priceToken > 0? cart.priceToken + delivery: 0 }}</span>
                   </h5>
                 </div>
 

@@ -44,7 +44,7 @@
       <a class="right valign-wrapper sidenav-trigger" (click)="openCart()"
        data-target="slide-cart">
         <i class="material-icons">shopping_cart</i>
-         | $ {{ cart.priceToken === 0? 0: cart.priceToken + cart.delivery }}
+         | $ {{ cart.priceToken > 0? cart.priceToken + cart.delivery: 0 }}
       </a>
     </div>
   </div>

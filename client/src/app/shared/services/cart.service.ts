@@ -67,6 +67,7 @@ export class CartService {
     this.price = 0;
     localStorage.removeItem('orderList');
     localStorage.removeItem('price');
+    this.getPriceToken();
   }
 
   private calculatePrice() {

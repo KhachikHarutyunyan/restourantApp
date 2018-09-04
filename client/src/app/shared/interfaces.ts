@@ -5,13 +5,6 @@ export interface User {
   name?: string;
 }
 
-// export interface Order {
-//   name: string;
-//   description: string;
-//   count: number;
-//   price: number;
-// }
-
 export interface Category {
   name: string;
   _id?: string;
@@ -81,5 +74,16 @@ export interface AnalyticsChart {
   gain: number;
   order: number;
   label: string;
+}
+
+export interface UserOrder {
+  name: string;
+  surname: string;
+  telephon: string;
+  email: string;
+  street: string;
+  paiment: string;
+  orders: Array<OrderPosition>;
+  _id?: string;
 }
 

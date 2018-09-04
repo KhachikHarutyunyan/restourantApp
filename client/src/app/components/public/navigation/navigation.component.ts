@@ -10,6 +10,7 @@ import { CartService } from '../../../shared/services/cart.service';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
+
   @ViewChild('toggleMenu')
   toggleMenuRef: ElementRef;
 
@@ -17,7 +18,6 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   orders = [];
   price = 0;
-  // openingCart = false;
 
   constructor(
     public auth: AuthService,
@@ -42,9 +42,14 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
   openCart() {
     this.cart.getListToken();
     this.cart.getPriceToken();
-    // this.orders.push(this.cart.listToken, this.cart.priceToken);
-    this.orders = this.cart.listToken;
-    this.price = this.cart.priceToken;
+    if (this.cart.listToken === null) {
+      this.orders = [];
+      this.price = 0;
+    } else {
+      this.orders = this.cart.listToken;
+      this.price = this.cart.priceToken;
+    }
+
   }
 
   ngOnDestroy() {
