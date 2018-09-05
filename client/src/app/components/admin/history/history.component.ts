@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { MaterialInstance, MaterialService } from '../../../shared/classes/material.service';
 import { Subscription } from 'rxjs';
-import { Order, Filter } from '../../../shared/interfaces';
+import { Order, Filter, UserOrder } from '../../../shared/interfaces';
 import { OrdersService } from '../../../shared/services/orders.service';
+import { CartService } from '../../../shared/services/cart.service';
 
 
 const STEP = 2;
@@ -19,8 +20,10 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
   isFilterVisible = false;
   onSub: Subscription;
   orders: Order[] = [];
+  usersOrders: UserOrder[] = [];
   loading = false;
   reloading = false;
+  checkout = false;
 
   offset = 0;
   limit = STEP;
@@ -28,7 +31,8 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
   filter: Filter = {};
 
   constructor(
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private cart: CartService
   ) { }
 
   ngOnInit() {
@@ -48,6 +52,29 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loading = false;
       this.reloading = false;
     });
+  }
+
+  setCheckout() {
+    this.checkout = !this.checkout;
+    const params = Object.assign({}, this.filter, {
+      offset: this.offset,
+      limit: this.limit
+    });
+
+    if (this.checkout) {
+      console.log('checkout state', this.checkout);
+      this.cart.getAllCheckouts(params).subscribe(
+        data => {
+          this.usersOrders = this.usersOrders.concat(data);
+          this.noMoreOrders = this.usersOrders.length < STEP;
+          this.loading = false;
+          this.reloading = false;
+          console.log(this.usersOrders);
+        }
+      );
+    } else {
+      console.log('checkout else', this.checkout);
+    }
   }
 
   applyFilter(filter: Filter) {

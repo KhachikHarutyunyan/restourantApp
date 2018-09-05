@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { OrderPosition, Positions } from '../interfaces';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { OrderPosition, Positions, UserOrder } from '../interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -43,10 +44,6 @@ export class CartService {
         localStorage.setItem('orderList', JSON.stringify(this.list));
       }
     }
-
-
-    this.getPriceToken();
-    this.getListToken();
     this.calculatePrice();
 
   }
@@ -86,6 +83,18 @@ export class CartService {
   getListToken() {
     this.listToken = JSON.parse(localStorage.getItem('orderList'));
     return this.listToken;
+  }
+
+  createCheckout(userOrder: UserOrder): Observable<UserOrder> {
+    return this.http.post<UserOrder>('/api/checkout', userOrder);
+  }
+
+  getAllCheckouts(params: any = {}): Observable<UserOrder[]> {
+    return this.http.get<UserOrder[]>('/api/checkout', {
+      params: new HttpParams({
+        fromObject: params
+      })
+    });
   }
 
 }

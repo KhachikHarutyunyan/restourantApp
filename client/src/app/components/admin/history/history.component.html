@@ -1,5 +1,6 @@
 <div class="page-title">
   <h3>Orders History</h3>
+  <a  (click)="setCheckout()" >Checkout</a>
   <button class="btn btn-small" data-tooltip="Open Filter" (click)="isFilterVisible = !isFilterVisible"
    data-position="bottom" #tooltip [ngClass]="{ 'active': isFilterVisible, 'red': isFiltered() }">
     <i class="material-icons">filter_list</i>
@@ -8,24 +9,30 @@
 
 <app-history-filter *ngIf="isFilterVisible" (onFilter)="applyFilter($event)"></app-history-filter>
 
-<div *ngIf="!reloading; else reloadingBlock">
-  <div *ngIf="orders.length > 0; else empty">
-    <app-history-list [orders]="orders"></app-history-list>
+<div *ngIf="!checkout">
+  <div *ngIf="!reloading; else reloadingBlock">
+    <div *ngIf="orders.length > 0; else empty">
+      <app-history-list [orders]="orders"></app-history-list>
 
-    <div class="center" *ngIf="!noMoreOrders">
-      <button class="btn btn-small waves-effect" *ngIf="!loading; else loader"
-        (click)="loadMore()">Load more</button>
-      <ng-template #loader>
-        <app-admin-loader></app-admin-loader>
-      </ng-template>
+      <div class="center" *ngIf="!noMoreOrders">
+        <button class="btn btn-small waves-effect" *ngIf="!loading; else loader"
+          (click)="loadMore()">Load more</button>
+        <ng-template #loader>
+          <app-admin-loader></app-admin-loader>
+        </ng-template>
+      </div>
     </div>
+
+    <ng-template #empty>
+      <div class="center">No orders!</div>
+    </ng-template>
+
   </div>
-
-  <ng-template #empty>
-    <div class="center">No orders!</div>
-  </ng-template>
-
 </div>
+
+
+<app-users-orders *ngIf="checkout" [userOrder]="usersOrders"></app-users-orders>
+
 
 <ng-template #reloadingBlock>
   <app-admin-loader></app-admin-loader>

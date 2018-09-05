@@ -4,6 +4,7 @@ import { MaterialInstance, MaterialService } from '../../../shared/classes/mater
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CartService } from '../../../shared/services/cart.service';
 import { OrderPosition } from '../../../shared/interfaces';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
@@ -20,6 +21,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   delivery;
   orders = [];
+
+  unSub: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -77,19 +80,30 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSubmit() {
+    this.form.disable();
     const userOrder: UserOrder =  {
       name: this.form.value.name,
       surname: this.form.value.surname,
       telephon: this.form.value.telephon,
       email: this.form.value.email,
       street: this.form.value.street,
-      paiment: this.form.value.radio,
+      payment: this.form.value.radio,
       orders: this.orders
     };
-    console.log(userOrder);
 
-    this.cart.clear();
-    this.orders = [];
+    this.unSub = this.cart.createCheckout(userOrder).subscribe(
+      data => {
+        MaterialService.toast('Thank you for order');
+        this.cart.clear();
+        this.orders = [];
+        this.form.enable();
+        this.form.reset();
+      },
+      err => {
+        MaterialService.toast(err.error.message);
+        this.form.enable();
+      }
+    );
   }
 
   removeOrder(orders: OrderPosition) {
@@ -99,6 +113,9 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.parallaxInit.destroy();
+    if (this.unSub) {
+      this.unSub.unsubscribe();
+    }
   }
 
 }

@@ -82,8 +82,10 @@ export interface UserOrder {
   telephon: string;
   email: string;
   street: string;
-  paiment: string;
+  payment: string;
   orders: Array<OrderPosition>;
+  date?: Date;
+  userId?: string;
   _id?: string;
 }
 

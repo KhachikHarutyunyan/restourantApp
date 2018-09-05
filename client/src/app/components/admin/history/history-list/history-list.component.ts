@@ -18,7 +18,6 @@ export class HistoryListComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.orders);
   }
 
   ngAfterViewInit() {

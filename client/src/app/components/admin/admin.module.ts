@@ -24,6 +24,7 @@ import { HistoryComponent } from './history/history.component';
 import { HistoryFilterComponent } from './history/history-filter/history-filter.component';
 import { HistoryListComponent } from './history/history-list/history-list.component';
 import { AdminLoaderComponent } from './admin-loader/admin-loader.component';
+import { UsersOrdersComponent } from './users-orders/users-orders.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AdminLoaderComponent } from './admin-loader/admin-loader.component';
     HistoryComponent,
     HistoryFilterComponent,
     HistoryListComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    UsersOrdersComponent
   ],
   providers: [
     AdminGuard,

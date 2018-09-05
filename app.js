@@ -16,6 +16,7 @@ const categoryRoutes = require('./api/routes/categories');
 const positionRoutes = require('./api/routes/positions');
 const orderRoutes = require('./api/routes/order');
 const analyticsRoutes = require('./api/routes/analytics');
+const checkoutRoutes = require('./api/routes/checkout');
 
 const port = process.env.PORT || 3000;
 
@@ -39,6 +40,7 @@ app.use('/api/category', categoryRoutes);
 app.use('/api/position', positionRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/checkout', checkoutRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/dist/client'));
