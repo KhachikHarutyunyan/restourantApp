@@ -22,9 +22,8 @@ const routes: Routes = [
       { path: '', component: OrderCategoriesComponent },
       { path: ':id', component: OrderPositionsComponent },
     ] },
-    { path: 'history', component: HistoryComponent, children: [
-      { path: '', component: UsersOrdersComponent }
-    ] },
+    { path: 'history', component: HistoryComponent },
+    { path: 'users-history', component: UsersOrdersComponent },
     { path: 'analytics', component: AnalyticsComponent },
   ] }
 ];

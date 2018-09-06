@@ -1,13 +1,13 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { Filter } from '../../../../shared/interfaces';
-import { MaterialDatepicker, MaterialService } from '../../../../shared/classes/material.service';
+import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Filter } from 'src/app/shared/interfaces';
+import { MaterialDatepicker, MaterialService } from 'src/app/shared/classes/material.service';
 
 @Component({
-  selector: 'app-history-filter',
-  templateUrl: './history-filter.component.html',
-  styleUrls: ['./history-filter.component.scss']
+  selector: 'app-users-history-filter',
+  templateUrl: './users-history-filter.component.html',
+  styleUrls: ['./users-history-filter.component.scss']
 })
-export class HistoryFilterComponent implements OnInit, AfterViewInit, OnDestroy {
+export class UsersHistoryFilterComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onFilter = new EventEmitter<Filter>();

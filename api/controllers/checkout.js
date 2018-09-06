@@ -3,9 +3,7 @@ const errorHandler = require('../utils/errHandler');
 
 module.exports.getAllCheckoutes = async function(req, res) { 
     
-    const query = {
-        user: req.user.id
-    }
+    const query = {};
 
     if (req.query.start) {
         query.date = {
@@ -21,8 +19,10 @@ module.exports.getAllCheckoutes = async function(req, res) {
     }
 
     if (req.query.order) {
-        query.order += req.query.order;
+        query.order = +req.query.order;
     }
+
+    console.log(query);
 
     try {
         const checkoutes = await Checkout.find(query)
@@ -48,18 +48,23 @@ module.exports.getAllUserCheckoutes = async function(req, res) {
 
 module.exports.createCheckout = async function (req, res) {
 
-    const newCheckout = new Checkout({
-        name: req.body.name,
-        surname: req.body.surname,
-        telephon: req.body.telephon,
-        email: req.body.email,
-        street: req.body.street,
-        payment: req.body.payment,
-        orders: req.body.orders
-    });
-
     try {
-        await newCheckout.save();
+        const lastCheckout = await Checkout.findOne({}).sort({ date: -1 });
+
+        const maxOrder = lastCheckout? lastCheckout.order: 0;
+
+        const newCheckout = await new Checkout({
+            name: req.body.name,
+            surname: req.body.surname,
+            telephon: req.body.telephon,
+            email: req.body.email,
+            street: req.body.street,
+            payment: req.body.payment,
+            order: maxOrder + 1,
+            orders: req.body.orders
+        }).save();
+
+        // await newCheckout.save();
         res.status(201).json(newCheckout);
     } catch (error) {
         errorHandler(res, error);

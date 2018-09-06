@@ -17,7 +17,7 @@
             This field is required</li>
           <li *ngIf="(form.controls['name'].errors?.minlength && form.controls['name'].dirty) ||
             (form.controls['name'].errors?.maxlength && form.controls['name'].dirty)">
-             Minimum characters: 5, Maximum characters: 30</li>
+             Minimum characters: 3, Maximum characters: 30</li>
           <li *ngIf="form.controls['name'].errors?.nameValidator && form.controls['name'].dirty">
              Username must not have any special characters or numbers</li>
         </ul>

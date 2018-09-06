@@ -38,6 +38,7 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.reloading = true;
     this.fetch();
+    // this.setCheckout();
   }
 
   private fetch() {
@@ -63,13 +64,14 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.checkout) {
       console.log('checkout state', this.checkout);
+      this.offset = STEP;
       this.cart.getAllCheckouts(params).subscribe(
         data => {
           this.usersOrders = this.usersOrders.concat(data);
           this.noMoreOrders = this.usersOrders.length < STEP;
           this.loading = false;
           this.reloading = false;
-          console.log(this.usersOrders);
+          console.log(data);
         }
       );
     } else {
@@ -79,10 +81,16 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   applyFilter(filter: Filter) {
     this.orders = [];
+    this.usersOrders = [];
     this.offset = 0;
     this.filter = filter;
-    this.reloading = true;
-    this.fetch();
+    if (this.checkout) {
+      this.setCheckout();
+    } else {
+      this.reloading = true;
+      this.fetch();
+    }
+
   }
 
   isFiltered(): boolean {
@@ -96,7 +104,11 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
   loadMore() {
     this.offset += STEP;
     this.loading = true;
-    this.fetch();
+    if (this.checkout) {
+      this.setCheckout();
+    } else {
+      this.fetch();
+    }
   }
 
   ngOnDestroy() {

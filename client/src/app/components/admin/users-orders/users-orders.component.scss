@@ -1,14 +1,25 @@
 @import '../../../../assets/scss-tools/vars';
 
-
-.highlight {
-  .btn {
+.page-title {
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $standart;
+  h3 {
     color: #464c54;
-    transition: all .3s;
+    font-size: 28px;
+  }
+  button {
+    border: none;
+    color: $accent;
+    background: #464c54;
     &:hover {
-      background-color: #464c54!important;
-      color: $accent;
+      color: #858598;
     }
   }
+}
 
+.center {
+  margin-top: 20px;
 }

@@ -1,0 +1,24 @@
+<div class="filter">
+  <div class="fr">
+    <div class="col order">
+      <div class="input-field inline order-position-input">
+        <input type="number" min="1" [(ngModel)]="order" (blur)="onBlur($event)">
+        <label [ngClass]="{ 'active': order > 0 }">Order Number</label>
+      </div>
+    </div>
+
+    <div class="col filter-pickers">
+      <div class="input-field">
+        <input type="text" #start>
+        <label>Start</label>
+      </div>
+      <div class="input-field">
+        <input type="text" #end>
+        <label>End</label>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn waves-effect waves-light" [disabled]="!isValid"
+    (click)="submitFilter()">Filtering</button>
+</div>

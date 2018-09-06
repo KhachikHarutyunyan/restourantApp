@@ -25,6 +25,9 @@ import { HistoryFilterComponent } from './history/history-filter/history-filter.
 import { HistoryListComponent } from './history/history-list/history-list.component';
 import { AdminLoaderComponent } from './admin-loader/admin-loader.component';
 import { UsersOrdersComponent } from './users-orders/users-orders.component';
+import { CartService } from '../../shared/services/cart.service';
+import { UsersHistoryFilterComponent } from './users-orders/users-history-filter/users-history-filter.component';
+import { UsersHistoryListComponent } from './users-orders/users-history-list/users-history-list.component';
 
 
 @NgModule({
@@ -49,7 +52,9 @@ import { UsersOrdersComponent } from './users-orders/users-orders.component';
     HistoryFilterComponent,
     HistoryListComponent,
     AnalyticsComponent,
-    UsersOrdersComponent
+    UsersOrdersComponent,
+    UsersHistoryFilterComponent,
+    UsersHistoryListComponent
   ],
   providers: [
     AdminGuard,
@@ -58,6 +63,7 @@ import { UsersOrdersComponent } from './users-orders/users-orders.component';
     OrdersService,
     OrderService,
     AnalyticsService,
+    CartService,
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,

@@ -84,6 +84,7 @@ export interface UserOrder {
   street: string;
   payment: string;
   orders: Array<OrderPosition>;
+  order?: number;
   date?: Date;
   userId?: string;
   _id?: string;

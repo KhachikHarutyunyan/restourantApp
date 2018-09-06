@@ -51,32 +51,85 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       name: ['', Validators.compose([
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(50),
+        Validators.maxLength(30),
+        this.nameValidator
       ])],
       surname: ['', Validators.compose([
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(50),
+        Validators.maxLength(30),
+        this.nameValidator
       ])],
       telephon: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
+        Validators.minLength(8),
+        Validators.maxLength(20),
+        this.phoneValidator
       ])],
       email: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
+        Validators.minLength(6),
+        Validators.maxLength(30),
+        this.emailValidator
       ])],
       street: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(6),
         Validators.maxLength(50),
+        this.streetValidator
       ])],
       radio: ['cart', Validators.compose([
         Validators.required
       ])]
     });
+  }
+
+  nameValidator(controls) {
+    const regExp = new RegExp(/^[a-zA-Z]+$/);
+    if (regExp.test(controls.value)) {
+      return null;
+    } else {
+      return {
+        'nameValidator': true
+      };
+    }
+  }
+
+  emailValidator(controls) {
+    // tslint:disable-next-line:max-line-length
+    const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    if (regExp.test(controls.value)) {
+      return null;
+    } else {
+      return {
+        'emailValidator': true
+      };
+    }
+  }
+
+
+  streetValidator(controls) {
+    // tslint:disable-next-line:max-line-length
+    // const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    const regExp = new RegExp(/^[a-zA-Z0-9\s,.'-]{3,}$/);
+    if (regExp.test(controls.value)) {
+      return null;
+    } else {
+      return {
+        'emailValidator': true
+      };
+    }
+  }
+
+  phoneValidator(controls) {
+    const regExp = new RegExp(/^[+]?(1\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g);
+    if (regExp.test(controls.value)) {
+      return null;
+    } else {
+      return {
+        'phoneValidator': true
+      };
+    }
   }
 
   onSubmit() {

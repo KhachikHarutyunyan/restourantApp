@@ -37,9 +37,9 @@
                     This field is required</span>
                   <span *ngIf="(form.controls['name'].errors?.minlength && form.controls['name'].dirty) ||
                       (form.controls['name'].errors?.maxlength && form.controls['name'].dirty)">
-                    Minimum characters: 2, Maximum characters: 30!</span>
+                    Minimum characters: 3, Maximum characters: 30!</span>
                   <span *ngIf="form.controls['name'].errors?.nameValidator && form.controls['name'].dirty">
-                    Username must not have any special characters or numbers!</span>
+                    Name must not have any special characters or numbers!</span>
                 </div>
               </div>
 
@@ -53,7 +53,7 @@
                     This field is required</span>
                   <span *ngIf="(form.controls['surname'].errors?.minlength && form.controls['surname'].dirty) ||
                       (form.controls['surname'].errors?.maxlength && form.controls['surname'].dirty)">
-                    Minimum characters: 2, Maximum characters: 30!</span>
+                    Minimum characters: 3, Maximum characters: 30!</span>
                   <span *ngIf="form.controls['surname'].errors?.nameValidator && form.controls['surname'].dirty">
                     Surname must not have any special characters or numbers!</span>
                 </div>
@@ -72,9 +72,9 @@
                     This field is required</span>
                   <span *ngIf="(form.controls['telephon'].errors?.minlength && form.controls['telephon'].dirty) ||
                       (form.controls['telephon'].errors?.maxlength && form.controls['telephon'].dirty)">
-                    Minimum characters: 2, Maximum characters: 30!</span>
-                  <span *ngIf="form.controls['telephon'].errors?.nameValidator && form.controls['telephon'].dirty">
-                    Surname must not have any special characters or numbers!</span>
+                      Minimum characters: 8, Maximum characters: 20!</span>
+                  <span *ngIf="form.controls['telephon'].errors?.phoneValidator && form.controls['telephon'].dirty">
+                    Writ a correct phone number!</span>
                 </div>
 
               </div>
@@ -90,8 +90,8 @@
                   <span *ngIf="(form.controls['email'].errors?.minlength && form.controls['email'].dirty) ||
                       (form.controls['email'].errors?.maxlength && form.controls['email'].dirty)">
                     Minimum characters: 2, Maximum characters: 30!</span>
-                  <span *ngIf="form.controls['email'].errors?.nameValidator && form.controls['email'].dirty">
-                    Surname must not have any special characters or numbers!</span>
+                  <span *ngIf="form.controls['email'].errors?.emailValidator && form.controls['email'].dirty">
+                    This must be a valid e-mail!</span>
                 </div>
 
               </div>
@@ -112,9 +112,9 @@
                     This field is required</span>
                   <span *ngIf="(form.controls['street'].errors?.minlength && form.controls['street'].dirty) ||
                       (form.controls['street'].errors?.maxlength && form.controls['street'].dirty)">
-                    Minimum characters: 2, Maximum characters: 30!</span>
-                  <span *ngIf="form.controls['street'].errors?.nameValidator && form.controls['street'].dirty">
-                    Surname must not have any special characters or numbers!</span>
+                    Minimum characters: 6, Maximum characters: 30!</span>
+                  <span *ngIf="form.controls['street'].errors?.streetValidator && form.controls['street'].dirty">
+                    Street must not have any special characters!</span>
                 </div>
 
               </div>
