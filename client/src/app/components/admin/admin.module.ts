@@ -28,6 +28,8 @@ import { UsersOrdersComponent } from './users-orders/users-orders.component';
 import { CartService } from '../../shared/services/cart.service';
 import { UsersHistoryFilterComponent } from './users-orders/users-history-filter/users-history-filter.component';
 import { UsersHistoryListComponent } from './users-orders/users-history-list/users-history-list.component';
+import { UsersOverviewComponent } from './overview/users-overview/users-overview.component';
+import { UsersAnalyticsComponent } from './analytics/users-analytics/users-analytics.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { UsersHistoryListComponent } from './users-orders/users-history-list/use
     AnalyticsComponent,
     UsersOrdersComponent,
     UsersHistoryFilterComponent,
-    UsersHistoryListComponent
+    UsersHistoryListComponent,
+    UsersOverviewComponent,
+    UsersAnalyticsComponent
   ],
   providers: [
     AdminGuard,

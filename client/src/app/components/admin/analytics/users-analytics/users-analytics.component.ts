@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AnalyticsService } from '../../../shared/services/analytics.service';
-import { AnalyticsPage } from '../../../shared/interfaces';
+import { AnalyticsService } from '../../../../shared/services/analytics.service';
+import { AnalyticsPage } from 'src/app/shared/interfaces';
 import {Chart} from 'chart.js';
 
 @Component({
-  selector: 'app-analytics',
-  templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.scss']
+  selector: 'app-users-analytics',
+  templateUrl: './users-analytics.component.html',
+  styleUrls: ['./users-analytics.component.scss']
 })
-export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class UsersAnalyticsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('gain') gainRef: ElementRef;
   @ViewChild('order') orderRef: ElementRef;
@@ -37,7 +37,7 @@ export class AnalyticsComponent implements OnInit, AfterViewInit, OnDestroy {
       color: 'rgb(54, 162, 235)'
     };
 
-    this.aSub = this.analyticsService.getAnalytics().subscribe((data: AnalyticsPage) => {
+    this.aSub = this.analyticsService.getUserAnalytics().subscribe((data: AnalyticsPage) => {
       this.average = data.average;
 
       gainConfig.labels = data.chart.map(item => item.label);

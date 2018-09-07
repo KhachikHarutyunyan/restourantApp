@@ -1,18 +1,14 @@
-<div class="page-title">
-  <h3>
-    Review for yesterday ({{ yesterday | date: 'dd.MM.yyyy' }})
-    <i class="material-icons black-text" (click)="openInfo()">info_outline</i>
-  </h3>
-</div>
 
-<div class="row" *ngIf="data$ | async as data; else loader">
+
+<div class="row" *ngIf="userData$ | async as data; else load">
+    <h6>Users Orders</h6>
   {{data.gain.yesterday.percent }}
   <div class="col s12 l6">
-    <div class="card light-blue lighten-2 white-text">
+    <div class="card light-green lighten-2 white-text">
       <div class="card-content">
         <span class="card-title">Gain:</span>
         <h3>{{ data.gain.yesterday }} usd.</h3>
-        <h3 class="m0 mb1" [ngClass]="{ 'green-text text-darken-2': data.gain.isHigher, 'red-text': !data.gain.isHigher }">
+        <h3 class=" m0 mb1" [ngClass]="{ 'green-text text-darken-2': data.gain.isHigher, 'red-text': !data.gain.isHigher }">
           <i class="material-icons">
             {{ data.gain.isHigher ? 'arrow_upward': 'arrow_downward' }}</i>
           {{ data.gain.percent }}%
@@ -25,7 +21,7 @@
   </div>
 
   <div class="col s12 l6">
-    <div class="card orange lighten-2 white-text">
+    <div class="card red lighten-3 white-text">
       <div class="card-content">
         <span class="card-title">Orders:</span>
         <h3>{{ data.orders.yesterday }} orders.</h3>
@@ -41,24 +37,11 @@
       </div>
     </div>
   </div>
-  <div *ngIf="data">
-    <app-users-overview ></app-users-overview>
-  </div>
 </div>
 
-<ng-template #loader>
-  <app-admin-loader></app-admin-loader>
+
+<ng-template  #load>
+    <app-admin-loader></app-admin-loader>
 </ng-template>
-
-<div class="tap-target" data-target="menu" #tapTarget>
-  <div class="tap-target-content">
-    <h5>Why do you need this page?</h5>
-    <p>The "Overview" page will show the dynamics of sales for the previous day.
-       Comparison with the average values will help you understand how things are
-       going with your business.</p>
-  </div>
-</div>
-
-
 
 

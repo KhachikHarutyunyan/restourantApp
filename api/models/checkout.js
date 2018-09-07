@@ -6,7 +6,6 @@ const checkoutSchema = new Schema({
     name: { type: String, required: true },
     surname: { type: String, required: true },
     telephon: { type: String, required: true },
-    email: { type: String, required: true },
     order: { type: Number, required: true },
     street: { type: String, required: true },
     payment: { type: String, required: true },
@@ -16,11 +15,7 @@ const checkoutSchema = new Schema({
             quantity: { type: Number, required: true },
             cost: { type: Number, required: true }
         }
-    ],
-    user: {
-        ref: 'User',
-        type: Schema.Types.ObjectId
-    }
+    ]
 });
 
 

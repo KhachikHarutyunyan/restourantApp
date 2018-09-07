@@ -80,29 +80,6 @@
               </div>
 
               <div class="input-field col s6">
-                <input type="email" formControlName="email"
-                [ngClass]="{'invalid': (form.controls.email.errors && form.controls.email.dirty)}">
-                <label>Email:</label>
-
-                <div *ngIf="form.controls['email'].errors">
-                  <span *ngIf="form.controls['email'].errors?.required && form.controls['email'].dirty">
-                    This field is required</span>
-                  <span *ngIf="(form.controls['email'].errors?.minlength && form.controls['email'].dirty) ||
-                      (form.controls['email'].errors?.maxlength && form.controls['email'].dirty)">
-                    Minimum characters: 2, Maximum characters: 30!</span>
-                  <span *ngIf="form.controls['email'].errors?.emailValidator && form.controls['email'].dirty">
-                    This must be a valid e-mail!</span>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="col s12">
-              <div class="col s6 city-cart">
-                <p>New York city: </p>
-              </div>
-
-              <div class="input-field col s6">
                 <input type="text"  formControlName="street"
                 [ngClass]="{'invalid': (form.controls.street.errors && form.controls.street.dirty)}">
                 <label>Street:</label>
@@ -118,6 +95,7 @@
                 </div>
 
               </div>
+
             </div>
 
 

@@ -1,0 +1,16 @@
+<div [style.display]="pending? 'none': 'block'" class="analytic">
+  <div class="average-price">
+    <p>Users average check <strong>{{ average }} usd.</strong></p>
+  </div>
+
+  <div class="analytics-block pb3">
+    <h5>Gain</h5>
+    <canvas #gain></canvas>
+  </div>
+
+  <div class="analytics-block">
+    <h5>Orders</h5>
+    <canvas #order></canvas>
+  </div>
+
+</div>

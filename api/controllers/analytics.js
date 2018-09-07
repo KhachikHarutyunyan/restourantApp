@@ -1,4 +1,5 @@
 const Order = require('../models/order');
+const Checkout = require('../models/checkout');
 const errorHandler = require('../utils/errHandler');
 const moment = require('moment');
 
@@ -9,6 +10,7 @@ module.exports.overview = async function (req, res) {
     const ordersMap = getOrdersMap(allOrders);
     
     const yesterdayOrders = ordersMap[moment().add(-1, 'd').format('DD.MM.YYYY')] || [];
+    // console.log(yesterdayOrders);
 
     // yesterday orders
     const yesterdayOrdersNumber = yesterdayOrders.length;
@@ -60,6 +62,61 @@ module.exports.overview = async function (req, res) {
   }
 }
 
+module.exports.userOverview = async function (req, res) {
+  try {
+    const usersOrders = await Checkout.find({}).sort({ date: 1 });
+    const ordersMap = getOrdersMap(usersOrders);
+    
+    
+    const yesterdayOrders = ordersMap[moment().add(-1, 'd').format('DD.MM.YYYY')] || [];
+    
+    // yesterday orders
+    const yesterdayOrdersNumber = yesterdayOrders.length;
+    
+    // order number
+    const totalOrdersNumber = usersOrders.length;
+    
+    // all days count
+    const daysNumber = Object.keys(ordersMap).length;
+    
+    //orders in day
+    const ordersPerDay = (totalOrdersNumber / daysNumber).toFixed(0);
+    
+    // percent for orders count
+    const ordersPercent = (((yesterdayOrdersNumber / ordersPerDay) - 1) * 100).toFixed(2);
+    // all earnings
+    const totalGain = calculateUserPrice(usersOrders);
+    // day earnings
+    const gainPerDay = totalGain / daysNumber;
+    //yesterday earnings
+    const yesterdayGain = calculateUserPrice(yesterdayOrders);
+    // percent earnings
+    const gainPercent = ((yesterdayGain / gainPerDay - 1) * 100).toFixed(2);
+    // compare earnings
+    const compareGain = (yesterdayGain - gainPerDay).toFixed(2);
+    // compare orders count
+    const compareNumber = (yesterdayOrdersNumber - ordersPerDay).toFixed(2);
+
+    res.status(200).json({
+      gain: {
+        percent: Math.abs(+gainPercent),
+        compare: Math.abs(+compareGain),
+        yesterday: +yesterdayGain,
+        isHigher: +gainPercent > 0
+      },
+      orders: {
+        percent: Math.abs(+ordersPercent),
+        compare: Math.abs(+compareNumber),
+        yesterday: +yesterdayOrdersNumber,
+        isHigher: +ordersPercent > 0
+      }
+    });
+
+  } catch (error) {
+    errorHandler(res, error);
+  }
+}
+
 module.exports.analytics = async function (req, res) {
   try {
     const allOrders = await Order.find({ user: req.user.id }).sort({ date: 1 });
@@ -86,10 +143,37 @@ module.exports.analytics = async function (req, res) {
 }
 
 
+module.exports.userAnalytics = async function (req, res) {
+  try {
+    const allOrders = await Checkout.find({}).sort({ date: 1 });
+
+    const ordersMap = getOrdersMap(allOrders);
+
+    const average = +(calculateUserPrice(allOrders) / Object.keys(ordersMap).length).toFixed(2);
+
+    const chart = Object.keys(ordersMap).map(label => {
+      const gain = calculateUserPrice(ordersMap[label]);
+      const order = ordersMap[label].length;
+
+      return {
+        label,
+        gain,
+        order
+      };
+    });
+
+    res.status(200).json({average, chart});
+  } catch (error) {
+    errorHandler(res, error);
+  }
+}
+
+
 function getOrdersMap(orders = []) {
   const daysOrders = {};
 
   orders.forEach(order => {
+    
     const date = moment(order.date).format('DD.MM.YYYY');
 
     if (date === moment().format('DD.MM.YYYY')) {
@@ -99,7 +183,7 @@ function getOrdersMap(orders = []) {
     if (!daysOrders[date]) {
       daysOrders[date] = [];
     }
-
+    
     daysOrders[date].push(order);
   });
 
@@ -109,6 +193,15 @@ function getOrdersMap(orders = []) {
 function calculatePrice(orders = []) {
   return orders.reduce((total, order) => {
     const orderPrice = order.list.reduce((orderTotal, item) => {
+      return orderTotal += item.cost * item.quantity;
+    }, 0);
+    return total += orderPrice;
+  }, 0)
+}
+
+function calculateUserPrice(orders = []) {
+  return orders.reduce((total, order) => {
+    const orderPrice = order.orders.reduce((orderTotal, item) => {
       return orderTotal += item.cost * item.quantity;
     }, 0);
     return total += orderPrice;

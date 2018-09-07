@@ -66,12 +66,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
         Validators.maxLength(20),
         this.phoneValidator
       ])],
-      email: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(30),
-        this.emailValidator
-      ])],
       street: ['', Validators.compose([
         Validators.required,
         Validators.minLength(6),
@@ -138,7 +132,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       name: this.form.value.name,
       surname: this.form.value.surname,
       telephon: this.form.value.telephon,
-      email: this.form.value.email,
       street: this.form.value.street,
       payment: this.form.value.radio,
       orders: this.orders

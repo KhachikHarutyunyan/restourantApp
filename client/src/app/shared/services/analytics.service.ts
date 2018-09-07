@@ -21,4 +21,11 @@ export class AnalyticsService {
     return this.http.get<AnalyticsPage>('/api/analytics/analytics');
   }
 
+  getUserOverview(): Observable<OverviewPage> {
+    return this.http.get<OverviewPage>('/api/analytics/useroverview');
+  }
+
+  getUserAnalytics(): Observable<AnalyticsPage> {
+    return this.http.get<AnalyticsPage>('/api/analytics/useranalytics');
+  }
 }

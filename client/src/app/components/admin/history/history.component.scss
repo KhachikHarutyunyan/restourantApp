@@ -10,6 +10,15 @@
     color: #464c54;
     font-size: 28px;
   }
+  a {
+    color: $accent;
+    font-size: 20px;
+    margin-top: 24px;
+    transition: all .3s;
+    &:hover {
+      color: #464c54;
+    }
+  }
   button {
     // padding: 10px 20px;
     border: none;

@@ -22,8 +22,6 @@ module.exports.getAllCheckoutes = async function(req, res) {
         query.order = +req.query.order;
     }
 
-    console.log(query);
-
     try {
         const checkoutes = await Checkout.find(query)
                 .sort({date: -1})
@@ -57,14 +55,11 @@ module.exports.createCheckout = async function (req, res) {
             name: req.body.name,
             surname: req.body.surname,
             telephon: req.body.telephon,
-            email: req.body.email,
             street: req.body.street,
             payment: req.body.payment,
             order: maxOrder + 1,
             orders: req.body.orders
         }).save();
-
-        // await newCheckout.save();
         res.status(201).json(newCheckout);
     } catch (error) {
         errorHandler(res, error);

@@ -80,7 +80,6 @@ export interface UserOrder {
   name: string;
   surname: string;
   telephon: string;
-  email: string;
   street: string;
   payment: string;
   orders: Array<OrderPosition>;
