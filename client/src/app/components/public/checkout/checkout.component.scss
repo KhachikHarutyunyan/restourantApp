@@ -59,13 +59,14 @@
       }
     }
     .checkbox-block {
+      width: 100%;
       display: flex;
       margin-bottom: 30px;
       p {
         margin-left: 20px;
       }
       .credit {
-        width: 620px;
+        width: 60%;
         display: flex;
         justify-content: flex-end;
 

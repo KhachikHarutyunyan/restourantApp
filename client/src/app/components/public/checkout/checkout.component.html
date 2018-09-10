@@ -132,8 +132,9 @@
                   <span>Cash</span>
                 </label>
               </p>
-              <div class="credit" >
-                <div #cardInfo *ngIf="radioState" [ngStyle]="{ 'visibility': form.controls['radio'].value === 'cart'? 'visible': 'hidden' }">
+              <div class="credit"
+                [ngStyle]="{ 'display': form.controls['radio'].value === 'cart'? 'flex': 'none' }">
+                <div #cardInfo  >
                 </div>
               </div>
 
