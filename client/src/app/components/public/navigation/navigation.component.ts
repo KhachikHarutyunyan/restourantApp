@@ -27,6 +27,7 @@ export class NavigationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.cart.getPriceToken();
+    this.auth.loadUserToken();
   }
 
   ngAfterViewInit() {

@@ -1,10 +1,12 @@
 import { UserOrder } from './../../../shared/interfaces';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { MaterialInstance, MaterialService } from '../../../shared/classes/material.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CartService } from '../../../shared/services/cart.service';
 import { OrderPosition } from '../../../shared/interfaces';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../../shared/services/auth.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-checkout',
@@ -16,17 +18,27 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   form: FormGroup;
 
   @ViewChild('checkoutParallax') parallaxRef: ElementRef;
+  @ViewChild('cardInfo') cardInfo: ElementRef;
+
+  card: any;
+  cardHandler = this.onChange.bind(this);
+  error: string;
 
   parallaxInit: MaterialInstance;
 
   delivery;
   orders = [];
+  checkState = false;
+
+  radioState = true;
 
   unSub: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
-    public cart: CartService
+    public cart: CartService,
+    private auth: AuthService,
+    private cd: ChangeDetectorRef
   ) {
     this.createForm();
   }
@@ -40,10 +52,15 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.orders = this.cart.listToken;
     }
+
   }
 
   ngAfterViewInit() {
     this.parallaxInit = MaterialService.parallax(this.parallaxRef);
+    this.card = elements.create('card');
+    this.card.mount(this.cardInfo.nativeElement);
+
+    this.card.addEventListener('change', this.cardHandler);
   }
 
   createForm() {
@@ -74,8 +91,23 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       ])],
       radio: ['cart', Validators.compose([
         Validators.required
+      ])],
+      card: ['', Validators.compose([
+        Validators.required,
+        this.cardValidator
       ])]
     });
+  }
+
+  cardValidator(controls) {
+    const regExp = new RegExp(/^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/);
+    if (regExp.test(controls.value)) {
+      return null;
+    } else {
+      return {
+        'nameValidator': true
+      };
+    }
   }
 
   nameValidator(controls) {
@@ -103,8 +135,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   streetValidator(controls) {
-    // tslint:disable-next-line:max-line-length
-    // const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     const regExp = new RegExp(/^[a-zA-Z0-9\s,.'-]{3,}$/);
     if (regExp.test(controls.value)) {
       return null;
@@ -126,8 +156,19 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  onSubmit() {
+  changeRadio(event) {
+    // this.radioState = !this.radioState;
+    console.log(event);
+    if (event === 'cart') {
+      this.radioState = false;
+    } else {
+      this.radioState = true;
+    }
+  }
+
+  async onSubmit() {
     this.form.disable();
+    this.checkState = true;
     const userOrder: UserOrder =  {
       name: this.form.value.name,
       surname: this.form.value.surname,
@@ -136,6 +177,12 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       payment: this.form.value.radio,
       orders: this.orders
     };
+
+    const { token, error } = await stripe.createToken(this.card);
+
+    if (this.auth.isLoggedIn()) {
+      userOrder.userId = this.auth.userToken._id;
+    }
 
     this.unSub = this.cart.createCheckout(userOrder).subscribe(
       data => {
@@ -147,6 +194,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       err => {
         MaterialService.toast(err.error.message);
+        this.checkState = false;
         this.form.enable();
       }
     );
@@ -157,11 +205,24 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.orders = this.cart.listToken;
   }
 
+  onChange({ error }) {
+    if (error) {
+      this.error = error.message;
+    } else {
+      this.error = null;
+    }
+    this.cd.detectChanges();
+  }
+
   ngOnDestroy() {
     this.parallaxInit.destroy();
     if (this.unSub) {
       this.unSub.unsubscribe();
     }
+
+    this.card.removeEventListener('change', this.cardHandler);
+    this.card.destroy();
   }
+
 
 }

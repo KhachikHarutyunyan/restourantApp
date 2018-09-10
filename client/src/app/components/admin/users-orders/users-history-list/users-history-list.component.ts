@@ -19,7 +19,6 @@ export class UsersHistoryListComponent implements OnInit, AfterViewInit, OnDestr
   constructor() { }
 
   ngOnInit() {
-    console.log(this.orders);
   }
 
   ngAfterViewInit() {
