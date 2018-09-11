@@ -1,5 +1,24 @@
-<p>
-  profile works!
-</p>
 
-<router-outlet></router-outlet>
+<div class="row profile">
+  <h5>Welcome to your page USERName</h5>
+  <div class="col s12 m3">
+    <ul  class="sidenav sidenav-fixed a-sidenav">
+      <li>
+        <div class="user-view">
+          <a routerLink="/profile"><span class="white-text email">jdandturk@gmail.com</span></a>
+        </div>
+      </li>
+      <li><a routerLink="/profile"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+      <li><a href="#!">Second Link</a></li>
+      <li><div class="divider"></div></li>
+      <li><a class="subheader">Subheader</a></li>
+      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
+
+  </div>
+  <div class="col s12 m9">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+

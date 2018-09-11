@@ -21,6 +21,7 @@ import { LoaderComponent } from '../loader/loader.component';
 import { CartComponent } from './navigation/cart/cart.component';
 import { CartService } from '../../shared/services/cart.service';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { UserOrdersListComponent } from './profile/user-order/user-orders-list/user-orders-list.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     UserOrderComponent,
     LoaderComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    UserOrdersListComponent
   ],
   providers: [ProfileGuard, CartService]
 })

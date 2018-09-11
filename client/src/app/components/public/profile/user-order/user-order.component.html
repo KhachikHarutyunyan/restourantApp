@@ -1,3 +1,43 @@
-<p>
-  user-order works!
-</p>
+
+<!-- <div class="page-title">
+    <h3>Users Orders History</h3>
+    <a routerLink="/admin/history">Go to history page</a>
+    <button class="btn btn-small" data-tooltip="Open Filter" (click)="isFilterVisible = !isFilterVisible"
+      data-position="bottom" #tooltip [ngClass]="{ 'active': isFilterVisible, 'red': isFiltered() }">
+      <i class="material-icons">filter_list</i>
+    </button>
+  </div> -->
+
+    <!-- <app-users-history-filter *ngIf="isFilterVisible" (onFilter)="applyFilter($event)"></app-users-history-filter> -->
+
+
+      <div >
+        <div >
+          <app-user-orders-list ></app-user-orders-list>
+
+          <div class="center" >
+            <button class="btn btn-small waves-effect"
+              >Load more</button>
+            <ng-template >
+              <app-loader></app-loader>
+            </ng-template>
+          </div>
+        </div>
+
+        <ng-template >
+          <div class="center">No orders!</div>
+        </ng-template>
+
+      </div>
+
+
+
+
+
+
+    <ng-template #reloadingBlock>
+      <!-- <app-admin-loader></app-admin-loader> -->
+    </ng-template>
+
+
+

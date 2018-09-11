@@ -1,0 +1,30 @@
+@import '../../../../assets/scss-tools/vars';
+.profile {
+  height: 100vh;
+  h5 {
+    padding-top: 80px;
+    text-align: center;
+    margin-top: 0;
+  }
+  .sidenav {
+    z-index: 1;
+    .user-view {
+      height: 300px;
+      background-color: $accent;
+      text-align: center;
+      display: flex;
+      align-items: center;
+    }
+  }
+  .a-sidenav {
+    transform: translateX(0)!important;
+    color: #a1a1b7;
+    font-family: $standart;
+  }
+  h3 {
+    // background-color: $accent;
+    padding: 20px;
+    text-align: center;
+    z-index: 5555;
+  }
+}

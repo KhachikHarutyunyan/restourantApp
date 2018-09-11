@@ -103,7 +103,6 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    // return this.isLoggedIn;
     return !!this.token;
   }
 

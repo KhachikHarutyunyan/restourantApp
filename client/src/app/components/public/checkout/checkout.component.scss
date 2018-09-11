@@ -71,7 +71,8 @@
         justify-content: flex-end;
 
         .StripeElement {
-          width: 320px;
+          min-width: 200px;
+          width: 60%;
           display: block;
           position: relative;
           right: 0;
@@ -211,6 +212,28 @@
 }
 
 // media
+
+@media(max-width: 880px) {
+
+  .checkout-form {
+    .checkbox-block {
+      display: inline!important;
+      p {
+        margin-left: 20px;
+      }
+      .credit {
+        width: 100%;
+        display: inline!important;
+        .StripeElement {
+          min-width: 100px;
+          width: 80%!important;
+        }
+      }
+    }
+  }
+
+}
+
 
 @media(max-width: 830px) {
   .section-checkout-order {

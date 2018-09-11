@@ -28,7 +28,6 @@ export class AdminGuard implements CanActivate {
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    // return this.canActivate(route, state);
     const user = this.auth.loadUserToken();
     if (user) {
       if (user['admin']) {
@@ -37,31 +36,9 @@ export class AdminGuard implements CanActivate {
         this.router.navigate(['/']);
         return false;
       }
-    }
-  }
-
-/*
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    if (this.auth.isAuthenticated()) {
-      return of(true);
     } else {
-      this.router.navigate(['/login'], {
-        queryParams: {
-          accessDenied: true
-        }
-      });
-      return of(false);
+      this.router.navigate(['/']);
+      return false;
     }
   }
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-  // canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.canActivate(route, state);
-    // const loggedUser = this.auth.getLoggedInUser();
-    // if (loggedUser['admin']) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-  }
-*/
 }

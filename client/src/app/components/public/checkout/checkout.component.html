@@ -95,22 +95,6 @@
                 </div>
 
               </div>
-              <div class="input-field col s6">
-                <input type="text"  formControlName="card"
-                [ngClass]="{'invalid': (form.controls.card.errors && form.controls.card.dirty)}">
-                <label>Card:</label>
-
-                <!-- <div *ngIf="form.controls['street'].errors">
-                  <span *ngIf="form.controls['street'].errors?.required && form.controls['street'].dirty">
-                    This field is required</span>
-                  <span *ngIf="(form.controls['street'].errors?.minlength && form.controls['street'].dirty) ||
-                      (form.controls['street'].errors?.maxlength && form.controls['street'].dirty)">
-                    Minimum characters: 6, Maximum characters: 30!</span>
-                  <span *ngIf="form.controls['street'].errors?.streetValidator && form.controls['street'].dirty">
-                    Street must not have any special characters!</span>
-                </div> -->
-
-              </div>
 
             </div>
 
@@ -120,23 +104,24 @@
             </div>
 
             <div class="checkbox-block">
+
               <p>
                 <label>
-                  <input type="radio" value="cart" class="with-gap" name="radio" formControlName="radio" (click)="changeRadio(form.controls['radio'].value)" />
+                  <input type="radio" value="cart" class="with-gap" name="radio" formControlName="radio" />
                   <span>Credit Cart</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input type="radio" value="cash" class="with-gap" name="radio" formControlName="radio" (click)="changeRadio(form.controls['radio'].value)" />
+                  <input type="radio" value="cash" class="with-gap" name="radio" formControlName="radio" />
                   <span>Cash</span>
                 </label>
               </p>
               <div class="credit"
-                [ngStyle]="{ 'display': form.controls['radio'].value === 'cart'? 'flex': 'none' }">
-                <div #cardInfo  >
-                </div>
+              [ngStyle]="{ 'display': form.controls['radio'].value === 'cart'? 'flex': 'none' }">
+              <div #cardInfo  >
               </div>
+            </div>
 
             </div>
 

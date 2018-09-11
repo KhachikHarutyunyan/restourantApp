@@ -30,8 +30,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   orders = [];
   checkState = false;
 
-  radioState = true;
-
   unSub: Subscription;
 
   constructor(
@@ -91,10 +89,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       ])],
       radio: ['cart', Validators.compose([
         Validators.required
-      ])],
-      card: ['', Validators.compose([
-        Validators.required,
-        this.cardValidator
       ])]
     });
   }
@@ -153,16 +147,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       return {
         'phoneValidator': true
       };
-    }
-  }
-
-  changeRadio(event) {
-    // this.radioState = !this.radioState;
-    console.log(event);
-    if (event === 'cart') {
-      this.radioState = false;
-    } else {
-      this.radioState = true;
     }
   }
 

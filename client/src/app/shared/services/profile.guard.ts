@@ -16,18 +16,20 @@ export class ProfileGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.auth.isLoggedIn()) {
+    if (!this.auth.isLoggedIn()) {
       return true;
     } else {
       this.redirectUrl = state.url;
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
       return false;
     }
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // return this.canActivate(route, state);
-    const user = this.auth.loadUserToken();
+    this.auth.loadUserToken();
+    const user  = this.auth.userToken;
+    // const user = this.auth.loadUserToken();
     if (user) {
       if (!user['admin']) {
         return true;
@@ -36,9 +38,13 @@ export class ProfileGuard implements CanActivate {
           this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/login']);
+          return false;
         }
-        return false;
+
       }
+    } else {
+      this.router.navigate(['/']);
+      return false;
     }
   }
 
