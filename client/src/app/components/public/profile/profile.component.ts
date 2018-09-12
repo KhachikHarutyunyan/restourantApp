@@ -1,18 +1,31 @@
 import { AuthService } from '../../../shared/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { MaterialInstance, MaterialService } from '../../../shared/classes/material.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  @ViewChild('userMenu') userMenuRef: ElementRef;
+
+  userMenuInit: MaterialInstance;
 
   constructor(
-    private auth: AuthService
+    public auth: AuthService
   ) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.userMenuInit = MaterialService.toggleMenu(this.userMenuRef);
+  }
+
+  ngOnDestroy() {
+    this.userMenuInit.destroy();
   }
 
 }

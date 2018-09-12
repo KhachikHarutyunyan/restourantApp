@@ -1,0 +1,20 @@
+
+@import '../../../../../assets/scss-tools/vars';
+
+
+.page-title {
+  padding: 0 50px;
+  text-align: center;
+  font-family: $standart;
+  margin-top: 90px;
+  h3 {
+    color: #464c54;
+    font-size: 28px;
+  }
+}
+
+.center {
+  button {
+    margin-top: 20px;
+  }
+}

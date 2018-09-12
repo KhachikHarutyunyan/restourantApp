@@ -168,6 +168,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       userOrder.userId = this.auth.userToken._id;
     }
 
+    console.log(userOrder);
+
     this.unSub = this.cart.createCheckout(userOrder).subscribe(
       data => {
         MaterialService.toast('Thank you for order');

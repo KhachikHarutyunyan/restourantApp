@@ -1,8 +1,7 @@
 
 <div class="row profile">
-  <h5>Welcome to your page USERName</h5>
-  <div class="col s12 m3">
-    <ul  class="sidenav sidenav-fixed a-sidenav">
+  <div class=" profile-menu">
+    <ul id="slide-user" class="sidenav sidenav-fixed a-sidenav" #userMenu>
       <li>
         <div class="user-view">
           <a routerLink="/profile"><span class="white-text email">jdandturk@gmail.com</span></a>
@@ -12,11 +11,12 @@
       <li><a href="#!">Second Link</a></li>
       <li><div class="divider"></div></li>
       <li><a class="subheader">Subheader</a></li>
-      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+      <li><a class="waves-effect" >Third Link With Waves</a></li>
     </ul>
-
+    <a href="#" class="sidenav-trigger" data-target="slide-user"><i class="material-icons" style="font-size: 36px;" >exit_to_app</i></a>
   </div>
-  <div class="col s12 m9">
+
+  <div class="col s12 m9 offset-m3">
     <router-outlet></router-outlet>
   </div>
 </div>

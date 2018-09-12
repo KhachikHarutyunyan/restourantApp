@@ -40,7 +40,6 @@ export class ProfileGuard implements CanActivate {
           this.router.navigate(['/login']);
           return false;
         }
-
       }
     } else {
       this.router.navigate(['/']);

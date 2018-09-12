@@ -97,4 +97,12 @@ export class CartService {
     });
   }
 
+  getAllUserCheckouts(id: string, params: any = {}): Observable<UserOrder[]> {
+    return this.http.get<UserOrder[]>(`/api/checkout/${id}`, {
+      params: new HttpParams({
+        fromObject: params
+      })
+    });
+  }
+
 }

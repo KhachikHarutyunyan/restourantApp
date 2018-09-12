@@ -17,7 +17,6 @@ export class UsersOrdersComponent implements OnInit, AfterViewInit, OnDestroy {
   tooltip: MaterialInstance;
   isFilterVisible = false;
   onSub: Subscription;
-  // orders: UserOrder[] = [];
   usersOrders: UserOrder[] = [];
   loading = false;
   reloading = false;
@@ -28,29 +27,13 @@ export class UsersOrdersComponent implements OnInit, AfterViewInit, OnDestroy {
   filter: Filter = {};
 
   constructor(
-    // private ordersService: OrdersService,
     private cart: CartService
   ) { }
 
   ngOnInit() {
     this.reloading = true;
-    // this.fetch();
     this.setCheckout();
   }
-
-  // private fetch() {
-  //   const params = Object.assign({}, this.filter, {
-  //     offset: this.offset,
-  //     limit: this.limit
-  //   });
-
-  //   this.onSub = this.ordersService.fetch(params).subscribe(orders => {
-  //     this.orders = this.orders.concat(orders);
-  //     this.noMoreOrders = orders.length < STEP;
-  //     this.loading = false;
-  //     this.reloading = false;
-  //   });
-  // }
 
   private setCheckout() {
     const params = Object.assign({}, this.filter, {
@@ -67,7 +50,6 @@ export class UsersOrdersComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   applyFilter(filter: Filter) {
-    // this.usersOrders = [];
     this.usersOrders = [];
     this.offset = 0;
     this.filter = filter;

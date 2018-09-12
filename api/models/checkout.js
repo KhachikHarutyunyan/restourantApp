@@ -9,13 +9,18 @@ const checkoutSchema = new Schema({
     order: { type: Number, required: true },
     street: { type: String, required: true },
     payment: { type: String, required: true },
+    userId: { type: String },
     orders: [
         {
             name: { type: String, required: true },
             quantity: { type: Number, required: true },
             cost: { type: Number, required: true }
         }
-    ]
+    ],
+    user: {
+        ref: 'Users',
+        type: Schema.Types.ObjectId
+    }
 });
 
 

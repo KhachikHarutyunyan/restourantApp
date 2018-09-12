@@ -36,7 +36,13 @@ module.exports.getAllCheckoutes = async function(req, res) {
 
 module.exports.getAllUserCheckoutes = async function(req, res) {
     try {
-        const userCheckoutes = await Checkout.findById({ userId: req.params.id });
+        console.log(req.query.offset);
+        console.log(req.query.limitk);
+        const userCheckoutes = await Checkout.find({ userId: req.params.id } )
+                .sort({ date: -1 })
+                .skip(+req.query.offset)
+                .limit(+req.query.limit);
+        
         res.status(200).json(userCheckoutes);
     } catch (error) {
         errorHandler(res, error);
@@ -58,7 +64,8 @@ module.exports.createCheckout = async function (req, res) {
             street: req.body.street,
             payment: req.body.payment,
             order: maxOrder + 1,
-            orders: req.body.orders
+            orders: req.body.orders,
+            userId: req.body.userId? req.body.userId: ''
         }).save();
         res.status(201).json(newCheckout);
     } catch (error) {

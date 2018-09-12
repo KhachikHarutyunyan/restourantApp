@@ -6,8 +6,18 @@
     text-align: center;
     margin-top: 0;
   }
+  .profile-menu {
+    a.sidenav-trigger {
+      position: absolute;
+      bottom: 40px;
+      left: 30px;
+      color: $accent;
+    }
+  }
   .sidenav {
-    z-index: 1;
+    z-index: 10;
+    width: 20%;
+    min-width: 250px;
     .user-view {
       height: 300px;
       background-color: $accent;
@@ -17,7 +27,7 @@
     }
   }
   .a-sidenav {
-    transform: translateX(0)!important;
+    // transform: translateX(0)!important;
     color: #a1a1b7;
     font-family: $standart;
   }
@@ -26,5 +36,12 @@
     padding: 20px;
     text-align: center;
     z-index: 5555;
+  }
+}
+
+
+@media(max-width: 992px) {
+  .sidenav {
+    z-index: 1100!important;
   }
 }

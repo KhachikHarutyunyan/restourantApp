@@ -4,7 +4,7 @@ const passport = require('passport');
 const controllers = require('../controllers/checkout');
 
 router.get('/', passport.authenticate('jwt', { session: false }), controllers.getAllCheckoutes);
-router.get('/:id', controllers.getAllUserCheckoutes);
+router.get('/:id', passport.authenticate('jwt', { session: false }), controllers.getAllUserCheckoutes);
 router.post('/', controllers.createCheckout);
 
 module.exports = router;
