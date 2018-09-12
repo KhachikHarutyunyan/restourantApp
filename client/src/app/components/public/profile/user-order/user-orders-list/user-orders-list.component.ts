@@ -19,7 +19,6 @@ export class UserOrdersListComponent implements OnInit, OnDestroy, AfterViewInit
   constructor() { }
 
   ngOnInit() {
-    console.log(this.orders);
   }
 
   ngAfterViewInit() {

@@ -22,6 +22,7 @@ import { CartComponent } from './navigation/cart/cart.component';
 import { CartService } from '../../shared/services/cart.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { UserOrdersListComponent } from './profile/user-order/user-orders-list/user-orders-list.component';
+import { UserChatComponent } from './profile/user-order/user-chat/user-chat.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { UserOrdersListComponent } from './profile/user-order/user-orders-list/u
     LoaderComponent,
     CartComponent,
     CheckoutComponent,
-    UserOrdersListComponent
+    UserOrdersListComponent,
+    UserChatComponent
   ],
   providers: [ProfileGuard, CartService]
 })

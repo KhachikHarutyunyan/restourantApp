@@ -23,7 +23,6 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
   usersOrders: UserOrder[] = [];
   loading = false;
   reloading = false;
-  checkout = false;
 
   offset = 0;
   limit = STEP;
@@ -32,13 +31,11 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private ordersService: OrdersService,
-    private cart: CartService
   ) { }
 
   ngOnInit() {
     this.reloading = true;
     this.fetch();
-    // this.setCheckout();
   }
 
   private fetch() {
@@ -55,41 +52,13 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  setCheckout() {
-    this.checkout = !this.checkout;
-    const params = Object.assign({}, this.filter, {
-      offset: this.offset,
-      limit: this.limit
-    });
-
-    if (this.checkout) {
-      console.log('checkout state', this.checkout);
-      this.offset = STEP;
-      this.cart.getAllCheckouts(params).subscribe(
-        data => {
-          this.usersOrders = this.usersOrders.concat(data);
-          this.noMoreOrders = this.usersOrders.length < STEP;
-          this.loading = false;
-          this.reloading = false;
-          console.log(data);
-        }
-      );
-    } else {
-      console.log('checkout else', this.checkout);
-    }
-  }
-
   applyFilter(filter: Filter) {
     this.orders = [];
     this.usersOrders = [];
     this.offset = 0;
     this.filter = filter;
-    if (this.checkout) {
-      this.setCheckout();
-    } else {
-      this.reloading = true;
-      this.fetch();
-    }
+    this.reloading = true;
+    this.fetch();
 
   }
 
@@ -104,11 +73,7 @@ export class HistoryComponent implements OnInit, AfterViewInit, OnDestroy {
   loadMore() {
     this.offset += STEP;
     this.loading = true;
-    if (this.checkout) {
-      this.setCheckout();
-    } else {
-      this.fetch();
-    }
+    this.fetch();
   }
 
   ngOnDestroy() {

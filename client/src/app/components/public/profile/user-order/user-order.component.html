@@ -8,7 +8,7 @@
         <div *ngIf="usersOrders.length > 0; else empty">
           <app-user-orders-list [userOrder]="usersOrders"></app-user-orders-list>
 
-          <div class="center" >
+          <div class="center" *ngIf="!noMoreOrders">
             <button class="btn btn-small waves-effect" *ngIf="!loading; else loader"
             (click)="loadMore()">Load more</button>
             <ng-template #loader>

@@ -1,3 +1,4 @@
+import { UserChatComponent } from './user-order/user-chat/user-chat.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -23,7 +24,8 @@ const routes: Routes = [
       { path: 'login', component: LoginPageComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'profile', component: ProfileComponent, canActivateChild: [ProfileGuard], children: [
-        { path: '', component: UserOrderComponent }
+        { path: '', component: UserOrderComponent },
+        { path: '/chat', component: UserChatComponent }
       ] },
       { path: 'checkout', component: CheckoutComponent }
     ]
