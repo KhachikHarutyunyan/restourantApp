@@ -89,3 +89,10 @@ export interface UserOrder {
   _id?: string;
 }
 
+export interface Message {
+  message: string;
+  email: string;
+  date?: Date;
+  _id?: string;
+}
+

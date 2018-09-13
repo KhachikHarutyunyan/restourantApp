@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { ChatService } from '../../../../../shared/services/chat.service';
+import { FormGroup } from '@angular/forms';
+import { Message } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-user-chat',
@@ -7,9 +11,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserChatComponent implements OnInit {
 
-  constructor() { }
+  message;
+  email: string;
+  newMessage = [];
+
+  constructor(
+    public auth: AuthService,
+    private chat: ChatService
+  ) {  }
 
   ngOnInit() {
+    this.email = this.auth.userToken.email;
+    this.chat.getNewMessage().subscribe(
+      data => {
+
+        this.newMessage.push(data);
+        console.log(this.newMessage);
+      }
+    );
+  }
+
+  send() {
+    console.log(this.message);
+    const newMessage: Message = {
+      email: this.email,
+      message: this.message
+    };
+    console.log(newMessage);
+    this.chat.sendMessage(newMessage);
   }
 
 }

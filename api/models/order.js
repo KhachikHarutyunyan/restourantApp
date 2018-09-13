@@ -12,7 +12,7 @@ const orderSchema = new Schema({
     }
   ],
   user: {
-    ref: 'User',
+    ref: 'Users',
     type: Schema.Types.ObjectId
   }
 });

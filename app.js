@@ -11,6 +11,9 @@ const keys = require('./api/config/keys');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+const Message = require('./api/models/messages');
+const errorHandler = require('./api/utils/errHandler');
+
 const authRoutes = require('./api/routes/auth');
 const categoryRoutes = require('./api/routes/categories');
 const positionRoutes = require('./api/routes/positions');
@@ -56,9 +59,27 @@ if (process.env.NODE_ENV === 'production') {
 
 
 io.on('connection', (socket) => {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', (data) => {
-    console.log(data);
+  socket.on('message', (message) => {
+    try {
+      if (message.length !== 0) {
+        const newMessage = new Message({
+          message: [
+            {
+              email: message.email,
+              message: message.message,
+              date: Date.now
+            }
+          ]
+        }).save();
+        console.log(newMessage);
+      } else {
+        // res
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    // console.log(message);
+    socket.emit('message', message);
   });
 });
 

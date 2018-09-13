@@ -12,6 +12,7 @@
       bottom: 40px;
       left: 30px;
       color: $accent;
+      z-index: 9;
     }
   }
   .sidenav {
@@ -27,12 +28,10 @@
     }
   }
   .a-sidenav {
-    // transform: translateX(0)!important;
     color: #a1a1b7;
     font-family: $standart;
   }
   h3 {
-    // background-color: $accent;
     padding: 20px;
     text-align: center;
     z-index: 5555;

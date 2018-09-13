@@ -1,4 +1,4 @@
-import { UserChatComponent } from './user-order/user-chat/user-chat.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileGuard } from '../../shared/services/profile.guard';
 import { UserOrderComponent } from './profile/user-order/user-order.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { UserChatComponent } from 'src/app/components/public/profile/user-order/user-chat/user-chat.component';
 
 const routes: Routes = [
   { path: '', component: SiteLayoutComponent,
@@ -25,7 +26,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'profile', component: ProfileComponent, canActivateChild: [ProfileGuard], children: [
         { path: '', component: UserOrderComponent },
-        { path: '/chat', component: UserChatComponent }
+        { path: 'chat', component: UserChatComponent }
       ] },
       { path: 'checkout', component: CheckoutComponent }
     ]

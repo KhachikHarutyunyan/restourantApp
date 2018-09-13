@@ -36,8 +36,6 @@ module.exports.getAllCheckoutes = async function(req, res) {
 
 module.exports.getAllUserCheckoutes = async function(req, res) {
     try {
-        console.log(req.query.offset);
-        console.log(req.query.limitk);
         const userCheckoutes = await Checkout.find({ userId: req.params.id } )
                 .sort({ date: -1 })
                 .skip(+req.query.offset)

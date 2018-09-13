@@ -1,5 +1,4 @@
-<ul class="comment-section" >
-  <!-- <li class="comment user-comment" *ngFor="let comment of postComments"> -->
+<!-- <ul class="comment-section" >
   <li >
     <div class="info">
       <a>Comentator</a>
@@ -33,8 +32,6 @@
     <p>Comment</p>
   </li>
 
-
-
   <li class="write-new" >
     <form >
 
@@ -55,4 +52,37 @@
       </div>
     </form>
   </li>
-</ul>
+</ul> -->
+
+
+<div class="page-title">
+  <h3>Chat with Admin</h3>
+</div>
+
+<div id="frame">
+  <div class="content">
+    <div class="contact-profile">
+      <p>{{ auth.userToken.email }}</p>
+    </div>
+    <div class="messages">
+      <ul>
+        <li class="sent">
+          <span>Admin</span>
+          <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+        </li>
+        <li class="replies">
+          <span>{{ auth.userToken.email }}</span>
+          <p>When you're backed against the wall, break the god damn thing down.</p>
+        </li>
+      </ul>
+    </div>
+    <div class="message-input">
+      <form  (ngSubmit)="send()">
+        <div class="wrap">
+        <input type="text" placeholder="Write your message..." [(ngModel)]="message" name="message" />
+        <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
