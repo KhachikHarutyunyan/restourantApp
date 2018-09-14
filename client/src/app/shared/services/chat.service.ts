@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Message } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class ChatService {
     this.socket = io(this.domain);
   }
 
-  sendMessage(message) {
+  sendMessage(message: Message) {
     this.socket.emit('message', message);
   }
 
@@ -32,6 +32,10 @@ export class ChatService {
 
   postMessage(message: Message) {
     return this.http.post('/api/chat', message);
+  }
+
+  getUserMessage(id) {
+    return this.http.get(`/api/chat/${id}`);
   }
 
 }

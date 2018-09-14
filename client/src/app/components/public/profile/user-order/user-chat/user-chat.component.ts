@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { ChatService } from '../../../../../shared/services/chat.service';
 import { FormGroup } from '@angular/forms';
 import { Message } from '../../../../../shared/interfaces';
+import { MaterialService } from '../../../../../shared/classes/material.service';
 
 @Component({
   selector: 'app-user-chat',
@@ -11,9 +12,10 @@ import { Message } from '../../../../../shared/interfaces';
 })
 export class UserChatComponent implements OnInit {
 
-  message;
+  message = '';
   email: string;
   newMessage = [];
+  oldMessages = [];
 
   constructor(
     public auth: AuthService,
@@ -24,21 +26,36 @@ export class UserChatComponent implements OnInit {
     this.email = this.auth.userToken.email;
     this.chat.getNewMessage().subscribe(
       data => {
-
         this.newMessage.push(data);
-        console.log(this.newMessage);
+      }
+    );
+    this.getUserMessages(this.auth.userToken._id);
+  }
+
+  getUserMessages(id) {
+    this.chat.getUserMessage(id).subscribe(
+      data => {
+        this.oldMessages.push(data);
       }
     );
   }
 
   send() {
-    console.log(this.message);
     const newMessage: Message = {
       email: this.email,
-      message: this.message
+      message: this.message,
+      userId: this.auth.userToken._id
     };
-    console.log(newMessage);
-    this.chat.sendMessage(newMessage);
+
+    this.chat.postMessage(newMessage).subscribe(
+      data => {
+        this.message = '';
+        this.chat.sendMessage(newMessage);
+      },
+      error => {
+        MaterialService.toast('Something went wrong');
+      }
+    );
   }
 
 }

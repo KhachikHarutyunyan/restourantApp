@@ -92,6 +92,7 @@ export interface UserOrder {
 export interface Message {
   message: string;
   email: string;
+  userId: string;
   date?: Date;
   _id?: string;
 }

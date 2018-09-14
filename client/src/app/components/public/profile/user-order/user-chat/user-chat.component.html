@@ -65,22 +65,27 @@
       <p>{{ auth.userToken.email }}</p>
     </div>
     <div class="messages">
-      <ul>
-        <li class="sent">
-          <span>Admin</span>
-          <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+      <ul *ngFor="let message of oldMessages[0]">
+        <li [class]="auth.userToken.admin? 'sent': 'replies'" >
+          <span>{{ message.email }}</span>
+          <p>{{ message.message }}</p>
+          <span>{{ message.date | date: ' HH : m , dd.mm.yy' }}</span>
         </li>
-        <li class="replies">
-          <span>{{ auth.userToken.email }}</span>
-          <p>When you're backed against the wall, break the god damn thing down.</p>
+      </ul>
+      <ul *ngFor="let message of newMessage">
+        <li class="replies" >
+          <span>{{ message.email }}</span>
+          <p>{{ message.message }}</p>
+          {{ message.date }}
         </li>
+
       </ul>
     </div>
     <div class="message-input">
-      <form  (ngSubmit)="send()">
+      <form (ngSubmit)="send()">
         <div class="wrap">
-        <input type="text" placeholder="Write your message..." [(ngModel)]="message" name="message" />
-        <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        <textarea type="text" placeholder="Write your message..." [(ngModel)]="message" name="message" ></textarea>
+        <button class="submit btn" [disabled]="message === ''"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
         </div>
       </form>
     </div>

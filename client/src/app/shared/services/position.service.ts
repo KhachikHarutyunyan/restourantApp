@@ -19,7 +19,7 @@ export class PositionService {
   }
 
   create(position: Positions): Observable<Positions> {
-    return this.http.post<Positions>(this.domain + 'position', position);
+    return this.http.post<Positions>('/api/position/', position);
   }
 
   update(position: Positions): Observable<Positions> {
