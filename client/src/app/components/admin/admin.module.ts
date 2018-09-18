@@ -30,6 +30,9 @@ import { UsersHistoryFilterComponent } from './users-orders/users-history-filter
 import { UsersHistoryListComponent } from './users-orders/users-history-list/users-history-list.component';
 import { UsersOverviewComponent } from './overview/users-overview/users-overview.component';
 import { UsersAnalyticsComponent } from './analytics/users-analytics/users-analytics.component';
+import { MessagesComponent } from './messages/messages.component';
+import { EmailsComponent } from './messages/emails/emails.component';
+import { ChatComponent } from './messages/chat/chat.component';
 
 
 @NgModule({
@@ -58,7 +61,10 @@ import { UsersAnalyticsComponent } from './analytics/users-analytics/users-analy
     UsersHistoryFilterComponent,
     UsersHistoryListComponent,
     UsersOverviewComponent,
-    UsersAnalyticsComponent
+    UsersAnalyticsComponent,
+    MessagesComponent,
+    EmailsComponent,
+    ChatComponent
   ],
   providers: [
     AdminGuard,

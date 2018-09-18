@@ -67,9 +67,11 @@
     <div class="messages">
       <ul *ngFor="let message of oldMessages[0]">
         <li [class]="auth.userToken.admin? 'sent': 'replies'" >
-          <span>{{ message.email }}</span>
+          <span>{{ message.email }} <br>
+            {{ message.date | date: 'HH : m , dd.mm.yy' }}
+          </span>
           <p>{{ message.message }}</p>
-          <span>{{ message.date | date: ' HH : m , dd.mm.yy' }}</span>
+
         </li>
       </ul>
       <ul *ngFor="let message of newMessage">

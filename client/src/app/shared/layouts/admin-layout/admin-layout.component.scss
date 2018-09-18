@@ -40,6 +40,18 @@
   margin-left: 230px;
   nav {
     background-color: #464c54;
+    ul:not(.browser-default) {
+      margin-right: 40px;
+    }
+    ul {
+      a {
+        transition: all .3s;
+        &:hover {
+          color: $accent;
+        }
+      }
+    }
+    // nav ul a:hover
   }
 }
 

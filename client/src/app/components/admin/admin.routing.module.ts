@@ -11,6 +11,9 @@ import { OrderPositionsComponent } from './orders/order-positions/order-position
 import { HistoryComponent } from './history/history.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { UsersOrdersComponent } from './users-orders/users-orders.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ChatComponent } from './messages/chat/chat.component';
+import { EmailsComponent } from './messages/emails/emails.component';
 
 const routes: Routes = [
   { path: '', component: AdminLayoutComponent, canActivateChild: [AdminGuard], children: [
@@ -25,6 +28,10 @@ const routes: Routes = [
     { path: 'history', component: HistoryComponent },
     { path: 'users-history', component: UsersOrdersComponent },
     { path: 'analytics', component: AnalyticsComponent },
+    { path: 'messages', component: MessagesComponent, children: [
+      { path: '', component: EmailsComponent },
+      { path: 'chat', component: ChatComponent }
+    ] },
   ] }
 ];
 
