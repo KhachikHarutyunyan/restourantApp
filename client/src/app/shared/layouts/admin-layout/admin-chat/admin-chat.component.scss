@@ -1,0 +1,358 @@
+@import '../../../../../assets/scss-tools/vars';
+
+
+.chat-list {
+  font-family: $standart;
+  .sidenav.right-aligned {
+    background-color: #f3f3f3;
+  }
+  .chat-flex {
+    li {
+      background-color: #282b2e;
+      padding: 10px 0;
+      border-bottom: 1px solid $accent;
+      border-left: 6px solid $accent;
+      a {
+        color: $accent;
+        i {
+          color: $accent;
+          cursor: pointer;
+          font-size: 14px;
+        }
+      }
+    }
+    .users-list {
+      li {
+        background-color: #f3f3f3;
+        padding: 0!important;
+        margin-left: 28px;
+        border: none;
+        cursor: pointer;
+        transition: all .4s;
+        &:hover {
+          color: $accent;
+        }
+      }
+    }
+  }
+}
+
+#mmc-chat {
+  float: right;
+}
+
+#mmc-chat .chat-box {
+  margin-right: 290px;
+  height: 400px;
+  position: fixed;
+  bottom: 18px;
+  right: 0;
+  z-index: 1000;
+  transition: .6s;
+}
+
+#mmc-chat .chat-box ul.boxs li.box {
+  height: 40px;
+  float: left;
+  width: 300px;
+  margin-right: 15px;
+  direction: ltr;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-header {
+  padding: 5px 5px 5px 10px;
+  background-color: #282b2e;
+  height: 30px;
+  color: #fff;
+  -webkit-border-radius: 6px 6px 0 0;
+  -moz-border-radius: 6px 6px 0 0;
+  border-radius: 6px 6px 0 0;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-header .info {
+  float: left;
+  width: 74%;
+  color: #858598;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-header .tools {
+  float: right;
+  margin-right: 8px;
+  color: #858598;
+  i {
+    cursor: pointer;
+    font-size: 14px;
+    &:first-child {
+      margin-right: 5px;
+    }
+    transition: all .3s;
+    &:hover {
+      color: $accent;
+    }
+  }
+
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body {
+  height: 330px;
+  background-color: color("grey", "lighten-5");
+}
+#mmc-chat.color-default .box .box-body {
+  border-right: 2px solid #282b2e;
+  border-left: 2px solid #282b2e;
+  background-color: #fafafa;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .status {
+  height: 4px;
+  position: absolute;
+  width: 296px;
+  z-index: 10;
+}
+
+#mmc-chat .status.offline {
+  background-color: #eaac05;
+}
+
+#mmc-chat .status.online {
+  background-color: #06ba9a;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .options {
+  z-index: 5;
+  background-color: #fff;
+  padding: 10px 9px;
+  height: 20px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.39);
+  -moz-box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.39);
+  box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.39);
+  position: relative;
+}
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler {
+  overflow-y: auto;
+  background-color: #f3f3f3;
+  height: 309px;
+  width: 100%;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler .messages .message.no-avatar {
+  padding: 0 20px;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-footer {
+  height: 41px;
+  padding: 5px;
+  border-top: 1px solid #c7c7c7;
+  background: #fff;
+}
+
+#mmc-chat.color-default .box .box-footer {
+  border-right: 2px solid #1e2730;
+  border-left: 2px solid #1e2730;
+  border-bottom: 2px solid #1e2730;
+  border-radius: 0 0 5px 5px;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-footer .send-message {
+  width: 85%;
+  height: 30px;
+  overflow-y: auto;
+  font-size: 12px;
+  textarea {
+    max-height: 26px;
+    overflow: auto!important;
+    resize: none;
+    &:focus {
+      outline: none;
+      box-shadow: 0 1px 0 0 #32465a;
+    }
+  }
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler .messages .message.no-avatar {
+  padding: 0 20px;
+}
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler .messages .message .body .seen {
+  margin-top: 2px;
+  font-size: 11px;
+  color: #bdbdbd;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler .messages .message {
+  padding: 10px;
+  margin: 10px 0;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-footer .file {
+  width: 24px;
+  height: 29px;
+  margin-left: 5px;
+  margin-top: -28px;
+  float: right;
+  cursor: pointer;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler
+.messages .message.no-avatar .body .content {
+  margin-right: 0px;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler .messages .message .body .content {
+  position: relative;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler .messages .in .body .content {
+  background-color: #c2e8e2;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler .messages .message .body .content:after {
+  content: "";
+  position: absolute;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 14px solid black;
+  transform-origin: 0 0;
+  box-shadow: -3px 3px 3px 0rgba 0, 0, 0, 0.4;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler .messages .in .body .content:after {
+  left: 4px;
+  top: -19px;
+  border-color: transparent transparent #c2e8e2 transparent;
+  -webkit-transform: rotate(-315deg);
+  -moz-transform: rotate(-315deg);
+  transform: rotate(-315deg);
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler .messages .out .body .content {
+  background-color: #fff;
+}
+
+#mmc-chat .chat-box ul.boxs li.box .box-body .message-scrooler .messages .out .body .content:after {
+  top: 0px;
+  right: -3px;
+  border-color: transparent transparent #fafafa transparent;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+
+
+// .box {
+//   position: fixed;
+// }
+
+// .chat-box {
+//   width: 300px;
+//   background-color: #fff;
+// }
+
+// .messages {
+//     height: auto;
+//     min-height: calc(100% - 93px);
+//     max-height: calc(100% - 93px);
+//     overflow-y: scroll;
+//     overflow-x: hidden;
+//     padding-bottom: 40px;
+//     &::-webkit-scrollbar {
+//       width: 8px;
+//       background: transparent;
+//     }
+//     &::-webkit-scrollbar-thumb {
+//       background-color: rgba(224, 18, 18, 0.3);
+//     }
+//     ul li {
+//       display: inline-block;
+//       clear: both;
+//       float: left;
+//       margin: 15px 15px 5px 15px;
+//       width: calc(100% - 25px);
+//       font-size: 0.9em;
+//       &:nth-last-child(1) {
+//         margin-bottom: 20px;
+//       }
+//       &.sent {
+//         span {
+//           // margin: 6px 8px 0 0;
+//           display: flex;
+//         }
+//         p {
+//           background: #435f7a;
+//           color: #f5f5f5;
+//         }
+//       }
+//       &.replies {
+//         span {
+//           float: right;
+//           margin: 0 0 0 18px;
+//           // display: flex;
+//         }
+//         p {
+//           background: #f5f5f5;
+//           float: right;
+//         }
+//       }
+//       img {
+//         width: 22px;
+//         border-radius: 50%;
+//         float: left;
+//       }
+//       p {
+//         display: inline-block;
+//         padding: 10px 15px;
+//         border-radius: 20px;
+//         max-width: 205px;
+//         line-height: 130%;
+//       }
+//     }
+//   }
+//   .message-input {
+//     position: absolute;
+//     bottom: 0;
+//     width: 100%;
+//     z-index: 99;
+//     background-color: #333;
+//     .wrap {
+//       position: relative;
+//       textarea {
+//         font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
+//         float: left;
+//         border: none;
+//         width: calc(100% - 90px);
+//         padding: 11px 32px 10px 8px;
+//         font-size: 0.8em;
+//         resize: none;
+//         color: #fff;
+//         overflow: hidden;
+//         &:focus {
+//           outline: none;
+//           box-shadow: 0 1px 0 0 #32465a;
+//         }
+
+
+//       }
+//       button {
+//         float: right;
+//         border: none;
+//         width: 50px;
+//         cursor: pointer;
+//         background: #32465a;
+//         color: #f5f5f5;
+//         &:hover {
+//           background: #435f7a;
+//           i {
+//             color: $accent;
+//           }
+//         }
+//         &:focus {
+//           outline: none;
+//         }
+//       }
+//     }
+//   }

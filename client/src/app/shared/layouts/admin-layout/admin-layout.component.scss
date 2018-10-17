@@ -51,7 +51,33 @@
         }
       }
     }
-    // nav ul a:hover
+  }
+}
+
+.users-chat {
+  position: relative;
+  right: 0;
+  margin: 0 50px;
+  font-size: 16px;
+  div {
+    display: flex;
+    align-self: center;
+  }
+  a {
+    display: flex;
+    color: #fff!important;
+    transition: .4s;
+    cursor: pointer;
+    &:first-child {
+      margin-top: 4px;
+    }
+    &:hover {
+      color: #f97878!important;
+    }
+  }
+  i {
+    font-size: 22px;
+    margin: 0 5px;
   }
 }
 

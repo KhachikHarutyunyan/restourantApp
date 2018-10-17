@@ -57,11 +57,44 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-io.on('connection', (socket) => {
-  socket.on('message', (message) => {
-    socket.emit('message', message);
+io.on('connection', function(socket)  {
+  console.log('connection');
+
+  // socket.on('isLogged', (token) => {
+  //   console.log('User is Logged in', token);
+  // });
+
+  socket.on('subscribe', function(room) {
+    console.log('joining room', room);
+    socket.join(room);
+  });
+
+  socket.on('admin message', (msg) => {
+    socket.emit('admin message', msg);
+  });
+
+  socket.on('admin message', (message) => {
+    console.log(keys.adminId);
+    const msg = {
+      email: message.email,
+      message: message.message.trim(),
+      userId: message.userId
+    };
+    socket.broadcast.to(message.userId).emit('privat chat', {
+      message: msg.message
+    });
+
+    // socket.emit('message', msg);
+    // console.log(message);
+  });
+
+  socket.on('disconnect', function() {
+    console.log('dis');
   });
 });
 
+// io.on('disconnect', function () {
+//   console.log('dis');
+// });
 
 server.listen(port, () => console.log(`Server started work ${port}`));

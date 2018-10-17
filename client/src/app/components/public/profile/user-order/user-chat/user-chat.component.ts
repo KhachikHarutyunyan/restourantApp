@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ChatService } from '../../../../../shared/services/chat.service';
-import { FormGroup } from '@angular/forms';
 import { Message } from '../../../../../shared/interfaces';
 import { MaterialService } from '../../../../../shared/classes/material.service';
 

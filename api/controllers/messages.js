@@ -31,13 +31,16 @@ module.exports.saveMessage = async function(req, res) {
 module.exports.getUserMessage = async function(req, res) {
 
     try {
-        const userMessages = await Messages.find({ userId: req.params.id });
+      const userMessages = await Messages.find({ userId: req.params.id });
 
-        console.log(userMessages[0].message);
+      if (userMessages.length < 0) {
+        userMessages.message = "";
+      } 
+      
 
-        res.status(200).json(userMessages);
+      res.status(200).json(userMessages);
     } catch (error) {
-        errorHandler(res, error);
+      errorHandler(res, error);
     }
 
 }

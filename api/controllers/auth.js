@@ -50,3 +50,16 @@ module.exports.register = async function(req, res) {
     
   }
 }
+
+module.exports.allUsers = async function(req, res) {
+
+  const users = await User.find({});
+
+  try {
+    res.status(200).json(users);
+  } catch (error) {
+    errHandler(res, error);
+  }
+  
+}
+

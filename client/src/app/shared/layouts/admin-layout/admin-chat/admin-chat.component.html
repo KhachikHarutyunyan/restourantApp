@@ -1,0 +1,118 @@
+<div class="chat-list">
+  <ul class="sidenav" id="slide-chat" #chat>
+    <div class="chat-flex">
+      <div>
+        <li>
+          <a>Your Chat <i class="material-icons" (click)="close()">close</i></a>
+
+        </li>
+
+        <div class="users-list">
+          <li *ngFor="let user of users" (click)="onUser(user)">
+            {{ user.email }}
+          </li>
+        </div>
+
+      </div>
+    </div>
+  </ul>
+
+</div>
+
+
+
+
+<div id="mmc-chat" class="color-default " *ngIf="choosedUser.length != 0">
+  <!-- BEGIN CHAT BOX -->
+  <div class="chat-box" [style.height]="minimize? '30px': '400px'">
+    <!-- BEGIN CHAT BOXS -->
+    <ul class="boxs">
+      <!-- BEGIN CHAT BOX -->
+      <li class="box" data-id="2">
+        <div class="box-header " >
+          <div class="info">
+            <span class="box-username">{{ choosedUser['email'] }}</span>
+          </div>
+          <div class="tools">
+            <i class="material-icons" (click)="minimize = !minimize">remove</i>
+            <i class="material-icons" (click)="closeChat()">close</i>
+          </div>
+        </div>
+        <div class="box-body">
+          <div class="status offline"></div>
+          <div class="options">
+          </div>
+          <!-- Messages -->
+          <div class="message-scrooler">
+            <div class="messages" *ngFor="let message of oldMessages[0]">
+              <div class="message out no-avatar" >
+                <div class="body">
+                  <div class="content">{{ message.message }}</div>
+                  <div class="seen"><span>a few seconds ago </span> </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="message out no-avatar"
+              *ngFor="let message of newMessage" >
+                <!-- BEGIN MESSAGE SENDER INFO -->
+                <div class="sender">
+                </div>
+                <!-- END MESSAGE SENDER INFO -->
+                <div class="body">
+                  <!-- BEGIN MESSAGE CONTENT-->
+                  <div class="content"><span>{{ message.message }}</span></div>
+                  <!-- BEGIN MESSAGE CONTENT  -->
+                  <!-- BEGIN MESSAGE SEND TIME -->
+                  <div class="seen"><span>3 minute ago </span> </div>
+                  <!-- BEGIN MESSAGE SEND TIME -->
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="message out no-avatar">
+                <div class="sender">
+                  <a href="javascript:void(0);" title="Rufat Askerov">
+                    <img src="assets/img/avatar.png" class="avatar" alt="Rufat Askerov">
+                  </a>
+                </div>
+                <div class="body">
+                  <div class="content">
+                    <a href="http://materializecss.com/media.html" target="_blank">materializecss.com</a>
+                  </div>
+                  <div class="seen"><span>3 minute ago </span> </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div class="message in ">
+                <div class="sender"><a href="javascript:void(0);"
+                   title="Irina Shayk"><img src="assets/img/user-5.png" class="avatar"
+                      alt="Irina Shayk"></a></div>
+                <div class="body">
+                  <div class="content"><span>Hello, welcome to chat </span></div>
+                  <div class="seen"><span>few seconds ago </span> </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-footer">
+          <!-- BEGIN  WRITE MESSAGE -->
+          <form (ngSubmit)="send()">
+            <div class="item send-message">
+              <textarea [(ngModel)]="message" name="message" cols="1" rows="1"></textarea>
+            </div>
+            <!-- END WRITE MESSAGE -->
+            <div class="item file">
+              <button class="btn"> <i class="material-icons">send</i> </button>
+            </div>
+          </form>
+
+        </div>
+      </li>
+      <!-- END CHAT BOX -->
+    </ul>
+    <!-- END CHAT BOXS -->
+  </div>
+  <!-- END CHAT BOX -->
+</div>

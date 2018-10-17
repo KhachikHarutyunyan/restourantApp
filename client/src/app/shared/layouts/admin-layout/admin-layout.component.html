@@ -19,13 +19,15 @@
 
 <main class="content" >
   <nav>
-    <div class="nav-wrapper">
-      <ul class="right">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="messages"><i class="material-icons">email</i></a></li>
-        <li routerLinkActive="active"><a routerLink="messages/chat"><i class="material-icons">chat</i></a></li>
-      </ul>
+    <div class="users-chat right">
+      <div>
+        <a routerLink="messages"><i class="material-icons">email</i></a>
+        <a class="valign-wrapper sidenav-trigger" data-target="slide-chat" (click)="openChat()">
+          <i class="material-icons">chat</i></a>
+      </div>
     </div>
   </nav>
+
 
   <router-outlet></router-outlet>
 </main>
@@ -33,3 +35,5 @@
 <a id="menu" class="waves-effect waves-light btn btn-floating">
   <i class="material-icons">info</i>
 </a>
+
+<app-admin-chat></app-admin-chat>

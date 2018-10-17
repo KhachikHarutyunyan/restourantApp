@@ -19,15 +19,27 @@ export class ChatService {
   }
 
   sendMessage(message: Message) {
-    this.socket.emit('message', message);
+    this.socket.emit('admin message', message);
+  }
+
+  chatMessage(message: Message) {
+    this.socket.emit('admin message', message);
   }
 
   public getNewMessage = () => {
-     return Observable.create((observer) => {
-       this.socket.on('message', (message) => {
-         observer.next(message);
-       });
-     });
+    return Observable.create((observer) => {
+      this.socket.on('privat chat', (message) => {
+        observer.next(message);
+      });
+    });
+  }
+
+  public getAdminMessages = () => {
+    return Observable.create((observer) => {
+      this.socket.on('privat chat', (message) => {
+        observer.next(message);
+      });
+    });
   }
 
   postMessage(message: Message) {

@@ -1,3 +1,4 @@
+import { AdminChatComponent } from './../../shared/layouts/admin-layout/admin-chat/admin-chat.component';
 import { AnalyticsService } from './../../shared/services/analytics.service';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
@@ -64,7 +65,8 @@ import { ChatComponent } from './messages/chat/chat.component';
     UsersAnalyticsComponent,
     MessagesComponent,
     EmailsComponent,
-    ChatComponent
+    ChatComponent,
+    AdminChatComponent
   ],
   providers: [
     AdminGuard,

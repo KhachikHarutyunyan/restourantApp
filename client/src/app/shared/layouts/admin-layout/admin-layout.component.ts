@@ -31,4 +31,7 @@ export class AdminLayoutComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  openChat() {
+  }
+
 }

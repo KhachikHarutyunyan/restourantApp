@@ -6,16 +6,9 @@ const messageSchema = new Schema({
     email: { type: String, required: true },
     message: { type: String, required: true },
     date: { type: Date, default: Date.now },
-    // message: [
-    //     {
-    //         email: { type: String, required: true },
-    //         message: { type: String, required: true },
-    //         date: { type: Date, default: Date.now },
-    //     }
-    // ],
     user: {
-        ref: 'Users',
-        type: Schema.Types.ObjectId
+      ref: 'Users',
+      type: Schema.Types.ObjectId
     }
 });
 
